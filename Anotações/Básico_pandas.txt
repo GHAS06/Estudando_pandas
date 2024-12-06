@@ -1,0 +1,121 @@
+1 - Esse arquivo.txt é uma anotação de começo rápido e básico de pandas!
+
+2 - Para usarmos pandas, precisamos instalar na máquina a sua biblioteca
+                    pip install import pandas
+
+    obs.: podemos usar: pip freeze para listar pacotes já instalados
+
+3 - Feito isso, vamos trabalhar, abrir o VSCODE e importar a lib pandas 
+e renomear com pd 
+                                    
+                                    Veja!  
+
+import pandas as pd 
+
+4 - Entendendo Serie vs Data Frame 
+
+Serie -> É uma estrutura de dados unidimensional similar a coluna de dados ou uma
+lista. Cada series tem um índicie, facilitando o seu acesso e manipulação dos dados 
+de forma rápida.
+                                
+EXEMPLO: Serie = pd.Series([10,20,30,40])
+
+Se quisermos exibir o número 40, precisamos printar a Serie no seu respectivo
+indicie
+                                    VEJA! 
+
+                    0  1  2  3 -> index ou indicies             
+Serie = pd.Series([10,20,30,40])
+print(Serie[3]) # retorna 40
+
+Data Frame -> Um Data Frame é uma tabela bidimensional (linhas e colunas), semellhante
+a uma planilha ou uma tabela de banco de dados. Cada coluna pode ter um tipo de dados
+específico, como texto, números, datas e etc... É o formato mais utilizado para armaze
+nar e manipular dados no Pandas. 
+
+EXEMPLO: dados = {
+            
+    "Produtos":['A','B','B'],
+    "Quantidade":[10,20,30],
+    "Preço":[5.0,10.0,15.0]
+                    }
+
+df = pd.DataFrame(dados)
+
+Mesma lógica para series, se quise printar os dados.
+
+print(df.to_string(index=False)) #removendo o index a esquerda na hora de exibit
+
+5 - Lendo arquivos csv, sql, xlsx com pandas 
+
+df = pd.read_csv()
+df = pd.read_excel()
+df = pd.read_json()
+
+# com sqlalquemy podemos ler arquivos sql com pandas
+
+import pandas as pd from sqlalchemy import create_engine
+
+# Criar a engine de conexão 
+engine = create_engine('mysql+pymysql://usuario:senha@host:porta/nome_do_banco') 
+
+# Consulta SQL 
+query = "SELECT * FROM sua_tabela" 
+
+# Ler dados do SQL para o DataFrame
+df_sql = pd.read_sql(query, engine) # Exibir o DataFrame
+
+6 - Salvando o resultado final de manipulações de dados em arquivos: 
+csv, excel, json, sql.
+
+df.to_csv("resultado.csv", index = false)
+df.to_excel("resultado.xlsx", index = false)
+
+7 - Exibindo as 5 primeiras linhas
+
+print(df.head())
+
+8 - Exibindo estatísticas básicas para colunas númericas
+
+print(df.describe())
+
+9 - Exibindo informações das colunas e dados de um DataFrame
+
+print(df.info())
+
+10 - Exibir e Selecionar Linhas por indicie
+
+print(df.iloc[0]) seleciona linhas e seus atributos/dados por inidicie
+
+11 - Manipulação de colunas
+
+print(df['Quantidade'] > 15) exibe Quantidade maior que 15
+
+print(df['Produto']) exibe a coluna Produto
+
+print(df[df['Quantidade'] > 10 ]) filtra linhas onde a quantidade é maior que 10
+
+df['Total'] = df['Quantidade'] * df['Preço'] adciona coluna nova
+
+12 - Remover Colunas 
+
+df.drop('Total', axis = 1, inplace  = True)
+inplace realiza mudança no dara frame original
+
+13 - Renomear Colunas
+
+df.rename(Columns = {"Produtos":"Itens"}, inplace = True)
+
+14 - Exibe o somatório da quantidade de valores null e cada coluna e faz tratamento
+de dados faltantes
+
+print(df.isnull().sum())
+
+15 - Remove os dados faltantes, remove linhas com colunas com valores null do DataFrame
+original
+
+df.dropna(inplace = True)
+
+16 - Preencher dados Faltantes
+
+df['Quantidade'].fillna(0,,inplace = True)
