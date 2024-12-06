@@ -6,8 +6,16 @@ df = pd.read_csv("/caminho/arquivo.csv")
 
 2 - Passando parâmetros para a função pd.read_csv
 
-df = pd.read_csv("caminho do arquivo", encoding = "UTF-8", sep = "," )
+df = pd.read_csv("caminho do arquivo", encoding = "UTF-8", sep = ",", header = 0, nrows = 100)
 
 encoding -> é a forma como o arquivo csv foi formatado ou contruido
 
 sep -> é a separação entre as colunas do arquivo, pode ser , ou ; 
+
+header -> É o nome das colunas, por aqui indicamos por onde começa a leitura do arquivo
+sempre pelo indicie
+
+nrows -> Quantidade de linhas que serão lidas
+
+usecols = [] -> lista as colunas que queremos utilizar, o nome da coluna deve estar 
+extamente igual

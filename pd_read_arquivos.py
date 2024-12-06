@@ -1,7 +1,7 @@
 import pandas as pd
 
 # ler arquivo csv
-df = pd.read_csv(r"C:\Estudando_pandas\Arquivos_csv_estudos\202401_Compras.csv",encoding='latin1',sep = ";", nrows=100)
+df = pd.read_csv(r"C:\Estudando_pandas\Arquivos_csv_estudos\202401_Compras.csv",encoding='latin1',sep = ";", header=0, nrows=10, usecols=["Número do Contrato","Objeto","Fundamento Legal"])
 
 # ler arquivos excel
 #df = pd.read_excel("/caminho/arquivo.xlsx")
@@ -23,4 +23,5 @@ query = "SELECT * FROM sua_tabela"
 # Ler dados do SQL para o DataFrame
 df_sql = pd.read_sql(query, engine) # Exibir o DataFrame
 '''
-
+#print(df.info())
+print(df)
