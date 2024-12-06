@@ -1,5 +1,9 @@
 import pandas as pd 
 
+'''
+Criando um pequeno DATA fRAME PARA TREINAR
+'''
+
 dados = {
             
     "Produtos":['A','B','C'],

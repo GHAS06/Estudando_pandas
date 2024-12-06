@@ -1,0 +1,13 @@
+1 - Abrindo arquivos csv bom pandas, precisamos importar o pandas
+
+import pandas as pd 
+
+df = pd.read_csv("/caminho/arquivo.csv")
+
+2 - Passando parâmetros para a função pd.read_csv
+
+df = pd.read_csv("caminho do arquivo", encoding = "UTF-8", sep = "," )
+
+encoding -> é a forma como o arquivo csv foi formatado ou contruido
+
+sep -> é a separação entre as colunas do arquivo, pode ser , ou ; 
