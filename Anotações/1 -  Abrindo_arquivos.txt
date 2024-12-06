@@ -5,8 +5,8 @@ import pandas as pd
 df = pd.read_csv("/caminho/arquivo.csv")
 
 2 - Passando parâmetros para a função pd.read_csv
-
-df = pd.read_csv("caminho do arquivo", encoding = "UTF-8", sep = ",", header = 0, nrows = 100)
+                                                                             parâmetros
+EXEMPLO: df = pd.read_csv(r/"caminho/arquivo.csv", encoding = "UTF-8", sep = ",", header = 0, nrows = 100, usecols = ["lista de colunas"])
 
 encoding -> é a forma como o arquivo csv foi formatado ou contruido
 
@@ -19,3 +19,22 @@ nrows -> Quantidade de linhas que serão lidas
 
 usecols = [] -> lista as colunas que queremos utilizar, o nome da coluna deve estar 
 extamente igual
+
+
+3 - Abrindo arquivos xlsx (Arquivos Excel) com pandas, funciona na mesma lógica do arquivo csv
+porém com comando um pouco diferente. 
+
+EXEMPLO: df = pd.read_excel(r"/caminho/arquivo.xlsx", parâmetros)
+
+4 - Abrindo outras ABAS do Excel, para isso usamos o parâmetros sheet_name = indicie da ABA ou o nome da ABA
+
+EXEMPLO: EXEMPLO: df = pd.read_excel(r"/caminho/arquivo.xlsx", encoding = "latin1", sep = ",", nrows = 100, sheet_name = 1)
+
+5 - Verificando especificamente o nome da ABA de um arquivo.xlsx com sheet_names
+
+EXEMPLO: arquivo_excel = pd.ExcelFile(r"/Caminho/arquivo.xlsx")
+
+arquivo_excel.sheet_names # retorna o nome das ABAS do arquivo excel
+
+ABA1 = arquivo_excel.parse("Exatamente o nome da ABA do arquivo_excel")
+ABA2 = arquivo_excel.parse("Exatamente o nome da ABA do arquivo_excel")
