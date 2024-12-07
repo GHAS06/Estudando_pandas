@@ -1,4 +1,18 @@
 import pandas as pd
+from tabulate import tabulate # formato Tabular
+from pandasgui import show # Interface Grafica , melhor para grandes volumes de dados
+
+
+#ESSE ARQUIVO.PY É MUITO IMPORTANTE LER PARA ENTENDER ALGUMAS COISAS
+#QUANDO FOR COLOCAR PARA EXECUTAR, DESCOMENTE O QUE FOR NECESSÁRIO
+
+#Exibição para mostrar todas as linhas e colunas
+'''
+pd.set_option('display.max_rows', None)  # Exibir todas as linhas
+pd.set_option('display.max_columns', None)  # Exibir todas as colunas
+pd.set_option('display.width', None)  # Sem limitação de largura
+pd.set_option('display.max_colwidth', None)  # Exibir texto completo em cada célula
+'''
 
 '''
 Nesse código vamos nos aperfeiçoar a filtragem através dos operadores com vetores 
@@ -78,26 +92,31 @@ O segundo parâmetro (o vetor de colunas) seleciona as colunas.
 
 #exemplo: print(df[(df.Nome == "Alice") & ((df.Idade == 25) | (df.Idade == 30))])
 
+# | é o mesmo que ou
+
 # fazendo filtragem com operador lógico, mas sem selecionar colunas específicas
-print(df[(df['Código Órgão'] == 20301) & (df['Nome Órgão'] == 'Comissão Nacional de Energia Nuclear' )])
+
+#dados = df[(df['Código Órgão'] == 20301) & (df['Nome Órgão'] == 'Comissão Nacional de Energia Nuclear' )]
+#show(dados) -> Usando o Pandasgui para vizualizar todas as tabelas e seus repectivos dados
 
 # fazendo filtragem com operadores lógicos e selecionando coluna específicas
-print(df[(df['Código Órgão'] == 20301) & (df['Nome Órgão'] == 'Comissão Nacional de Energia Nuclear' )][['Quantidade Item','Valor Item']])
+#print(df[(df['Código Órgão'] == 20301) & (df['Nome Órgão'] == 'Comissão Nacional de Energia Nuclear' )][['Quantidade Item','Valor Item']])
 
 '''
 Exeplicação: Do nosso Dataframe Selecionamos e filtramos a Coluna Código Órgão igual
 a 20301 se verdadeiro vai retornar dados respectivos a essa coluna com esse código
-e (and) selecionamos os dados do nosso DataFrame cujo a coluna Nome Órgão é igual a
-Comissão Nacional de Energia Nucler, caso as duas colunas tenham valores lógicos True
-irá retornar para gente os dados das colunas Quantidade Item e Valor Item do nosso 
-Dataframe, porque com base nos operadores lógicos e se os dois dados forem verdadeiros
-selecionamos aquelas duas colunas com seus respectivos dados com base no nosso filtro
-com os operadores e vetores lógicos, abaixo coloquei a saida das dusa formas para entender
+e o operador lógico (and) selecionamos os dados do nosso DataFrame cujo a coluna Nome 
+Órgão é igual a Comissão Nacional de Energia Nucler, caso as duas colunas tenham 
+valores lógicos True irá retornar para gente os dados das colunas Quantidade Item
+e Valor Item do nosso Dataframe, porque com base nos operadores lógicos e se os dois
+dados forem verdadeiros selecionamos aquelas duas colunas com seus respectivos dados
+com base no nosso filtro com os operadores e vetores lógicos,
+abaixo coloquei a saida das dusa formas para entender
 
 RESUMINDO: 
 Se o Código Órgão igual a 20301 e Nome Órgão igual a Comissão Nacional de Energia Nucler
 os dados que retornar no nosso DataFrame serão True, tanto para um como para outro.
-Se for verdade isso, selecionaremos os dados das colunas Quantidade Item e Valor Item
+Se for verdade, selecionaremos os dados das colunas Quantidade Item e Valor Item
 
 
 Primeiro SAIDA(Apenas a filtragem com operadores lógicos):
@@ -120,4 +139,25 @@ INDEX  Quantidade Item  Valor Item
 1595               72      126,60
 2077                4     4500,00
 
+'''
+
+# Exibindo o DataFrame em formato tabular
+#print(tabulate(df.head(100), headers='keys', tablefmt='psql'))
+
+'''
+Recomendações de Uso do Pandas e PandasGui:
+
+PandasGui: É altamente recomendado para manipular grandes quantidades de dados,
+pois ele oferece uma interface gráfica para visualização e edição de DataFrames. 
+No entanto, como ele carrega os dados na interface gráfica, pode levar algum tempo
+para abrir, especialmente com conjuntos de dados muito grandes.
+Portanto, embora o PandasGui facilite a análise e manipulação interativa,
+ele pode não ser a melhor opção quando você precisa de resultados rápidos em grandes
+volumes de dados.
+
+Pandas (no terminal): É a melhor opção quando você precisa de manipulações rápidas e 
+eficientes diretamente no terminal ou em um ambiente de desenvolvimento, como
+o Jupyter Notebook ou o Visual Studio Code. O Pandas é muito rápido e eficaz para 
+realizar tarefas de processamento de dados sem a sobrecarga de uma interface gráfica,
+sendo ideal para tarefas automatizadas ou quando o desempenho é a prioridade.
 '''
