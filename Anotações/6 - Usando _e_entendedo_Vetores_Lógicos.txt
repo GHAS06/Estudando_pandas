@@ -6,8 +6,8 @@ Recomendação: Brincar um pouco com isso com os arquivos csv e xlsx
 Quando usamos o loc para selecionar linhas e coluna pelos seus respectivos indices 
 e nomes, ao usar TRUE e FAlSE.
 
-Basicamente estamos selecionando (TRUE) aquela linha/coluna ou não estamos selecionando
-aquela linha/coluna. VEJA!
+Basicamente estamos selecionando (True) aquela linha/coluna ou não estamos selecionando
+aquela linha/coluna (False). VEJA!
 
 dados = {'Nome': ['Alice', 'Bob', 'Charlie'], 'Idade': [25, 30, 35]} 
 df = pd.DataFrame(dados, index=['a', 'b', 'c'])

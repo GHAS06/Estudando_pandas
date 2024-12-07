@@ -1,0 +1,89 @@
+1 - O que é o PandasGUI?
+
+O PandasGUI é uma interface gráfica 
+(GUI -> Graphical User Interface (Interface Gráfica do Usuário)) 
+interativa para trabalhar com DataFrames
+do Pandas. Ele foi criado para facilitar a visualização e a manipulação de dados de
+forma mais intuitiva, sem a necessidade de se escrever muito código ou fazer análise
+apenas pelo terminal(cmd/PowerShell). Essa ferramenta permite que você visualize,
+edite, e explore seus dados de maneira mais fácil, principalmente quando você está
+trabalhando com grandes volumes de dados e precisa de uma interface mais amigável.
+
+2 - Para que Serve? 
+
+O PandasGUI serve para:
+
+Visualizar DataFrames: Exibir dados em forma de tabelas interativas, permitindo
+navegar pelas linhas e colunas.
+
+Filtrar Dados: Oferece filtros interativos para aplicar de forma visual aos seus dados.
+
+Manipular Dados: É possível editar valores diretamente na interface gráfica, o que
+facilita ajustes rápidos.
+
+Exportar Dados: Depois de manipular ou visualizar os dados, você pode exportá-los de
+volta para um arquivo CSV, Excel ou outro formato.
+
+Gráficos e Estatísticas: Embora não seja uma ferramenta completa de visualização
+de gráficos, ela permite gerar gráficos básicos, como histogramas e gráficos de
+dispersão, diretamente na interface.
+
+3 - Como pode me ajudar?
+
+Exploração de dados: Quando você carrega um grande DataFrame e precisa entender
+rapidamente seu conteúdo.
+
+Limpeza e manipulação de dados: Ao invés de digitar comandos para filtrar,
+alterar ou excluir dados, você pode fazer isso diretamente na interface gráfica.
+
+Visibilidade interativa: Você pode ajustar o conteúdo, visualizar partes específicas
+e comparar facilmente os valores em colunas ou linhas.
+
+Facilidade para iniciantes: Para quem não está familiarizado com comandos do Pandas,
+o PandasGUI oferece uma forma mais amigável de começar a trabalhar com dados.
+
+4 - Como instalar ? 
+
+O PandasGUI é uma biblioteca Python que pode ser instalada com o pip, o gerenciador
+de pacotes do Python. Aqui está como fazer:
+
+Certifique-se de que você tem o Pandas instalado: O PandasGUI depende do Pandas para
+funcionar corretamente. Se ainda não o tiver instalado, use o seguinte comando:
+
+                            pip install pandas
+
+Instale o PandasGUI: Você pode instalar a biblioteca PandasGUI com o seguinte comando:
+
+                            pip install pandasgui
+
+Importe o PandasGUI e visualize os dados: Após a instalação, você pode começar a usar
+o PandasGUI. Veja um exemplo básico:
+
+from pandasgui import show
+import pandas as pd
+
+# Criando um DataFrame simples
+data = {'Nome': ['Alice', 'Bob', 'Charlie'], 'Idade': [25, 30, 35]}
+df = pd.DataFrame(data)
+
+# Mostrando o DataFrame na interface gráfica
+show(df)
+
+Ao executar este código, o PandasGUI abrirá uma janela gráfica exibindo o DataFrame df,
+onde você poderá interagir com os dados visualmente
+
+Recomendações de Uso do Pandas e PandasGui:
+
+PandasGui: É altamente recomendado para manipular grandes quantidades de dados,
+pois ele oferece uma interface gráfica para visualização e edição de DataFrames. 
+No entanto, como ele carrega os dados na interface gráfica, pode levar algum tempo
+para abrir, especialmente com conjuntos de dados muito grandes.
+Portanto, embora o PandasGui facilite a análise e manipulação interativa,
+ele pode não ser a melhor opção quando você precisa de resultados rápidos em grandes
+volumes de dados.
+
+Pandas (no terminal): É a melhor opção quando você precisa de manipulações rápidas e 
+eficientes diretamente no terminal ou em um ambiente de desenvolvimento, como
+o Jupyter Notebook ou o Visual Studio Code. O Pandas é muito rápido e eficaz para 
+realizar tarefas de processamento de dados sem a sobrecarga de uma interface gráfica,
+sendo ideal para tarefas automatizadas ou quando o desempenho é a prioridade.
