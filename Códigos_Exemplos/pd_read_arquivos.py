@@ -6,10 +6,13 @@ import pandas as pd
 # ler arquivos excel
 #df = pd.read_excel(r"C:\Estudando_pandas\Arquivos_excel_para_estudos\Relatorio DER Novembro2024.xlsx", sheet_name= 0)
 
+# Lendo arquivo excel usando ExcelFile e colocando isso em uma variável
 #arquivo_excel = pd.ExcelFile(r"C:\Estudando_pandas\Arquivos_excel_para_estudos\Relatorio DER Novembro2024.xlsx")
 
+# exibindo as ABAS do arquivo.xlsx
 #print(arquivo_excel.sheet_names)
 
+# outra forma de selecionar e exibir abas do arquivo.xlsx
 #ABA1 = arquivo_excel.parse("Multas-Novembro")
 #ABA2 = arquivo_excel.parse("Protocolo-Novembro")
 
@@ -32,5 +35,9 @@ query = "SELECT * FROM sua_tabela"
 # Ler dados do SQL para o DataFrame
 df_sql = pd.read_sql(query, engine) # Exibir o DataFrame
 '''
+# exibindo informações dos dados e das colunas do dataframe
 #print(df.info())
-#print(df)
+
+#exibindo e selecionando colunas específicas do dataframe
+#print(df[["Número do Contrato","Objeto"]].head())
+#print(df.Objeto.head())

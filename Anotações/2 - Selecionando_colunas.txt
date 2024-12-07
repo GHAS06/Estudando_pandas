@@ -1,0 +1,15 @@
+1 - Selecionando colunas com pandas 
+
+podemos fazer um slice, ou corte, e puxar mais de uma coluna do DATAFRAME, veja! 
+
+df = pd.read_csv("r/caminho/arquivo.csv")
+
+print(df[['coluna1','coluna2']]).head()
+
+esse código, está retornando as 5 primeira linhas das colunas 1 e 2
+
+podemos também utilizar o "." para selecionar apenas uma coluna, veja!
+
+print(df.coluna1.head())
+
+aqui estamos selecionando e exibindo apenas uma coluna

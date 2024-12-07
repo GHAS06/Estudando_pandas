@@ -1,0 +1,42 @@
+1 - Vamos aprender a usar o Filter e formas de filtrar os dados com pandas
+
+# Criando um DataFrame de exemplo
+dados = {'Nome': ['Alice', 'Bob', 'Charlie'], 'Idade': [25, 30, 35]}
+df = pd.DataFrame(dados) 
+
+podemos filtrar puxando colunas do DataFrame
+
+EXEMPLO:
+
+df_filtrado = df[['Nome', 'Idade']]
+
+também podemos usar um parâmetro que comportará uma lista de colunas para auxiliar
+na filtragem usando o Filter, chamdo de items
+
+EXEMPLO:
+
+df_filtrado = df.filter(items =['coluna 1','coluna 2'] ).head()
+
+print(df_filtrado)
+
+podemos também usar um outro parâmetro chamado de like, ele não funciona necessária
+mente como o operador like(%%) do SQL
+
+nele temos que colocar mais caracteres respectivo ao nome da coluna para não dar zica
+no nosso pandas
+
+EXEMPLO:
+
+df_filtrado = df.filter(like = 'luna1')
+print(df_filtrado)
+
+Podemos usar o regex, que é um parâmetro do filter mais complexo e completo que o like
+ele é o mais próximo do like do SQL
+
+Lembrando o Operador Like do SQL é um comparador de Strings, compara tamanho
+caracteres especiais, se possui numero ou nao e etc... 
+
+EXEMPLO:
+
+df_filtrado = df.filter(regex = '.UG.')
+print(df_filtrado)

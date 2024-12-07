@@ -118,4 +118,4 @@ df.dropna(inplace = True)
 
 16 - Preencher dados Faltantes
 
-df['Quantidade'].fillna(0,,inplace = True)
+df['Quantidade'].fillna(0,inplace = True)

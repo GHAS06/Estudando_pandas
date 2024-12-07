@@ -1,0 +1,39 @@
+1 - Vamos falar sobre loc e iloc
+
+- O loc é usado para selecionar dados por rótulo (ou seja, nome) das linhas e colunas.
+Ele usa os nomes das linhas e colunas para fazer a seleção. VEJA!
+
+# Criando um DataFrame de exemplo 
+dados = {'Nome': ['Alice', 'Bob', 'Charlie'], 'Idade': [25, 30, 35]} 
+df = pd.DataFrame(dados, index=['a', 'b', 'c'])
+
+# Selecionando a linha com índice 'a'
+print(df.loc['a'])
+
+# Selecionando a linha com índice 'a' e a coluna 'Idade' 
+print(df.loc['a', 'Idade']) 
+
+# Selecionando as linhas com índices 'a' e 'b' 
+print(df.loc['a':'b'])
+
+- O iloc é usado para selecionar dados por índice (ou seja, posição) das linhas e 
+colunas. Ele usa números inteiros para referenciar a posição dos elementos. VEJA!
+
+# Criando um DataFrame de exemplo
+dados = {'Nome': ['Alice', 'Bob', 'Charlie'], 'Idade': [25, 30, 35]}
+df = pd.DataFrame(dados)
+
+# Selecionando a primeira linha
+print(df.iloc[0])
+
+# Selecionando a primeira linha e a segunda coluna
+print(df.iloc[0, 1])
+
+# Selecionando as duas primeiras linhas
+print(df.iloc[0:2])
+
+
+OBS.: "SEMPRE COLOCAR O NOME DAS COLUNAS EXATAMENTE COMO ESTÁ NO ARQUIVO"
+
+Observação -> o iloc não exibe a posição que estamos, sempre uma posição anterior
+Quando tratamos de situções True or False nno iloc, isso pode impactar na filtragem

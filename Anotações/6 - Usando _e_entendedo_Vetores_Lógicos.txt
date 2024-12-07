@@ -1,0 +1,91 @@
+                        ISSO É IMPORTANTE!
+Recomendação: Brincar um pouco com isso com os arquivos csv e xlsx
+
+1 - Vamos entender os vetores_lógicos(lista lógica) com TRUE e FALSE
+
+Quando usamos o loc para selecionar linhas e coluna pelos seus respectivos indices 
+e nomes, ao usar TRUE e FAlSE.
+
+Basicamente estamos selecionando (TRUE) aquela linha/coluna ou não estamos selecionando
+aquela linha/coluna. VEJA!
+
+dados = {'Nome': ['Alice', 'Bob', 'Charlie'], 'Idade': [25, 30, 35]} 
+df = pd.DataFrame(dados, index=['a', 'b', 'c'])
+
+print(df.loc[[True,True,False],[True,False]])
+
+Como o pandas realizar operações lógicas no DataFrame? 
+
+Se fizermos uma seleção de uma única coluna e validarmos ela usando o operador 
+de igualdade "==" com algum dado da quela coluna, podemos retornar um vetores_lógico
+
+                            VEJA!
+
+dados = {'Nome': ['Alice', 'Bob', 'Charlie'], 'Idade': [25, 30, 35]} 
+df = pd.DataFrame(dados, index=['a', 'b', 'c'])
+
+print(df.Nome == "Alice")
+
+'''
+A saida de informação deste print foi:
+
+a     True
+b    False
+c    False
+
+
+Logo, vemos que, a linha de indicie 'a' tem o nome Alice.
+Enquanto os outros não tem.
+
+Basicamente, puxamos uma única coluna do nosso DataFrame e fizemos uma comparação
+para os atributos daquela coluna, se os atributos estivesse o nome Alice, no retorno
+do vetor lógico, ele teria valor boolean True
+'''
+
+# Apartir desta informação podemos fazer um Filtro com os Vetores Lógicos, Veja! 
+
+print(df[df.Nome == "Alice"])
+
+'''
+Veja que interessante, através do vetor lógicos conseguimos fazer um filtro para 
+retornar valores do nosso DataFrame que contenha o nome Alice 
+
+    Nome  Idade
+a  Alice     25
+
+'''
+
+Podemos usar operadores Lógicos para realizar essa filtragem com vetores_lógicos
+
+operadores como & -> and em python, em java é &&, ou -> | or em python
+
+print(df[(df.Nome == "Alice") & (df.Idade == 25)])
+
+em parenteses,dentro de colchete, neste caso, os dois valores devem ter valor lógico
+verdadeiro para retornar no filtro. 
+
+LEMBRE - SE: OS parenteses() irão definir quais operações  e filtragem serão realizadas
+e o limitador das operações realizadas neste DataFrame
+
+
+tem como selecionar as colunas que queremos colocar neste filtro também, mas neste caso
+colocamos uma lista ao lado do filtro com todas  as colunas, Veja!
+
+print(df[(df.Nome == "Alice") & (df.Idade == 25)])[['coluna1','coluna2']]
+
+aqui, selecionamos as colunas 1 e 2 através do filtro se verdadeiro, mas irá
+retorna apenas as colunas e não os valores do nosso filtro.
+resumindo -> Irá voltar os valores correspondentes as colunas selecionadas, atráves
+da veracidade do nosso filtro
+
+Fazendo o filtro com ou(|)
+
+print(df[(df.Nome == "Alice") & ((df.Idade == 25) | (df.Idade == 30))])
+
+Essa parte estamos falando o seguinte:
+    Selecione e Exiba do DataFrame, O nome Alice da coluna Nome e a idade 25 ou 30
+    da coluna Idade.
+    neste caso, Alice com 25 anos de idade ou Alice com 30 anos de idade seram
+    retornados do nosso DataFrame
+
+Lembre-se mais uma vez: parenteses () define a operação e o filtro que estamos fazendo

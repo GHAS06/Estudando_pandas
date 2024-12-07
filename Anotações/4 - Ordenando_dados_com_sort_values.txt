@@ -1,0 +1,33 @@
+1 - Vamos aprender a usar o sort_values
+
+- função sort_values no Pandas é usada para ordenar os dados de um DataFrame com 
+base nos valores de uma ou mais colunas. É uma ferramenta poderosa para organizar
+seus dados de maneira específica, facilitando a análise e visualização dos mesmos
+
+# Criando um DataFrame de exemplo
+dados = {'Nome': ['Alice', 'Bob', 'Charlie'], 'Idade': [25, 30, 35]}
+df = pd.DataFrame(dados) 
+
+# Ordenando o DataFrame pela coluna 'Idade' 
+
+df_ordenado = df.sort_values(by='Idade') print(df_ordenado)
+print(df_ordenado)
+
+#podemos fazer assim também
+
+df_ordenado = df.sort_values(['Idade']) print(df_ordenado)
+print(df_ordenado)
+
+
+2 - Podemos colocar um parâmetro ascending = True (funciona como o ASC) e False
+(funciona como o DESC) do sql
+
+'''
+Quando ascending=True (que é o valor padrão), os dados são classificados em ordem
+crescente.
+
+Quando ascending=False, os dados são classificados em ordem decrescente.
+'''
+
+EXEMPLO = df_ordenado = df.sort_values(by='Idade') print(df_ordenado)
+print(df_ordenado, ascending = True)
