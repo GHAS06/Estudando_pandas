@@ -6,7 +6,7 @@ df = pd.DataFrame(dados, index=['a', 'b', 'c'])
 
 #usando loc com vetores lógicos, o primeiro represenda as linhas
 #o segundo vetor representa as colunas
-#print(df.loc[[True,True,False],[True,False]])
+print(df.loc[[True,True,False],[True,False]])
 
 #Entendendo como pandas faz operações lógicas no DataFrame
 
@@ -52,7 +52,7 @@ verdadeiro para retornar no filtro.
 
 #Realizando a filtragem com ou |
 
-print(df[(df.Nome == "Alice") & ((df.Idade == 25) | (df.Idade == 30))])
+#print(df[(df.Nome == "Alice") & ((df.Idade == 25) | (df.Idade == 30))])
 
 '''
     Lembre-se: os parenteses nesse modo de filtrarm irá definir como funciona 
