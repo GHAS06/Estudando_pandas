@@ -1,6 +1,7 @@
 1 - Esse arquivo.txt é uma anotação de começo rápido e básico de pandas!
 
 2 - Para usarmos pandas, precisamos instalar na máquina a sua biblioteca
+                   
                     pip install import pandas
 
     obs.: podemos usar: pip freeze para listar pacotes já instalados
