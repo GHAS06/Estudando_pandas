@@ -1,0 +1,38 @@
+1 - A função de agrupamento groupby é usado para agrupar dados com base em uma
+ou mais colunas e, em seguida, aplicar operações sobre esses grupos. 
+Ele é fundamental para realizar análises segmentadas e sumarizar informações de
+maneira eficiente.
+
+Operações comuns com groupby
+
+- Usando funções de agregação
+Você pode aplicar funções como sum(), mean(), count() e outras diretamente:
+
+# Média dos valores por categoria
+df.groupby('categoria')['valor'].mean()
+
+- Agrupando por múltiplas colunas
+
+# Soma do valor por categoria e vendedor
+df.groupby(['categoria', 'vendedor'])['valor'].sum()
+
+- Aplicando múltiplas funções ao mesmo tempo
+
+# Soma e média do valor por categoria
+df.groupby('categoria')['valor'].agg(['sum', 'mean'])
+
+- Transformação nos grupos
+Usar funções como transform() para criar uma nova coluna no DataFrame original.
+
+# Adiciona uma nova coluna com a média do grupo
+df['media_por_categoria'] = df.groupby('categoria')['valor'].transform('mean')
+
+-Aplicações práticas do groupby()
+
+Análise de vendas por região ou categoria.
+Comparação de métricas entre grupos de clientes.
+Cálculos de desempenho por equipes.
+Estatísticas sobre séries temporais agrupadas por datas.
+
+groupby() é uma das ferramentas mais poderosas do Pandas para lidar com grandes 
+conjuntos de dados estruturados e categorizados!

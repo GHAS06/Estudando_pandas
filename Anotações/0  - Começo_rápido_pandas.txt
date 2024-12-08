@@ -44,7 +44,7 @@ df = pd.DataFrame(dados)
 
 Mesma lógica para series, se quise printar os dados.
 
-print(df.to_string(index=False)) #removendo o index a esquerda na hora de exibit
+print(df.to_string(index=False)) #removendo o index a esquerda na hora de exibir
 
 5 - Lendo arquivos csv, sql, xlsx com pandas 
 

@@ -1,0 +1,99 @@
+1 - Função de agregação
+
+
+# Funções de Agregação no Pandas
+
+1. sum()
+
+-Descrição: Soma os valores de uma série ou coluna, ignorando valores nulos (`NaN`).
+- Uso típico: Totalizar valores numéricos.
+- Exemplo:
+  df['vendas'].sum()  # Soma total das vendas
+
+2. mean()
+- Descrição: Calcula a média aritmética dos valores.
+- Uso típico: Obter a média de métricas como receita ou pontuações.
+- Exemplo:
+  df['preço'].mean()  # Preço médio dos produtos
+
+3. median()
+- Descrição: Calcula a mediana dos valores (valor central em um conjunto ordenado).
+- Uso típico: Usada quando os dados possuem outliers que distorcem a média.
+- Exemplo:
+  df['idade'].median()  # Idade mediana dos clientes
+
+4. min()
+- Descrição: Retorna o menor valor de uma série.
+- Uso típico: Encontrar o valor mínimo, como o menor preço ou menor nota.
+- Exemplo:
+  df['preço'].min()  # Menor preço de um produto
+
+5. max()
+- Descrição: Retorna o maior valor de uma série.
+- Uso típico: Descobrir o maior valor de uma métrica.
+- Exemplo:
+  df['vendas'].max()  # Maior número de vendas
+
+6. count()
+- Descrição: Conta o número de valores não nulos em uma série ou coluna.
+- Uso típico: Determinar o número de entradas válidas.
+- Exemplo:
+  df['clientes'].count()  # Número de clientes não nulos
+
+7. std()
+- Descrição: Calcula o desvio padrão, indicando a dispersão dos dados em relação à média.
+- Uso típico: Avaliar a variabilidade de métricas como preços ou notas.
+- Exemplo:
+  df['vendas'].std()  # Desvio padrão das vendas
+
+8. var()
+- Descrição: Calcula a variância dos dados, que é o quadrado do desvio padrão.
+- Uso típico: Entender a dispersão de dados para análises mais técnicas.
+- Exemplo:
+  df['vendas'].var()  # Variância das vendas
+
+9. prod()
+- Descrição: Calcula o produto dos valores em uma série.
+- Uso típico: Raramente usado em análises, mas útil em cálculos acumulados.
+- Exemplo:
+  df['taxa'].prod()  # Produto de todas as taxas
+
+10. cumsum()
+- Descrição: Calcula a soma cumulativa dos valores.
+- Uso típico: Observar o crescimento acumulado de métricas como receitas.
+- Exemplo:
+  df['vendas'].cumsum()  # Soma acumulada das vendas
+
+11. cumprod()
+- Descrição: Calcula o produto cumulativo dos valores.
+- Uso típico: Analisar crescimento acumulado multiplicativo.
+- Exemplo:
+  df['taxa'].cumprod()  # Produto acumulado das taxas
+
+12. agg()
+- Descrição: Permite aplicar múltiplas funções de agregação ao mesmo tempo, inclusive 
+funções personalizadas.
+- Uso típico: Consolidar diversas métricas em uma única etapa.
+- Exemplo:
+  df['vendas'].agg(['sum', 'mean', 'max'])  # Soma, média e valor máximo de vendas
+
+13. describe()
+- Descrição: Fornece estatísticas descritivas (contagem, média, desvio padrão, mínimo,
+percentis e máximo).
+- Uso típico: Obter uma visão geral dos dados.
+- Exemplo:
+  df['vendas'].describe()
+
+14. mode()
+- Descrição: Retorna o(s) valor(es) mais frequente(s).
+- Uso típico: Encontrar a moda em uma série de dados categóricos ou numéricos.
+- Exemplo:
+  df['categoria'].mode()  # Categoria mais frequente
+
+15. quantile()
+- Descrição: Retorna o valor do percentil especificado.
+- Uso típico: Calcular mediana (50º percentil) ou outros quartis.
+- Exemplo:
+  df['vendas'].quantile(0.75)  # 75º percentil das vendas
+
+
