@@ -1,0 +1,83 @@
+1 - O que é o Pandas?
+
+    O Pandas é uma biblioteca poderosa do Python projetada para trabalhar com dados 
+    estruturados, como tabelas ou planilhas. Ele oferece ferramentas para manipular, 
+    analisar e transformar esses dados de maneira eficiente.
+
+    Estruturas principais no Pandas:
+    
+    - DataFrame: Uma tabela bidimensional com linhas e colunas 
+    (semelhante a uma planilha Excel ou tabela SQL).
+    
+    - Series: Uma estrutura unidimensional que representa uma única coluna ou linha
+    de um DataFrame.
+
+    Exemplo de tabela estruturada:
+_________________________
+|coluna1|coluna2|coluna3| -> colunas/atributos -> possuem um domínio (tipo de dados) 
+|dados1 |dados2 |dados3 | -> linha/registro -> os dados devem respeitar o domínio
+-------------------------
+
+    - Colunas/Atributos: Têm um domínio, ou seja, tipos de dados como inteiros, floats 
+    ou strings.
+    
+    - Linhas/Registros: São conjuntos de dados agrupados, respeitando os domínios das
+    colunas.
+
+    No SQL, isso seria equivalente a uma tabela onde:
+    
+    - As colunas são os campos (ou atributos) com seus respectivos domínios.
+    - As linhas são os registros que seguem as restrições de tipo de dado das colunas.
+
+    Exemplo de domínio:
+    domínio da coluna1 -> int(255)
+    domínio da coluna2 -> float(10.2)
+    domínio da coluna3 -> varchar(45) -> String
+
+    Veja! Os dados estão estruturados e relacionados.
+
+2 - Como trabalhar com Pandas? 
+
+    Para trabalhar com Pandas no VSCode (ou qualquer outro ambiente Python), será 
+    necessário instalá-lo. Você também pode instalar o NumPy, que é uma biblioteca 
+    base para manipulação de números e vetores. Siga os comandos abaixo:
+
+    - Instale o Pandas:
+      pip install pandas 
+
+    - Instale o NumPy (opcional, mas recomendado):
+      pip install numpy
+
+    - Verifique se o Pandas está instalado:
+      python -c "import pandas as pd; print(pd.__version__)"
+
+    O comando acima exibirá a versão instalada do Pandas. Se houver erros, você 
+    precisa reinstalá-lo.
+
+3 - Importando as bibliotecas no nosso código:
+
+    Após instalar o Pandas e o NumPy, importe as bibliotecas no seu código Python:
+
+    import pandas as pd
+    import numpy as np
+
+    Exemplo básico com Pandas:
+    
+    # Criando um DataFrame a partir de um dicionário
+    data = {
+        'Nome': ['Alice', 'Bob', 'Carlos'],
+        'Idade': [25, 30, 35],
+        'Salário': [5000.0, 6000.0, 7000.0]
+    }
+
+    df = pd.DataFrame(data)
+    print(df)
+    
+
+    Saída esperada:
+    
+       Nome  Idade  Salário
+    0  Alice     25   5000.0
+    1    Bob     30   6000.0
+    2  Carlos    35   7000.0
+

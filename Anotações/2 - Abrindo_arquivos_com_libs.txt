@@ -1,0 +1,26 @@
+1 - Aqui vamos usar as libs OS, Pathlib para abrir arquivos csv, excel no pandas
+
+    Usando a biblioteca os
+
+import os
+import pandas as pd
+
+# Diretório base
+diretorio_base = os.getcwd()
+# o diretório atual é a pasta Estudando_pandas, com isso consigo contruir um caminnho 
+
+# Construindo o caminho correto
+caminho_arquivo = os.path.join(diretorio_base, 'Arquivos_csv_estudos', '202401_ItemCompra.csv')
+
+# Verifique o caminho gerado
+print("Caminho do arquivo:", caminho_arquivo)
+
+# Tente carregar o arquivo
+try:
+    df = pd.read_csv(caminho_arquivo, encoding= "latin1", sep =';')
+    print(df.head())
+
+except FileNotFoundError as e:
+    print(f"Erro: {e}")
+
+    Usando a biblioteca Pathlib

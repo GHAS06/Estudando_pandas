@@ -1,0 +1,25 @@
+1 - O que é o PATHLIB?
+
+    A biblioteca pathlib oferece uma maneira moderna e orientada a objetos para lidar
+    com caminhos de arquivos e diretórios no sistema de arquivos. É uma alternativa
+    ao módulo os.path, com uma interface mais intuitiva e poderosa.
+
+2 -Principais funcionalidades do pathlib:
+
+    Manipulação de caminhos:
+
+    Path.cwd(): Obtém o diretório atual.
+    Path.home(): Obtém o diretório do usuário.
+    Path.exists(): Verifica se um arquivo ou diretório existe.
+    Path.is_file(): Verifica se o caminho é um arquivo.
+    Path.is_dir(): Verifica se o caminho é um diretório.
+
+    Criação de arquivos e diretórios:
+
+    Path.mkdir(): Cria um diretório.
+    Path.touch(): Cria um arquivo vazio.
+
+    Iteração em diretórios:
+
+    Path.glob(): Retorna arquivos que correspondem a um padrão.
+    Path.iterdir(): Itera sobre os arquivos/diretórios.
