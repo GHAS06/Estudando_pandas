@@ -4,14 +4,6 @@
     estruturados, como tabelas ou planilhas. Ele oferece ferramentas para manipular, 
     analisar e transformar esses dados de maneira eficiente.
 
-    Estruturas principais no Pandas:
-    
-    - DataFrame: Uma tabela bidimensional com linhas e colunas 
-    (semelhante a uma planilha Excel ou tabela SQL).
-    
-    - Series: Uma estrutura unidimensional que representa uma única coluna ou linha
-    de um DataFrame.
-
     Exemplo de tabela estruturada:
 _________________________
 |coluna1|coluna2|coluna3| -> colunas/atributos -> possuem um domínio (tipo de dados) 
@@ -36,7 +28,52 @@ _________________________
 
     Veja! Os dados estão estruturados e relacionados.
 
-2 - Como trabalhar com Pandas? 
+2 - Estruturas principais no Pandas:
+    
+    - DataFrame: Uma tabela bidimensional com linhas e colunas 
+    (semelhante a uma planilha Excel ou tabela SQL).
+    
+    EXEMPLO de DATAFRAME:
+
+    - Series: Uma estrutura unidimensional que representa uma única coluna ou linha
+    de um DataFrame. Podem ser criadas através de listas[]
+    
+    Serie = pd.Series(
+      data = none, 
+      index = ['a','b','c'], 
+      dtype = tipo de dados, 
+      name = None, 
+      copy = False, fastpath = False)
+
+    data -> define os valores que serão armazenados na série.
+    index ->  Define os rótulos dos índices da série.
+    dtype -> Especifica o tipo de dado dos elementos da série.
+    name - >Define o nome da série. Esse atributo é útil em operações que envolvem várias séries ou dataframes.
+    copy -> indica se os dados fornecidos devem ser copiados. Se True, cria uma cópia 
+    independente dos dados fornecidos; se False, os dados originais são usados 
+    diretamente.
+
+    EXEMPLO DE SERIES:
+    
+    # usando parâmestros
+    lista_num = [10,20,30] 
+    Serie = pd.Series(data=lista_num)
+    print(Serie)
+
+    # fazendo de forma padrão
+   
+    Series = pd.Series([10,20,30])
+    print(Serie)
+
+    # também é possível fazer com o próprio dicionário, veja!
+
+    Series = pd.Series({'a':10, 'b':2, 'c':40})
+    print(Series)
+
+    nesse caso, serie com o dicionário, a chave vira o indicie e o valores
+    é o dado, propriamente dito.
+
+3 - Como trabalhar com Pandas? 
 
     Para trabalhar com Pandas no VSCode (ou qualquer outro ambiente Python), será 
     necessário instalá-lo. Você também pode instalar o NumPy, que é uma biblioteca 
