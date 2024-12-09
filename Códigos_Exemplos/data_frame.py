@@ -1,7 +1,7 @@
 import pandas as pd 
 
 '''
-Criando um pequeno DATA fRAME PARA TREINAR
+Criando um pequeno DATA FRAME PARA TREINAR
 '''
 
 dados = {
@@ -12,7 +12,7 @@ dados = {
                     }
 
 df = pd.DataFrame(dados)
-#df['Total'] = df['Quantidade'] * df['Preço'] adcionaando coluna total
+#df['Total'] = df['Quantidade'] * df['Preço'] adcionando coluna total
 
 #df.rename(columns={'Produtos': 'Itens'}, inplace=True) renomeia colunas
 print(df)

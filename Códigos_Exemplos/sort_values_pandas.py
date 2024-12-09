@@ -1,5 +1,6 @@
 import pandas as pd
 
+# descomente o que for necessário
 df = pd.read_csv(r"C:\Estudando_pandas\Arquivos_csv_estudos\202401_Compras.csv",encoding='latin1',sep = ";", header=0, nrows=10)
 
 # listando informações do arquivo csv com tabelas e seu tipos de dados

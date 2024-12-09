@@ -30,14 +30,10 @@ _________________________
 
 2 - Estruturas principais no Pandas:
     
-    - DataFrame: Uma tabela bidimensional com linhas e colunas 
-    (semelhante a uma planilha Excel ou tabela SQL).
-    
-    EXEMPLO de DATAFRAME:
-
     - Series: Uma estrutura unidimensional que representa uma única coluna ou linha
     de um DataFrame. Podem ser criadas através de listas[]
     
+      parâmestros 
     Serie = pd.Series(
       data = none, 
       index = ['a','b','c'], 
@@ -46,9 +42,13 @@ _________________________
       copy = False, fastpath = False)
 
     data -> define os valores que serão armazenados na série.
+    
     index ->  Define os rótulos dos índices da série.
+    
     dtype -> Especifica o tipo de dado dos elementos da série.
+    
     name - >Define o nome da série. Esse atributo é útil em operações que envolvem várias séries ou dataframes.
+    
     copy -> indica se os dados fornecidos devem ser copiados. Se True, cria uma cópia 
     independente dos dados fornecidos; se False, os dados originais são usados 
     diretamente.
@@ -72,6 +72,81 @@ _________________________
 
     nesse caso, serie com o dicionário, a chave vira o indicie e o valores
     é o dado, propriamente dito.
+    
+    IMPORTANTE -> Se selecionarmos apenas uma coluna de um Dataframe, estamos na
+    verdade selecionando uma Series, ou seja, a coluna do DataFrame se torna uma
+    Serie se apenas selecionarmos ela.
+
+    - DataFrame: Uma tabela bidimensional com linhas e colunas 
+    (semelhante a uma planilha Excel ou tabela SQL).
+    
+    EXEMPLO de DATAFRAME:
+
+      parâmestros
+    DataFrame = pd.DataFrame(
+      data = none
+      index = False
+      columns = none
+      dtype = float64
+      copy = False)
+
+    data -> Este é o principal parâmetro de entrada para o DataFrame. Ele pode ser
+    uma lista, dicionário, array NumPy, Series, ou até outro DataFrame.
+    
+    index -> (opcional) Especifica os rótulos (índices) das linhas do DataFrame. 
+    Se não for fornecido, o Pandas atribui índices padrão inteiros (0, 1, 2, ...).
+    
+    Nota: Se o comprimento de index não coincidir com o número de linhas em data,
+    ocorrerá um erro.
+    
+    columns -> Este parâmetro define os rótulos das colunas do DataFrame. Caso não
+    seja especificado, o Pandas usa os rótulos do índice da entrada (se fornecido) ou
+    atribui nomes
+
+    Nota: Se o número de colunas não coincidir com o número de colunas em data, o
+    correrá um erro.
+
+    dtype -> Especifica o tipo de dados que as colunas do DataFrame devem ter. O 
+    Pandas tentará inferir automaticamente o tipo de dados de cada coluna, mas você 
+    pode forçar um tipo específico com este parâmetro.
+
+    Nota: Se não for especificado, o Pandas escolherá o tipo de dados automaticamente 
+    com base nos dados fornecidos.
+
+    copy -> Controla se o DataFrame deve ser uma cópia independente dos dados 
+    fornecidos. Se False, o DataFrame pode compartilhar os dados com o objeto original
+    (como uma visão, ao invés de uma cópia completa).
+
+    Nota: Isso pode ser importante para otimização de memória, pois a cópia de 
+    grandes DataFrames pode ser cara em termos de recursos.
+    
+    EXEMPLOS DE DATAFRAMES:
+
+    # Usando parâmestros
+
+    # Criando DATAFRAME apartir de SERIES com listas e dicionário
+
+    s1 = pd.Series([10,20,39], name = c1)
+    s2 = pd.Series([30,40,50], name = c2)
+
+    df = pd.DataFrame([s1,s2])
+    print(df)
+    # usando parâmetros 
+    lista_coluna = [s1,s2]
+    df = pd.DataFrame(data = lista_coluna )    
+
+    Nota: dessa forma com lista o pandas entende que cada serie é uma linha, 
+    não colunas, devemos tomar cuidado com isso.
+
+    # Criando um DataFrame com dicionário da Series
+                            
+                            chave:valor|chave:valor
+    df = pd.DataFrame({'coluna1':s1, 'coluna2':s2})
+    print(df)
+
+    Nota:Para retornar a series como colunas, precisamos transfomá-los em dicionários
+    dicionários -> chave:valor
+
 
 3 - Como trabalhar com Pandas? 
 
