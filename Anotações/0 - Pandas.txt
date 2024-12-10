@@ -75,7 +75,14 @@ _________________________
     
     IMPORTANTE -> Se selecionarmos apenas uma coluna de um Dataframe, estamos na
     verdade selecionando uma Series, ou seja, a coluna do DataFrame se torna uma
-    Serie se apenas selecionarmos ela.
+    Serie se apenas selecionarmos ela. Agora se selecionarmos uma lista de colunas
+    do DataFrame, estamos retornando tipo Dataframe
+
+    EXEMPLO:
+
+    print(type(df['c1'])) saida -> <class 'pandas.core.series.Series'>
+
+    print(type(df[['c1','c2']])) saida -> <class 'pandas.core.frame.DataFrame'>
 
     - DataFrame: Uma tabela bidimensional com linhas e colunas 
     (semelhante a uma planilha Excel ou tabela SQL).

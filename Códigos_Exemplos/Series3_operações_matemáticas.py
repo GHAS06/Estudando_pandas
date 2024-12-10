@@ -32,9 +32,8 @@ print(f'Potenciação entre Series:\n{(a ** b).round(2)}\n')
 # vai funcionar para o restante das operações matemáticas entre as series
 
 '''
-    Agora muda quando estamos fazendo de maenira escalar 
-    É Quando somamos uma série com um escalar, o valor é somado a todos os elementos
-    da série.
+    Agora muda quando estamos fazendo de maneira escalar.É Quando somamos uma série
+    com um escalar(constante), o valor é somado a todos os elementos da série.
     o mesmo vai funcionar para todas as outras operações matémáticas de maneira 
     escalar
 '''
@@ -63,7 +62,6 @@ Operações acumulativas em Pandas referem-se a cálculos que acumulam valores d
 Série ou DataFrame ao longo de suas linhas ou colunas. Em vez de operar apenas em 
 pares de valores, elas computam um resultado acumulado progressivamente, mantendo
 o histórico das operações realizadas até cada ponto da estrutura de dados.
-
 '''
 print(f'Série original:\n{a}\n')
 print(f'Adição acumulativa (cumsum):\n{a.cumsum()}\n')

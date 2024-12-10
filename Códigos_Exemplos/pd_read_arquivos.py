@@ -6,10 +6,10 @@ import pandas as pd
 #df = pd.read_csv(r"C:\Estudando_pandas\Arquivos_csv_estudos\202401_Compras.csv",encoding='latin1',sep = ";", header=0, nrows=10, usecols=["Número do Contrato","Objeto","Fundamento Legal"])
 
 # ler arquivos excel
-#df = pd.read_excel(r"C:\Estudando_pandas\Arquivos_excel_para_estudos\Relatorio DER Novembro2024.xlsx", sheet_name= 0)
+#df = pd.read_excel(r, sheet_name= 0)"C:\Estudando_pandas\Arquivos_excel_para_estudos\Vendas.xlsx"
 
 # Lendo arquivo excel usando ExcelFile e colocando isso em uma variável
-#arquivo_excel = pd.ExcelFile(r"C:\Estudando_pandas\Arquivos_excel_para_estudos\Relatorio DER Novembro2024.xlsx")
+#arquivo_excel = pd.ExcelFile(r"C:\Estudando_pandas\Arquivos_excel_para_estudos\Vendas.xlsx")
 
 # exibindo as ABAS do arquivo.xlsx
 #print(arquivo_excel.sheet_names)
