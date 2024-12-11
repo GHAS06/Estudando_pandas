@@ -1,6 +1,15 @@
 import pandas as pd
 
 # Descomente o que for necessário
+'''
+    LEIA A ANOTAÇÃO A_importância_do_type().txt
+    LEIA A ANOTAÇÃO LOC_VS_ILOC.txt
+    LEIA A ANOTAÇÃO Manipulando_Colunas_DataFrame.txt
+    LEIA A ANOTAÇÃO Usando_e_entendendo_Vetores_Lógicos.txt
+    LEIA A ANOTAÇÃO Funções_de_Agregação e Agrupamento.txt
+
+    Em Códigos_exemplos VEJA! Operadores_Votores_lógicos 1 e o 2
+'''
 
 '''
 Essa parte três visa explicar melhor o selecionamento de colunas com DataFrame
@@ -46,9 +55,9 @@ print(df['c1'][0:3])
 SAÍDA:
 
 índice    c1
-0           1
-1           2
-2           3
+0          1
+1          2
+2          3
 
 print(type(df['c1'][0:3])) # saída -> <class 'pandas.core.series.Series'>
 
@@ -60,7 +69,7 @@ print(df['c1'][0])
 SAÍDA:
 
 índice    c1
-0           1
+0          1
 
 print(type(df['c1'][0])) # saída -> <class 'numpy.int64'>
 
@@ -106,8 +115,8 @@ print(df)
 
 # Podemos fazer operações escalares com as funções de agregação do Pandas também
 
-df['Média_c1'] = df['c1'].mean()
-print(df)
+#df['Média_c1'] = df['c1'].mean()
+#print(df)
 
 '''
 Leia a anotação sobre Funções_de_Agregação.
@@ -175,8 +184,8 @@ Se True, permite a inserção de uma coluna com nome duplicado.
 CUIDADO COM INSERT -> ELE PODE ALTERAR OS VALORES DE UM DATAFRAME
 '''
 
-df.insert(3,"c4",10)
-print(f'\nUsando insert para inserir a colna c4:\n{df}')
+#df.insert(3,"c4",10)
+#print(f'\nUsando insert para inserir a colna c4:\n{df}')
 
 
 # Remoção de colunas com del e pop
@@ -185,8 +194,8 @@ print(f'\nUsando insert para inserir a colna c4:\n{df}')
 O del apaga/remove a coluna do nosso DataFrame, básicamente é isso
 '''
 
-del df['Média_c1']
-print(f'\n{df}')
+#del df['Média_c1']
+#print(f'\n{df}')
 
 '''
 Outra forma de remoção de tabelas é com pop
@@ -197,5 +206,6 @@ item (str) -> Nome da coluna que você deseja remover do DataFrame.
 
 '''
 
-df.pop('c2')
-print(f'\n{df}')
+#df.pop('c2')
+#print(f'\n{df}')
+

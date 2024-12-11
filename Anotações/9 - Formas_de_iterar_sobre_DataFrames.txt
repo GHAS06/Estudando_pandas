@@ -1,0 +1,16 @@
+'''
+for index, row in df.iterrows():
+    for col in df.columns:  # Para acessar as colunas
+        value = row[col]
+        print(f"Índice: {index}, Coluna: {col}, Valor: {value}")
+'''
+
+'''
+for row in df.itertuples():
+    for col, value in zip(df.columns, row[1:]):  # row[1:] ignora o índice
+        print(f"Índice: {row[0]}, Coluna: {col}, Valor: {value}")
+'''
+
+'''
+df.apply(lambda row: print(row), axis=1)
+'''

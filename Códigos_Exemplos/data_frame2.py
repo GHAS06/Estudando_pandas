@@ -1,5 +1,9 @@
 import pandas as pd 
 
+'''
+    LEIA A ANOTAÇÃO Pandas.txt e A_importância_do_type().txt
+'''
+
 # Criando Dataframe apartir de Series com listas e dicionários
 
 s1 = pd.Series([10,20,39], name = 'c1')

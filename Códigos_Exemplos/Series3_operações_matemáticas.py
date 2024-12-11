@@ -4,6 +4,12 @@ import numpy as np
 # descomente o que for necessário
 
 '''
+    LEIA A ANOTAÇÃO Pandas.txt e A_importância_do_type().txt
+
+        Essa parte é muito importante entender
+'''
+
+'''
 Podemos faze algumas operações matemáticas com series depois de entender como 
 funciona o seu tipo de dados e estrutura nos códigos anteriores, vou usar vetores
 do numpy como exemplo para esse terceiro código

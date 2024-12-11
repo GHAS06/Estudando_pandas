@@ -33,7 +33,7 @@ _________________________
     - Series: Uma estrutura unidimensional que representa uma única coluna ou linha
     de um DataFrame. Podem ser criadas através de listas[]
     
-      parâmestros 
+      parâmetros 
     Serie = pd.Series(
       data = none, 
       index = ['a','b','c'], 
@@ -47,7 +47,8 @@ _________________________
     
     dtype -> Especifica o tipo de dado dos elementos da série.
     
-    name - >Define o nome da série. Esse atributo é útil em operações que envolvem várias séries ou dataframes.
+    name -> Define o nome da série. Esse atributo é útil em operações que envolvem 
+    várias séries ou dataframes.
     
     copy -> indica se os dados fornecidos devem ser copiados. Se True, cria uma cópia 
     independente dos dados fornecidos; se False, os dados originais são usados 
@@ -129,7 +130,7 @@ _________________________
     
     EXEMPLOS DE DATAFRAMES:
 
-    # Usando parâmestros
+    # Usando parâmetros
 
     # Criando DATAFRAME apartir de SERIES com listas e dicionário
 
@@ -138,6 +139,7 @@ _________________________
 
     df = pd.DataFrame([s1,s2])
     print(df)
+
     # usando parâmetros 
     lista_coluna = [s1,s2]
     df = pd.DataFrame(data = lista_coluna )    
@@ -154,6 +156,10 @@ _________________________
     Nota:Para retornar a series como colunas, precisamos transfomá-los em dicionários
     dicionários -> chave:valor
 
+    # Segunda forma de fazer a mesma coisa acima
+    
+    df = pd.DataFrame({s1.name:s1, s2.name:s2})
+    print(df)
 
 3 - Como trabalhar com Pandas? 
 

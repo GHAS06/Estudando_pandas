@@ -3,7 +3,6 @@ import pandas as pd
 # Criando uma Serie para treinar diferença entre Serie e Data Frame
 # Descomente o que for necessário
 
-
 '''
 
 Quando o assunto são dados em series ou dataframes, o pandas irá trabalhar da forma
@@ -32,6 +31,7 @@ Serie = pd.Series([10,20,30,40,6.5])
 print(Serie)
 
 '''
+
 
 '''
 Uma serie de dtype = object

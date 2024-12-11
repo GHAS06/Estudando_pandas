@@ -2,6 +2,10 @@ import pandas as pd
 
 # Descomente o que for necessário
 
+'''
+    LEIA A ANOTAÇÃO Pandas.txt e A_importância_do_type().txt
+'''
+
 Series = pd.Series({'a':10, 'b':2, 'c':40}, name= 'Valores')
 #print(Series[['a','b']])
 

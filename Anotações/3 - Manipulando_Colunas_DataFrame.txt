@@ -1,4 +1,4 @@
-3 - Vamos Aprender a manipular colunas de um DataFrame
+1 - Vamos Aprender a manipular colunas de um DataFrame
 
 - Criando um DataFrame com dicionários a partir de séries
 
@@ -8,7 +8,7 @@
     df = pd.DataFrame({s1.name: s1, s2.name: s2})
     print(df)
 
-- Selecionando colunas com listas ou formas com nomes das colunas
+- Selecionando colunas com listas ou com nomes das colunas
 
     print(df['c1'])
 
@@ -50,7 +50,7 @@ print(df['c1'][0])
 SAÍDA:
 
 índice    c1
-0           1
+0          1
 
 print(type(df['c1'][0])) # saída -> <class 'numpy.int64'>
 
