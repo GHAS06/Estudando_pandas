@@ -5,6 +5,17 @@ from pandasgui import show # Interface Grafica , melhor para grandes volumes de 
 
 #ESSE ARQUIVO.PY É MUITO IMPORTANTE LER PARA ENTENDER ALGUMAS COISAS
 #QUANDO FOR COLOCAR PARA EXECUTAR, DESCOMENTE O QUE FOR NECESSÁRIO
+'''
+    LEIA A ANOTAÇÃO: Usando_e_entendendo_Vetores_Lógicos.txt
+    LEIA A ANOTAÇÃO: Selecionando_colunas.txt
+    LEIA A ANOTAÇÃO: Manipulando_Colunas_DataFrame.txt
+    
+    Nesse código vamos nos aperfeiçoar a filtragem através dos operadores 
+    com vetores lógicos.
+
+    Lembre-se: parenteses vai definir a operação do filtro e o limitador das 
+    filtragens
+'''
 
 #Exibição para mostrar todas as linhas e colunas
 '''
@@ -12,13 +23,6 @@ pd.set_option('display.max_rows', None)  # Exibir todas as linhas
 pd.set_option('display.max_columns', None)  # Exibir todas as colunas
 pd.set_option('display.width', None)  # Sem limitação de largura
 pd.set_option('display.max_colwidth', None)  # Exibir texto completo em cada célula
-'''
-
-'''
-Nesse código vamos nos aperfeiçoar a filtragem através dos operadores com vetores 
-lógicos.
-
-Lembre-se: parenteses vai definir a operação do filtro e o limitador das filtragens
 '''
 
 caminho_arquivo_csv = r"C:\Estudando_pandas\Arquivos_csv_estudos\202401_ItemCompra.csv"
@@ -48,8 +52,6 @@ df  = pd.read_csv(caminho_arquivo_csv, encoding= 'Latin1', sep = ';')
 
 '''
 EXPLICAÇÃO DESTE CÓDIGO USANDO VETOR LÓGICO DETALHADAMENTE:
-
-
 
 Contexto:
 No seu código, você está usando vetores lógicos para realizar filtragens em um

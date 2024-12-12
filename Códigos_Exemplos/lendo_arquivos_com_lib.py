@@ -2,6 +2,16 @@ import os
 import pandas as pd
 from pathlib import Path
 
+# Esse código visa mostrar formas de ler aquivos usando libs com pandas
+'''
+    VEJA O CÓDIGO: pd_read_arquivos.py.txt
+    LEIA A ANOTAÇÃO: Abrindo_arquivos.txt
+    LEIA A ANOTAÇÃO: Abrindo_Arquivos_lib.txt
+    LEIA A ANOTAÇÃO:
+    LEIA A ANOTAÇÃO:
+    LEIA A ANOTAÇÃO:    
+'''
+
 '''
 # Diretório base
 diretorio_base = os.getcwd()

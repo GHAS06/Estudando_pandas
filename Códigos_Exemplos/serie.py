@@ -2,6 +2,9 @@ import pandas as pd
 
 # Criando uma Serie para treinar diferença entre Serie e Data Frame
 # Descomente o que for necessário
+'''
+    LEIA A ANOTAÇÃO: Pandas.txt
+'''
 
 '''
 

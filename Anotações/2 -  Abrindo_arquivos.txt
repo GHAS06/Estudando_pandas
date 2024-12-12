@@ -21,8 +21,8 @@ usecols = [] -> lista as colunas que queremos utilizar, o nome da coluna deve es
 extamente igual
 
 
-3 - Abrindo arquivos xlsx (Arquivos Excel) com pandas, funciona na mesma lógica do arquivo csv
-porém com comando um pouco diferente. 
+3 - Abrindo arquivos xlsx (Arquivos Excel) com pandas, funciona na mesma lógica do 
+arquivo csv porém com comando um pouco diferente. 
 
 EXEMPLO: df = pd.read_excel(r"/caminho/arquivo.xlsx", parâmetros)
 

@@ -1,5 +1,10 @@
 import pandas as pd
 
+# Esse código visa mostrar como funciona asa funções loc e iloc
+'''
+    LEIA A ANOTAÇÃO: LOV_VS_ILOC.TXT
+'''
+
 # ler arquivo csv
 df = pd.read_csv(r"C:\Estudando_pandas\Arquivos_csv_estudos\202401_Compras.csv",encoding='latin1',sep = ";", header=0, nrows=10, usecols=["Número do Contrato","Objeto","Fundamento Legal"])
 

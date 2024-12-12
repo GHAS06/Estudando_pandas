@@ -36,4 +36,4 @@ print(df.iloc[0:2])
 OBS.: "SEMPRE COLOCAR O NOME DAS COLUNAS EXATAMENTE COMO ESTÁ NO ARQUIVO"
 
 Observação -> o iloc não exibe a posição que estamos, sempre uma posição anterior
-Quando tratamos de situções True or False nno iloc, isso pode impactar na filtragem
+Quando tratamos de situções True or False no iloc, isso pode impactar na filtragem

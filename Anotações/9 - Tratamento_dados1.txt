@@ -1,0 +1,146 @@
+1 - Vamos entender incialmente como podemos realizar tratamento de dados
+
+Função .apply():
+    
+A função apply(): Excelente para trabalharmos com series. Essa função é usada para
+aplicar uma função ao longo do eixo de um DataFrame(linhas e colunas), muito útil
+para manipulação e tratamento de dados em series, ou seja, exclusiva para
+tipos_de_dados <class 'pandas.core.series.Series'>
+
+Parâmetros da função .apply():
+
+     DataFrame.apply(func, axis=0, raw=False, result_type=None, args=(), **kwds)
+
+func -> A função a ser aplicada aos dados. Poder uma lambada, uma função que criamos
+( def nome_função(Parâmetros): ), funções já prontas
+
+axis -> 0 ou 'index' para aplicar a função às colunas (padrão), 1 ou 'columns' para 
+aplicar às linhas.
+
+raw -> False por padrão, que passa uma Series para func; se True, passa uma ndarray.
+
+result_type-> Define o tipo de resultado ('expand', 'reduce', 'broadcast', None).
+
+args-> Argumentos posicionais adicionais passados à função.
+
+kwds-> Argumentos de palavra-chave adicionais passados à função.
+
+EXEMPLO:
+
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]}) 
+result = df.apply(sum, axis=0) print(result)
+
+SAIDA: 
+    
+    A 6 
+    B 15 
+    dtype: int64
+
+Veja! Ele aplicou a função de agregação .sum() para todas as linhas das colunas do 
+DataFrame.
+
+Função applymap(): é usada para aplicar uma função a cada elemento de um DataFrame. 
+É útil para operações de elemento a elemento. Muito Trabalhada com a função lambda 
+do python. Exclusiva para <class 'pandas.core.frame.DataFrame'>
+
+# O que é a função lamda?
+
+    A função lambda no Python é uma forma concisa de criar funções anônimas 
+    (ou seja, funções que não têm nome). As funções lambda são geralmente usadas 
+    para operações rápidas e simples, onde você não quer definir uma função completa 
+    com def.
+
+        Sintaxe da lambda:
+            lambda argumentos: expressão
+
+Parâmetros da função .applymap()
+
+    DataFrame.applymap(func, na_action=None, **kwds)
+
+func -> A função a ser aplicada a cada elemento. Pode ser uma função lambada, uma
+função que criamos(def nome_função(Parâmetros), ou funções já prontas)
+
+na_action -> Se 'ignore', deixa valores NaN como estão.
+
+EXEMPLO:
+
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]}) 
+# Aplicar função lambda a cada elemento (quadrado) 
+result_element = df.applymap(lambda x: x ** 2) 
+print(result_element)
+
+SAIDA:
+
+    A   B 
+0   1   16
+1   4   25
+2   9   36
+
+Função .replace():
+
+A função replace(): no Pandas é usada para substituir valores em um DataFrame ou 
+Series por outros valores. Isso pode ser útil para limpar dados, transformar 
+categorias, corrigir erros, e outras manipulações de dados.
+
+Parâmetros da função .replace()   
+    
+    DataFrame.replace(
+        to_replace=None, 
+        value=None, 
+        inplace=False, 
+        limit=None, 
+        regex=False, 
+        method='pad')
+
+to_replace-> Os valores que devem ser substituídos. Pode ser uma lista, 
+dicionário, ou uma única variável.
+
+value-> Os valores que irão substituir os valores de to_replace. Pode ser um único
+valor, lista, ou dicionário.
+
+inplace-> Se True, executa a operação no próprio DataFrame/Series. Se False, 
+retorna um novo DataFrame/Series (padrão é False).
+
+limit-> O número máximo de substituições permitidas.
+
+regex-> Se True, permite que to_replace seja uma expressão regular (padrão é False).
+
+method-> Método para o preenchimento se to_replace for uma expressão regular
+('pad', 'ffill', 'bfill').
+
+EXEMPLO:
+
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+
+# Substituir o valor 1 por 10 na coluna 'A'
+df_replaced = df.replace(1, 10)
+print(df_replaced)
+
+SAIDA:
+
+    A  B
+0  10  4
+1   2  5
+2   3  6
+
+# Substituir os valores 1 e 2 por 10 e 20, respectivamente
+df_replaced = df.replace([1, 2], [10, 20])
+print(df_replaced)
+
+SAIDA:
+    A  B
+0  10  4
+1  20  5
+2   3  6
+
+# Substituir valores usando um dicionário
+df_replaced = df.replace({'A': 1, 'B': 4}, {'A': 10, 'B': 40})
+print(df_replaced)
+
+SAIDA:
+
+    A   B
+0  10  40
+1   2   5
+2   3   6
+

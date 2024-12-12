@@ -1,6 +1,12 @@
 import pandas as pd
 from pandasgui import show
 
+# Esse código visa mostrar o PandasGui funcionando
+
+'''
+    LEIA A ANOTAÇÃO: PandasGui.txt
+'''
+
 caminho_arquivo_csv = r"C:\Estudando_pandas\Arquivos_csv_estudos\202401_ItemCompra.csv"
 df  = pd.read_csv(caminho_arquivo_csv, encoding= 'Latin1', sep = ';')
 

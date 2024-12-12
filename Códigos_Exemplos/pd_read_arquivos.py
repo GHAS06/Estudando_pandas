@@ -1,6 +1,7 @@
 import pandas as pd
 
-# Descomente o que for necessário
+# Esse código visa mostrar como podemos usar o pandas para ler arquivos
+
 
 # ler arquivo csv
 #df = pd.read_csv(r"C:\Estudando_pandas\Arquivos_csv_estudos\202401_Compras.csv",encoding='latin1',sep = ";", header=0, nrows=10, usecols=["Número do Contrato","Objeto","Fundamento Legal"])

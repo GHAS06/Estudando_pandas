@@ -1,5 +1,11 @@
 import pandas as pd
 
+# Esse código visa explicar como funciona os filtros com pandas
+'''
+    LEIA A ANOTAÇÃO: LOC_VS_ILOC.txt
+    LEIA A ANOTAÇÃO: Filter_Filtro_dados.txt
+    LEIA A ANOTAÇÃO:Usando_e_entendendo_Vetores_Lógicos.txt
+'''
 df = pd.read_csv(r"C:\Estudando_pandas\Arquivos_csv_estudos\202401_Compras.csv",encoding='latin1',sep = ";", header=0, nrows=10)
 
 #print(df.info())

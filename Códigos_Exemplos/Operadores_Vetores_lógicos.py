@@ -1,6 +1,12 @@
 import pandas as pd
 
+# Esse código visa mostrar a seleção e filtragem com vetores e operadores lógicos
 
+'''
+    LEIA A ANOTAÇÃO: Usando_e_entendendo_Vetores_Lógicos.txt
+    LEIA A ANOTAÇÃO: Selecionando_colunas.txt
+    LEIA A ANOTAÇÃO: Manipulando_Colunas_DataFrame.txt
+'''
 dados = {'Nome': ['Alice', 'Bob', 'Charlie'], 'Idade': [25, 30, 35]} 
 df = pd.DataFrame(dados, index=['a', 'b', 'c'])
 
