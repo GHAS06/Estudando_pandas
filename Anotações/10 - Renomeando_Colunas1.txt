@@ -1,0 +1,224 @@
+1 - Vamos aprender a renomear colunas com a função .rename()
+    
+    A função .rename() no pandas é usada para renomear rótulos de linhas e/ou 
+    colunas em um DataFrame ou Series. É uma ferramenta poderosa e flexível, muito 
+    útil para ajustar nomes de colunas ou índices para atender às suas necessidades.
+
+    DataFrame.rename(
+        mapper=None, 
+        *, 
+        index=None, 
+        columns=None, 
+        axis=None, 
+        copy=True, 
+        inplace=False, 
+        level=None, 
+        errors='ignore')
+
+    Principais parâmetros:
+
+    mapper (opcional) -> Um dicionário ou uma função que especifica a transformação 
+    de rótulos de índice ou colunas. Geralmente é substituído pelos parâmetros index 
+    e columns (mais intuitivos).
+
+    index (opcional) -> Um dicionário ou função que mapeia os rótulos do índice 
+    (linhas) para novos valores.
+        
+        Exemplo: index={'antigo_nome': 'novo_nome'}.
+    
+    columns (opcional) -> Um dicionário ou função para alterar os nomes das colunas.
+
+        Exemplo: columns={'antigo_nome': 'novo_nome'}.
+
+    axis (opcional)-> Define o eixo a ser modificado. Valores possíveis:
+        
+        0 ou 'index': modifica os rótulos das linhas.
+        1 ou 'columns': modifica os rótulos das colunas.
+        
+        # Geralmente é implícito se você usa os parâmetros index ou columns.
+
+    inplace (opcional) -> Se for True, a modificação é feita diretamente no DataFrame 
+    original. Por padrão, é False, e o método retorna um novo DataFrame.
+
+    copy (opcional) -> Se for True, cria uma cópia do DataFrame (por padrão).
+    
+    errors -> Define como tratar erros caso um rótulo não seja encontrado:
+
+    'ignore': ignora rótulos não encontrados (padrão).
+    'raise': levanta um erro se o rótulo não existir.
+
+2 - Exemplo de uso:
+
+    # Criando um DataFrame com um dicionário python
+            
+            chave: coluna 
+            valor: dados
+    
+    dados = { 'Status':['Pago','Devendo','Pago'], Preço:[800,900,1000], 'Data':'Datas': lita_datas}
+
+
+    # Vamos mudar o nome da coluna Status para Situação
+    # Preço para Valor
+    
+    # OBSERVAÇÃO, POR BOA PRÁTICA, SEMPRE RENOMEAR NA ORDEM CORRETA
+    # SE NÃO, FIZER ISSO, PODER TRAZER RETORNOS INDESEJADOS
+    # CASO DESEJE FAZER FORA DA ORDEM, CERTIFICA - SE QUE ESTÁ TUDO CORRETO
+
+    # lista de datas
+    lita_datas = [date(2024,12,12),date(2024,12,14),date(2024,12,10)]
+    
+    # Criando um dicionário
+    dados = { 
+        'Status':['Pago','Devendo','Pago'], 
+        'Preço':[800,900,1000], 
+        'Datas': lita_datas
+     }
+    
+    # Criando um DataFrame através de um diconário
+    
+    alugueis = pd.DataFrame(dados)
+    print(alugueis.info()) # mostrando o tipo de dado de cada coluna
+
+    # CRIAR DICIONÁRIO PARA USAR NA FUNÇÃO .raname()
+    
+    # Basicamente a chave é a coluna que irmeos renomear e o valor é o nome novo da 
+    coluna.
+
+                chave:'nome_coluna_antiga'
+                valor:'nome_coluna_nova'
+
+    colunas = {'Status':'Situação','Preço':'Valor'}
+
+    # se usar o objeto dicionário, basta passar o objeto como parâmetro
+    print(alugueis.rename(colunas))
+
+    # podemos ter o mesmo resultado acima usando o parâmetro
+    print(f'\nColunas Modificadas:\n\n{alugueis.rename(columns=colunas)}')
+
+3 - Renomeando várias Colunas de uma vez:
+
+    print(alugueis.columns) # saida -> Index(['Status', 'Preço', 'Datas'], dtype='object')
+    print(type(alugueis.columns)) # saida -> <class 'pandas.core.indexes.base.Index'>
+
+    '''
+        veja que retonarmos um atributo objeto do tipo index do dataframe 
+        ao utilizar.columns
+    '''
+    # vamos transformar esse atributo em lista veja!
+
+    print(alugueis.columns.to_list()) # saida -> ['Status', 'Preço', 'Datas'] 
+    print(type(alugueis.columns.to_list())) # saida -> <class 'list'>
+
+    '''
+        Veja, transformamos um objeto do pandas do tipo index para uma lista apartir 
+        desta informação, iremos realizar um bem bolado para renomear várias colunas
+        de uma vez
+    '''
+
+    colunas_novas = ['Condição','Valia','Datas_Vencimento']
+
+    colunas = dict(zip(alugueis.columns.to_list(), colunas_novas))
+
+    print(alugueis.rename(columns=colunas))
+
+    Para entender o que foi feito:
+    
+        O disct() -> é usada para criar um dicionário no Python. Existem diversas 
+        formas de utilizá-la dependendo dos dados de entrada.
+
+                                parâmetro
+        dict( interável de palavras chaves, Argumentos nomeados)
+    
+        interável de palavras chaves -> listas de tuplas, listas de listas, etc.
+        Argumentos nomeados -> (somente se as chaves forem strings)
+
+        LEMBRE-SE: diconário{chave:valor}
+
+        Exemplo_1: d = dict(a=1, b=2, c=3)
+                print(d)  # Saída -> {'a': 1, 'b': 2, 'c': 3}
+        
+        Exemplo_2:
+            # Lista de pares chave-valor
+            pares = [('a', 1), ('b', 2), ('c', 3)]
+
+            # Transformar em dicionário
+            d = dict(pares)
+            print(d)  # Saída -> {'a': 1, 'b': 2, 'c': 3}    
+
+        O zip() -> combina dois ou mais iteráveis (listas, tuplas, etc.) 
+        em um iterador que gera pares (ou tuplas).
+            
+            parâmetros
+        zip(*iterables)
+
+        *iterables -> Um número arbitrário (ou seja, ilimitado) de iteráveis como 
+        listas, tuplas, strings ou qualquer objeto que seja iterável. 
+        Esses iteráveis serão combinados em tuplas.
+
+        Exemplo_1: Junção de duas interáveis
+            
+            numeros = [1, 2, 3]
+            palavras = ['um', 'dois', 'três']
+
+            resultado = zip(numeros, palavras)
+            print(list(resultado))  # Saída -> [(1, 'um'), (2, 'dois'), (3, 'três')]
+        
+        Exemplo_2: Junção de 2 ou mais interáveis(Multiplas interáveis)
+           
+            a = [1, 2, 3]
+            b = ['um', 'dois', 'três']
+            c = ['uno', 'dos', 'tres']
+
+            resultado = zip(a, b, c)
+            print(list(resultado))  
+            # Saída -> [(1, 'um', 'uno'), (2, 'dois', 'dos'), (3, 'três', 'tres')]
+        
+        Exemplo_3: Junção de interáveis com Strings
+        
+        letras = 'abc'
+        numeros = [1, 2, 3]
+
+        resultado = zip(letras, numeros)
+        print(list(resultado))  # Saída -> [('a', 1), ('b', 2), ('c', 3)]
+
+4 - O que o código de renomeação de multiplas colunas faz?
+
+    Resumidamente: O código de renomeação de múltiplas colunas usa os métodos zip() 
+    e dict() para criar um mapeamento entre os nomes atuais das colunas e os 
+    novos nomes. Esse mapeamento é então passado como parâmetro para a função 
+    .rename() do pandas para renomear as colunas do DataFrame.
+
+     - Passo a passo do que o código faz:
+
+        # Transforma os nomes das colunas do DataFrame em uma lista:
+
+            alugueis.columns.to_list()
+
+        # Isso converte o objeto Index 
+        (um tipo especial do pandas para representar rótulos de colunas ou índices) 
+        em uma lista Python comum, facilitando a manipulação.
+
+        #Define uma nova lista com os novos nomes de colunas:
+
+            colunas_novas = ['Condição', 'Valia', 'Datas_Vencimento']
+
+        # Cria um dicionário que mapeia os nomes antigos para os novos:
+
+        # Utiliza o método zip() para juntar as duas listas 
+        (alugueis.columns.to_list() e colunas_novas) 
+        em pares (antigo_nome, novo_nome).
+
+        # Usa dict() para transformar esses pares em um dicionário:
+        
+            colunas = dict(zip(alugueis.columns.to_list(), colunas_novas))
+
+        Exemplo do dicionário gerado:
+        
+        {'Status': 'Condição', 'Preço': 'Valia', 'Datas': 'Datas_Vencimento'}
+        
+        # Renomeia as colunas do DataFrame:
+
+        #Utiliza o método .rename() do pandas, passando o dicionário criado como 
+        o parâmetro columns:
+        
+            alugueis.rename(columns=colunas)

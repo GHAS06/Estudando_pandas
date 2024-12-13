@@ -1,0 +1,148 @@
+1 - Vamos entender melhor sobre como fazer renomeação e tratamento das colunas.
+
+ - O que o .columns? 
+   
+    # Criando um discionário para entender o .columns
+
+    dados = {
+        'Nome': ['Ana', 'Carlos', 'João', 'Maria', 'Lucas'],
+        'Idade': [23, 35, 28, 42, 19],
+        'Cidade': ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Porto Alegre', 'Curitiba'],
+        'Profissão': ['Analista', 'Desenvolvedor', 'Gerente', 'Designer', 'Estagiário'],
+        'Salário': [3500, 5000, 8000, 4500, 1500]
+    }
+
+    df = pd.DataFrame(dados)
+
+    print(df.columns) # saida -> Index(['Nome', 'Idade', 'Cidade', 'Profissão', 'Salário'], dtype='object') 
+    para(type(df.columns)) -> <class 'pandas.core.indexes.base.Index'>
+
+    columns basicamente é um atributo do DataFrame que é do tipo index do pandas
+
+2 - Realizando tratamento nas colunas
+
+    # Com base na informação acima, podemos realizar tratamento na hora de renomear
+    as colunas do nosso DatraFrame, uma forma eficiente é usando list comprehension
+
+    - O que é uma list comprehension?
+
+        Uma list comprehension (ou "compressão de lista") em Python é uma maneira 
+        concisa e eficiente de criar listas. Ela permite que você crie novas listas 
+        aplicando uma expressão a cada item de um iterável, como uma lista ou um 
+        DataFrame, de forma compacta, sem a necessidade de escrever loops tradicionais.
+        
+        # A estrutura básica de uma list comprehension é a seguinte: 
+        
+            [expressão for item in iterável]
+
+        expressão -> O que você deseja fazer com cada item do iterável. Pode ser 
+        qualquer operação ou transformação.
+
+        for item in iterável -> O loop que percorre cada item do iterável
+
+        # Podemos colocar estrutura de tomada de decisão também
+        
+        Você também pode adicionar condições dentro de uma list comprehension, o que
+        permite filtrar ou modificar os itens durante a criação da nova lista. 
+        
+        A sintaxe para isso é:
+    
+            [expressão for item in iterável if condição]
+
+                        ou
+        
+            [expressão if condição else outra_expressão for item in iterável]
+    
+    EXEMPLO_1: Visa explicar o tratamento da coluna com list comprehension com for loop
+        
+        dados = {
+            'Nome': ['Ana', 'Carlos', 'João', 'Maria', 'Lucas'],
+            'Idade': [23, 35, 28, 42, 19],
+            'Cidade': ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Porto Alegre', 'Curitiba'],
+            'Profissão': ['Analista', 'Desenvolvedor', 'Gerente', 'Designer', 'Estagiário'],
+            'Salário Pagamento': [3500, 5000, 8000, 4500, 1500]
+        }
+
+        df = pd.DataFrame(dados)
+
+    # Exemplo de Tratamento de colunas com list comprehension
+
+    df.columns = [x.replace(' ', '_') for x in df.columns.to_list()]
+    print(df)
+
+    EXEMPLO_2: Visa explicar o tratamento de colunas com list comprehension usando if
+       
+       dados = {
+            'Nome': ['Ana', 'Carlos', 'João', 'Maria', 'Lucas'],
+            'Idade': [23, 35, 28, 42, 19],
+            'Cidade': ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Porto Alegre', 'Curitiba'],
+            'Profissão': ['Analista', 'Desenvolvedor', 'Gerente', 'Designer', 'Estagiário'],
+            'Salário Pagamento': [3500, 5000, 8000, 4500, 1500]
+        }
+
+        df = pd.DataFrame(dados)
+
+    # Exemplo de Tratamento de colunas com list comprehension
+    
+    # Usando list comprehension com if para substituir espaços por underscores, 
+    # mas somente nas colunas que contêm 'Pagamento'
+        
+        df.columns = [coluna.replace(' ', '_') if 'Pagamento' in coluna else coluna for coluna in df.columns]
+        print(df)
+
+3 - Podemos Utilizar funções de tratamento de Strings nativa do python 
+
+    - O objetivo de usar essas funções é auxiliar na renomeação e nos tratamento
+    das colunas, vou citar algumas:
+
+    str.lower() -> Converte todos os caracteres de uma string para minúsculas.
+        
+        Exemplo:
+            'HELLO'.lower()  # 'hello'
+
+    
+    str.upper() -> Converte todos os caracteres de uma string para maiúsculas.
+        
+        Exemplo:
+            'hello'.upper()  # Saida ->'HELLO'
+
+    str.capitalize() ->  Converte o primeiro caractere para maiúsculo e os outros 
+    para minúsculos.
+        
+        Exemplo:
+            'hello'.capitalize()  # Saida -> 'Hello'
+    
+    str.title() ->
+        
+        Exemplo:
+            'hello world'.title()  # Saida -> 'Hello World'
+
+    str.strip() -> Remove espaços em branco (ou outros caracteres especificados) do 
+    início e do final da string. 
+        
+        Exemplo:
+            '  hello  '.strip()  # Saida -> 'hello'
+    
+    str.split(separator) -> Divide a string em uma lista de substrings usando o 
+    separator especificado. Se nenhum separador for fornecido, usa qualquer espaço 
+    em branco como padrão.
+        
+        Exemplo:
+        
+                'hello world'.split()  # Saida -> ['hello', 'world']
+                'a,b,c'.split(',')  # Saida -> ['a', 'b', 'c']
+
+    str.replace(old, new) -> Substitui todas as ocorrências de old por new na string.
+
+    str.join(iterable) -> Junta os elementos de um iterável (como uma lista) em uma 
+    única string, usando o string original como separador
+        
+        Exemplo:
+            ', '.join(['apple', 'banana', 'cherry'])  # Saida -> 'apple, banana, cherry'
+
+    # O restante você encontra na documentação do python no seguinte caminho:
+        https://docs.python.org/pt-br/3/library/string.html
+
+    # Utilizando o .upper() para colocar todos os nomes das colunas em maiúsculo 
+    df.columns = [x.replace(' ', '_') for x in df.columns.to_list()]
+    print(df)

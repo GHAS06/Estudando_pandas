@@ -181,8 +181,10 @@ DataFrame_1_tratado.insert(9, 'Valor Item Tratado', Valor_Item_Tratado)
 
 # Adicionando a coluna Total_Compra como floar
 DataFrame_1_tratado['Total_Compra'] = (
+    # Realizamos um agrupamento para o cálculo e Converte explicitamente para float
     DataFrame_1_tratado['Quantidade Item'] * DataFrame_1_tratado['Valor Item Tratado']
-).astype(float)  # Realizamos um agrupamento para o cálculo e Converte explicitamente para float
+).astype(float)  
+
 #Removo a coluna Valor Item que é tipo Object, não é o Tratado
 del DataFrame_1_tratado['Valor Item']
 # Exibo as informações do DatraFrame
