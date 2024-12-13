@@ -17,12 +17,15 @@
     print(df.columns) # saida -> Index(['Nome', 'Idade', 'Cidade', 'Profissão', 'Salário'], dtype='object') 
     para(type(df.columns)) -> <class 'pandas.core.indexes.base.Index'>
 
-    columns basicamente é um atributo do DataFrame que é do tipo index do pandas
+    # BasicamenteO atributo .columns em um DataFrame do Pandas é utilizado para 
+    acessar e manipular os nomes das colunas. Ele retorna um objeto do tipo Index,
+    que contém os nomes das colunas.
 
-2 - Realizando tratamento nas colunas
+2 - Realizando tratamento nas colunas com columns
 
     # Com base na informação acima, podemos realizar tratamento na hora de renomear
     as colunas do nosso DatraFrame, uma forma eficiente é usando list comprehension
+    nos columns
 
     - O que é uma list comprehension?
 
@@ -93,7 +96,10 @@
 3 - Podemos Utilizar funções de tratamento de Strings nativa do python 
 
     - O objetivo de usar essas funções é auxiliar na renomeação e nos tratamento
-    das colunas, vou citar algumas:
+    das colunas.
+    - Existem diversas funções nativas de strings em Python que você pode usar para 
+    realizar modificações, como converter para maiúsculas/minúsculas, remover espaços,
+    substituir caracteres, etc. Aqui estão algumas das mais comuns:
 
     str.lower() -> Converte todos os caracteres de uma string para minúsculas.
         
@@ -146,3 +152,8 @@
     # Utilizando o .upper() para colocar todos os nomes das colunas em maiúsculo 
     df.columns = [x.replace(' ', '_') for x in df.columns.to_list()]
     print(df)
+
+    IMPORTANTE -> Se deseja realziar modificações nas colunas e quiser ser mais 
+    seguro, use a função .rename(), agora Se você precisa modificar os nomes das 
+    colunas diretamente (sem criar um novo objeto), 
+    use df.columns = [...], como foi feito nos exemplos com list comprehension.

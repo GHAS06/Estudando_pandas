@@ -1,10 +1,17 @@
 import pandas as pd
 
 # Esse código visa aprofundar mais um pouco sobre Renomeação e tratamenot de colunas
+# iremos fazer isso utilizando columns
 
 '''
     LEIA A ANOTAÇÃO: Renomeando_Colunas1.txt
     LEIA A ANOTAÇÃO: Renomeando_Colunas2.txt
+
+    
+    IMPORTANTE -> Se deseja realziar modificações nas colunas e quiser ser mais 
+    seguro, use a função .rename(), agora Se você precisa modificar os nomes das 
+    colunas diretamente (sem criar um novo objeto), 
+    use df.columns = [...], como foi feito nos exemplos com list comprehension.
 '''
 
 dados = {
