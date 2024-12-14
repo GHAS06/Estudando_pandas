@@ -1,0 +1,125 @@
+1 - Esta é a primeira parte de como podemos adcionar colunas em python
+
+
+
+2 - Usando funções ._append() e .concat() para adcionar colunas no pandas
+
+ - Adicionando com a Função ._append()
+    
+    A função .append() do Pandas permite adicionar linhas ou colunas a um DataFrame
+    existente. No entanto, ela foi **descontinuada** nas versões mais recentes do Pandas
+    e será removida em futuras versões. Por isso, é recomendado usar pd.concat() como
+    alternativa.
+
+     Sintaxe:
+        df_novo = df.append({dicionario_python}, ignore_index=True)
+
+        - dicionario_python -> Um dicionário com as chaves como os nomes das colunas e 
+        os valores que correspondem aos valores para cada coluna.
+        
+        - ignore_index -> Se for True, o índice será ignorado e o DataFrame resultante
+        terá índices novos e contínuos.
+
+     Exemplo:
+        
+        df = pd.DataFrame({"A": [1, 2], "B": [3, 4]})   
+        df_novo = df.append({"A": 5, "B": 6}, ignore_index=True)
+        print(df_novo)
+        
+        SAIDA:
+            
+               A  B
+            0  1  3
+            1  2  4
+            2  5  6
+
+    Função pd.concat()
+    
+    A função pd.concat() é a abordagem recomendada para adicionar linhas ou colunas
+    ao DataFrame. Ela é mais **eficiente** e **flexível** do que `.append()`, além de
+    suportar operações mais complexas.
+
+     Sintaxe:
+
+        df_novo = pd.concat([df1, df2], axis=0, ignore_index=True)
+
+        [df1, df2] -> Lista de DataFrames a serem concatenados.
+        
+        axis -> Define o eixo da operação. `axis=0` (padrão) adiciona novas linhas; 
+        axis=1 adiciona novas colunas.
+        
+        ignore_index -> Se `True`, reinicia os índices do DataFrame resultante.
+
+    Exemplo:
+
+    df1 = pd.DataFrame({"A": [1, 2], "B": [3, 4]})
+    df2 = pd.DataFrame({"A": [5], "B": [6]})
+    df_novo = pd.concat([df1, df2], ignore_index=True)
+    print(df_novo)
+    
+    Saída:
+            A  B
+        0  1  3
+        1  2  4
+        2  5  6
+
+    #Usando `.append()` e `pd.concat()` para adicionar colunas ou linhas
+
+     - Usando o ._append()
+
+    # Calculando uma nova coluna
+    df['C'] = df['A'] * df['B']
+    
+    # Adicionando a coluna como nova linha
+    nova_linha = df[['C']].iloc[0]  # Seleciona o primeiro valor da nova coluna
+    
+    df_novo = df.append(nova_linha, ignore_index=True)
+    # Exibindo o novo DataFrame
+    print(df_novo)
+
+  -Usando `pd.concat()`:
+# Calculando uma nova coluna
+df['C'] = df['A'] * df['B']
+# Criando o DataFrame com a nova coluna
+nova_coluna = df[['C']]
+# Adicionando como uma nova linha
+df_novo = pd.concat([df, nova_coluna], ignore_index=True)
+```
+
+---
+
+## Recomendações
+- Prefira `pd.concat()` em vez de `.append()` para garantir **compatibilidade futura** e **melhor desempenho**.
+- Sempre use `ignore_index=True` se não precisar preservar o índice original.
+- Certifique-se de que as dimensões das tabelas estejam corretas (exemplo: número de colunas ao concatenar por linhas).
+
+---
+
+## Exemplo Completo do Código (baseado na questão):
+```python
+import pandas as pd
+
+# Criando DataFrame inicial
+df = pd.DataFrame({
+    'Preço': [25.50, 30.00, 15.75],
+    'Estoque': [200, 150, 300]
+})
+
+# Calculando a nova coluna
+df['Valor total Vendas Produto'] = df['Preço'] * df['Estoque']
+
+# Armazenando a nova coluna como um DataFrame
+df_para_concat = df[['Valor total Vendas Produto']]
+
+# Adicionando a nova linha ao DataFrame usando pd.concat
+df_com_concat = pd.concat([df, df_para_concat], ignore_index=True)
+
+print(df_com_concat)
+```
+
+---
+
+## Observação:
+Se usar Pandas atualizado, a abordagem com `pd.concat()` garante **melhor performance** e é a prática recomendada.
+
+## Diferença entre append() e pd.concat()
