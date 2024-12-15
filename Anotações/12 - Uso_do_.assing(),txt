@@ -1,38 +1,6 @@
-1 - Está e a segunda parte de como podmeos adcionar colunas nos DataFrames
+1 - Reaproveitando a Anotação sobre .assing() da Anotação Adicionando_Colunas_em_
+DataFrames2.txt, utilizando .assig()
 
-    Recomendo ler a Anotação: Tratamento_dados1.txt
-
-2 - Diferença entre adicionar via list e via método assing
-
-    - Adicionar coluna diretamente (via lista)
-        
-        Você pode simplesmente criar ou sobrescrever uma coluna atribuindo uma lista ou 
-        série ao DataFrame:
-
-        # Exemplo Básico:
-
-            df = pd.DataFrame({
-                'A': [1, 2, 3],
-                'B': [4, 5, 6]
-            })  
-
-            # Adicionar uma nova coluna "C" via lista
-            df['C'] = [7, 8, 9]
-
-            print(df)
-
-            SAIDA:
-               A  B  C
-            0  1  4  7
-            1  2  5  8
-            2  3  6  9
-
-        Limitações de usar essa forma:
-            
-            # Modifica o DataFrame diretamente (não é imutável).
-            # Não permite encadear operações facilmente.
-            # Requer que a lista/array tenha o mesmo tamanho do DataFrame
-    
     - Adicionando coluna via função .assing()
     
         O método .assign() permite adicionar ou modificar colunas em um DataFrame de forma 
@@ -107,18 +75,61 @@
         1  2  5  8  20  False
         2  3  6  9  30   True
 
-3 - Quando usar qual método?
+2 - Formas de utilizar funções completas ou lambada na função .assing()
+
+    - Primeira Forma de usar o .assig() com funções completas:
+
+        # Definindo a lista de colunas que vamos Trabalhar
+        lista_colunas =['Valor Inicial Compra', 'Valor Final Compra']
+        # Exibindo a lista de colunas
+        print(df[lista_colunas[0:2]])
+        #print(type(df)) -> <class 'pandas.core.frame.DataFrame'>
+
+        # Usando a função applymap()
+        # Realizando tratamento de dados das colunas e convertendo para float
+        df[lista_colunas] = df[lista_colunas].applymap(lambda x: float(x.replace(',', '.')))
+
+        # Exibindo o DataFrame tratado
+        print(df[lista_colunas].info())
+
+        # criando função para adicionar coluna utilizando .assing()
+        def multiplicação_colunas_dataframe(df):
+        return df['Valor Inicial Compra'] * df['Valor Final Compra']
+
+        # inserindo coluna com .assing()
+            '''
+                Lembre-se: parâmetro é o nome da coluna e o valor do parâmetro é o 
+                valor da coluna
+
+                - Cada argumento de palavra-chave corresponde ao nome de uma nova:
     
-    # Atribuição direta (via lista):
-    # Para adicionar ou modificar colunas de forma simples e direta.
+                 coluna e sua respectiva fórmula, lista, ou cálculo.
 
-    - Quando não há necessidade de preservar o DataFrame original.
-    # .assign():
-    # Para criar pipelines ou encadear várias operações.
-    # Quando é importante preservar o DataFrame original.
-    # Para operações dinâmicas ou calculadas a partir do próprio DataFrame.
+                    Exemplo: assign(nova_coluna=lista, outra_coluna=fórmula)
+            
+                    Nome da nova coluna -> seguido pelo valor ou fórmula que a define.
+                    Aceita listas, arrays, ou funções/lambdas que retornam colunas baseadas 
+                    no DataFrame.
+            '''
 
-4 - Selecionado com a função loc e adicionando com lista ou .assing()
+            a = df.assign(
+                Multiplicação_Colunas=multiplicação_colunas_dataframe(df)
+                ).loc[:,['Valor Inicial Compra', 'Valor Final Compra', 'Multiplicação_Colunas']]
+            print(a)
+
+    - Segunda Forma de usar o .assing() com função lambda
+
+        # As funções lambda são geralmente usadas 
+        para operações rápidas e simples, onde você não quer definir uma função completa 
+        com def(funções que nós criamos).
+
+        # Podemos Obter o mesmo resultado usando a função lambda
+
+            a = df.assign(Multiplicação_Colunas_com_lambda = lambda x: x['Valor Inicial Compra'] * x['Valor Final Compra'])
+            print(a.loc[0:5,['Valor Inicial Compra','Valor Final Compra','Multiplicação_Colunas_com_lambda']])
+
+3 - Reaproveitando Anotação da Anotação Adicionando_Colunas_em_DataFrames1.txt
+DataFrames2.txt, Selecionado com a função loc e adicionando com lista ou .assing()
       
      # Criando um DataFrame de exemplo
         df = pd.DataFrame({

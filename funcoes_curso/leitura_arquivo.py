@@ -2,6 +2,10 @@ import pandas as pd
 import os
 
 # Função para leitura de arquivos CSV
+    
+    # nome_pasta -> Recebe o nome no formato String   
+    # nome_arquivo_csv -> Recebe o nome no formato String
+ 
 def leitura_arquivos_csv(nome_pasta,nome_arquivo_csv):
     # Diretório base
     diretorio_base = os.getcwd()
@@ -27,6 +31,10 @@ def leitura_arquivos_csv(nome_pasta,nome_arquivo_csv):
     return None
 
 #Função para leitura de arquivos Excel
+
+ # nome_pasta -> Recebe o nome no formato String   
+ # nome_arquivo_excel -> Recebe o nome no formato String
+ 
 def leitura_arquivos_excel(nome_pasta,nome_arquivo_excel):
     # Diretório base
     diretorio_base = os.getcwd()
