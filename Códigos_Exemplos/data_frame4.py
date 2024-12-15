@@ -179,7 +179,7 @@ DataFrame_1_tratado = DataFrame_1
 # Faço o insert do Valor_Item_Tratado no DataFrame
 DataFrame_1_tratado.insert(9, 'Valor Item Tratado', Valor_Item_Tratado)   
 
-# Adicionando a coluna Total_Compra como floar
+# Adicionando a coluna Total_Compra como float
 DataFrame_1_tratado['Total_Compra'] = (
     # Realizamos um agrupamento para o cálculo e Converte explicitamente para float
     DataFrame_1_tratado['Quantidade Item'] * DataFrame_1_tratado['Valor Item Tratado']

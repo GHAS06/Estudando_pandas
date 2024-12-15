@@ -1,15 +1,83 @@
-1 - Esta é a primeira parte de como podemos adcionar colunas em python
+1 - Esta é a primeira parte de como podemos adcionar colunas em DataFrames
+
+2 - Adicionando colunas como listas, atributos  e usando função loc e iloc
+  
+   # Adicionando Colunas através do nome da colunas (igual adcionar um valor em uma lista)
+   # essa adição está sendo relizada através da operação matématica de putras duas colunas
+
+      df = leitura_arquivos_excel('Arquivos_excel_para_estudos','produtos.xlsx')
+
+      #print(df.info()) # descobrir informações das colunas do DataFrame
+
+      # index            0         1
+      #lista_colunas = ['Preço','Estoque']
+
+      #df['Valor Total Vendas Produtos'] = df[lista_colunas[0]] * df[lista_colunas[1]]
+      #print(df)  
+
+      # Adicionando coluna via atributo através de um valor constante ou escalar
+      # quando fazemos isso, estamos fazendo explcidamente.
+
+      # Primeira forma de fazer isso, puxando o atriburo diretamente, não recomendada
+      #df.ID = 10
+      #print(df)
+
+      # Segunda forma, só que usando a função iloc para Selecionar, menos flexível
+      #df.iloc[:,5] = 10
+      #print(df)
+
+      # Terceira forma com função loc para Selecionar, mais criativa e flexível
+      #df.loc[0:5,'Valor Total Vendas Produtos'] = 50
+      #print(df)
+
+      # Quarta forma, mais recomendanda
+      #df['Valor Total Vendas Produtos'] = 40
+      #print(df)
+
+      #print(type(df['Valor Total Vendas Produtos'])) #Saida -> DataFrame
+
+'''
+    Basicamente estamos adcionando um novo atributo na coluna específicada, um bom
+    exemplo é usando a função loc.
+
+    df.loc[0:1,'Valor Total Vendas Produtos'] = 50
+    print(df)
+
+    SAIDA:
+               ID    Produto    Categoria  Preço  Estoque  Valor Total Vendas Produtos
+            0  101  Produto A  Categoria 1  25.50      200                         50.0
+            1  102  Produto B  Categoria 2  30.00      150                         50.0
+            2  103  Produto C  Categoria 1  15.75      300                         10.0
+            3  104  Produto D  Categoria 3  60.50      100                         10.0
+            4  105  Produto E  Categoria 2  45.00       50                         10.0
 
 
+    Observe, irei mudar um pouco o parâmetro:
 
-2 - Usando funções ._append() e .concat() para adcionar colunas no pandas
+    df.loc[0:5,'Valor Total Vendas Produtos'] = 50
+    print(df)
+
+    SAIDA:
+               ID    Produto    Categoria  Preço  Estoque  Valor Total Vendas Produtos
+            0  101  Produto A  Categoria 1  25.50      200                         50.0
+            1  102  Produto B  Categoria 2  30.00      150                         50.0
+            2  103  Produto C  Categoria 1  15.75      300                         50.0
+            3  104  Produto D  Categoria 3  60.50      100                         50.0
+            4  105  Produto E  Categoria 2  45.00       50                         50.0
+
+    LEMBRE-SE: Estamos modificando o DataFrame, mais na frente veremos sobre o copy,
+    ou seja, toda modificação, estamos fazendo no Dataframe e não em uma cópia dele.
+'''
+
+3 - Usando funções ._append() e .concat() para adcionar colunas no pandas
 
  - Adicionando com a Função ._append()
     
     A função .append() do Pandas permite adicionar linhas ou colunas a um DataFrame
     existente. No entanto, ela foi **descontinuada** nas versões mais recentes do Pandas
     e será removida em futuras versões. Por isso, é recomendado usar pd.concat() como
-    alternativa.
+    alternativa. Use quando tiver que modficiar uma linha inteira da coluna, com o append
+    não modificamos as colunas do DataFrame original, mas apenas de um copy
 
      Sintaxe:
         df_novo = df.append({dicionario_python}, ignore_index=True)

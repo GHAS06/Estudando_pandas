@@ -1,0 +1,125 @@
+1 - Está e a segunda parte de como podmeos adcionar colunas nos DataFrames
+
+2 - Diferença entre adicionar via list e via método assing
+
+    - Adicionar coluna diretamente (via lista)
+        
+        Você pode simplesmente criar ou sobrescrever uma coluna atribuindo uma lista ou 
+        série ao DataFrame:
+
+        # Exemplo Básico:
+
+            df = pd.DataFrame({
+                'A': [1, 2, 3],
+                'B': [4, 5, 6]
+            })  
+
+            # Adicionar uma nova coluna "C" via lista
+            df['C'] = [7, 8, 9]
+
+            print(df)
+
+            SAIDA:
+               A  B  C
+            0  1  4  7
+            1  2  5  8
+            2  3  6  9
+
+        Limitações de usar essa forma:
+            
+            # Modifica o DataFrame diretamente (não é imutável).
+            # Não permite encadear operações facilmente.
+            # Requer que a lista/array tenha o mesmo tamanho do DataFrame
+    
+    - Adicionando coluna via função .assing()
+    
+        O método .assign() permite adicionar ou modificar colunas em um DataFrame de forma 
+        não destrutiva, ou seja, ele retorna um novo DataFrame ao invés de modificar o 
+        original.
+
+        Sintaxe:
+
+            DataFrame.assign(**kwargs)
+
+            **kwargs -> Cada argumento de palavra-chave corresponde ao nome de uma nova
+            coluna e sua respectiva fórmula, lista, ou cálculo.
+
+            Exemplo: assign(nova_coluna=lista, outra_coluna=fórmula)
+            
+            Nome da nova coluna -> seguido pelo valor ou fórmula que a define.
+            Aceita listas, arrays, ou funções/lambdas que retornam colunas baseadas 
+            no DataFrame.
+
+        # Exemplo básico:
+        
+            # Usando assign para adicionar uma nova coluna
+                df = pd.DataFrame({
+                'A': [1, 2, 3],
+                'B': [4, 5, 6]
+            })  
+
+            # Adicionando via .assign()
+
+            df = df.assign(C=[7, 8, 9])
+            print(df)
+
+            SAIDA:
+               A  B  C
+            0  1  4  7
+            1  2  5  8
+            2  3  6  9
+        
+    # Encadeamento de operações com .assign()
+        Uma grande vantagem do .assign() é que ele permite encadear várias operações sem 
+        modificar o DataFrame original.
+
+        # Exemplo com encadeamento
+            new_df = (
+                df.assign(D=df['A'] + df['B'], E=lambda x: x['C'] * 2)
+            )
+
+            print(new_df)
+        
+        SAIDA:
+           A  B  C   D   E
+        0  1  4  7   5  14
+        1  2  5  8   7  16
+        2  3  6  9   9  18
+
+        O que aconteceu:
+            A coluna D foi criada somando A e B.
+            A coluna E foi criada usando uma função lambda, multiplicando os valores de C 
+            por 2.
+
+        # Adicionar múltiplas colunas
+        df = df.assign(
+            F=lambda x: x['A'] * 10,  # Função lambda para cálculo dinâmico
+            G=[True, False, True]     # Adição direta de lista
+        )
+
+        print(df)
+
+        SAIDA:
+           A  B  C   F      G
+        0  1  4  7  10   True
+        1  2  5  8  20  False
+        2  3  6  9  30   True
+
+3 - Quando usar qual método?
+    
+    # Atribuição direta (via lista):
+    # Para adicionar ou modificar colunas de forma simples e direta.
+
+    - Quando não há necessidade de preservar o DataFrame original.
+    # .assign():
+    # Para criar pipelines ou encadear várias operações.
+    # Quando é importante preservar o DataFrame original.
+    # Para operações dinâmicas ou calculadas a partir do próprio DataFrame.
+
+4 - Selecionado com a função loc e adicionando com lista ou .assing()
+
+# Terceira forma com função loc para Selecionar, mais criativa e flexível
+      
+      
+      #df.loc[0:5,'Valor Total Vendas Produtos'] = 50
+      #print(df)
