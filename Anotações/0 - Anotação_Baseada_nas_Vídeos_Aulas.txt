@@ -1,0 +1,12 @@
+1 - Essas Anotações foram Baseadas nas Vídeos Aulas deste canal do Youtube:
+
+https://www.youtube.com/watch?v=1ua6uksg6wg&list=PL4OAe-tL47sa1McMctk5pdPd5eTAp3drk&index=1
+
+2 - No diretório Código_Exemplos, fiz um código que contabiliza a quantidade de horas que 
+as vídeos aulas do curso de pandas possui, usando o próprio pandas:
+     
+    nome do código: Quantidade_Horas_curso.py
+    
+    De acordo com o Código:
+
+     A duração total do curso é: 6 horas e 16.0 minutos.
