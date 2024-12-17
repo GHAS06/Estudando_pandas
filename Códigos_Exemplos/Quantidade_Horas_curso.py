@@ -35,7 +35,13 @@ df_aulas = pd.DataFrame(Aulas_YouTube)
 total_minutos = df_aulas.iloc[:,[1]].sum()
 total_horas = (total_minutos / 60)
 
+#Debugando
+#print(total_horas)
+
 horas = int(total_horas)  # Parte inteira das horas
 minutos_restantes = round((total_horas - horas) * 60)  # Minutos restantes
-
-print(f'\nA duração total do curso é: {horas} horas e {minutos_restantes} minutos.')
+#Debugando
+#print(minutos_restantes[0])
+print(type(minutos_restantes[0])) # saida -> numpy.float64
+#print(type(minutos_restantes))
+print(f'\nA duração total do curso é: {horas} horas e {minutos_restantes[0]} minutos.')

@@ -1,0 +1,233 @@
+1 - Seleção e indexação 
+
+    - Indexação de (números, linhas, datas) 
+        
+        Quando criamos um DataFrame Novo, estamos indexando as linhas e as colunas
+        apartir de um valo de entrada na função pd.DataFrame(). 
+        
+        podemos definir como as linhas e colunas serão indexadas.
+
+        A indexação é o sistema que permite acessar e identificar dados de maneira 
+        estruturada.
+
+         Existem dois parâmetros que vale a pena entender:
+        
+            index: Define os identificadores das linhas. Pode ser uma lista de números, 
+            letras, datas, ou qualquer outra sequência. Ou seja, permite personalizar os 
+            identificadores das linhas do DataFrame.
+            
+            columns: Define os nomes das colunas.Ou seja, permite definir ou renomear 
+            os nomes das colunas.
+
+            Caso não sejam especificados, o Pandas utilizará números sequenciais inteiros, 
+            começando em 0, tanto para as linhas (índices) quanto para as colunas.        
+        
+        Explicação:
+        
+        O index = (letras, números, datas, objetos), significa que, o index pode ser 
+        definido por: letra, números, datas, objetos e entre outros. 
+        Por padrão o Pandas coloca os index como números inteiros
+
+        exemplo: index = ['X','Y','Z']
+    
+        index -> 0 irá receber a String 'X', mesma lógica para os próximos indexs
+
+        columns = (nome_colunas), por mais que usemos para renomeação das colunas que
+        existem nesse Dataframe. 
+        
+        Ela por padrão vai seguir uma lógica em de ordem sequencial 
+        onde os index desta coluna começa em 0 e vai até a quantidade máxima de 
+        colunas que existem neste DataFrame. 
+        
+        exemplo: primeira coluna = 0, segunda coluna = 1.
+        
+        Com isso se eu colocar columns = ['A','B']. 
+        
+        significa que o index referente a 0 vai receber o String 'A' e esta String irá ser
+        nosso novo index desta colunas, logo a renomeção acontece com essa modificação 
+       
+        0 = 'A'(ler-se: index 0 Recebe o valor 'A')
+        
+        O index referente a 1 vai receber a String 'B.' 
+        
+        Assim funciona indexação da estrutura de dados do DataFrame.
+        Portanto, podemos com esse parâmetro podemos especificar essa indexação.
+
+    Exemplos Reais_1:
+
+    import pandas as pd
+    import numpy as np
+
+    # Criando um DataFrame: 
+
+        #df = pd.DataFrame(np.random.rand(3,3), index = range(5,8), columns = [*"ABC"])
+        df = pd.DataFrame(np.random.rand(3,3), columns = [*"ABC"])
+        #df = pd.DataFrame(np.random.rand(3,3))  # Index e Columns padrão
+        print(df)
+
+        print(type(df.index)) # saida -> <class 'pandas.core.indexes.datetimes.DatetimeIndex'>
+        # os dois modos retornaram o mesmo tipo de dados
+        print(type(df.columns)) # saida -> <class 'str'> modo modificado
+        #print(type(df.columns)) # saida -> <class 'pandas.core.indexes.range.RangeIndex'> modo padrão
+
+    SAIDA:
+                  A         B         C
+        5  0.123456  0.789123  0.456789
+        6  0.987654  0.345678  0.123456
+        7  0.654321  0.234567  0.987654
+
+        '''
+        Veja! Indexamos por um range de índice baseado em um intervalo sequencial de
+        números inteiros. Por Padrão o Pandas já realiza esse tipo de indexação.
+
+        Já as colunas, por mais que tenhamos renomeado ela, na verdade, simplemente 
+        atribuimos um valor que sobrescreve o index das colunas.
+
+        Quando fizemos um print(type(df.columns)) no df com as colunas modificadas ele
+        retornou como <class 'pandas.core.indexes.base.Index'>
+
+        A classe <class 'pandas.core.indexes.base.Index'>
+
+        representa o tipo do objeto Index no pandas, que é utilizado para armazenar os
+        índices de um DataFrame ou Series.
+
+        Esse tipo é retornado quando você acessa a propriedade index de um DataFrame ou 
+        Series que não tem um índice de tipo específico, como um RangeIndex ou 
+        DatetimeIndex. Ele serve como uma base para os índices de tipos mais 
+        especializados, como RangeIndex, DatetimeIndex, etc.
+
+        Quando Criamos um DataFrame com colunas ou linhas indexadas com dados 
+        personalizados, o pandas criará um Index genérico para essas informações.
+
+    Sobre * é um operador  conhecido como (unpacking de iteráveis) Explicação:
+        
+        O * é usado para desempacotar iteráveis (listas, tuplas, strings, etc.), ou seja, 
+        ele "abre" os elementos de um iterável.
+    
+        Se aparecer ele duas vez -> É O operador ** (unpacking de dicionários)
+        Explicação:
+        
+        O ** é usado para desempacotar dicionários e passar seus elementos como argumentos
+        nomeados.
+
+        São bastantes usados pois:
+            
+            O * é usado para é usado para desempacotar iteráveis, como listas, tuplas 
+            ou strings. Ele separa os elementos de um iterável, tornando-os individuais..
+
+            O ** para desempacotar dicionários, expandindo pares chave-valor em argumentos
+            nomeados.  
+            
+            Esses operadores são extremamente úteis quando você trabalha com funções que 
+            recebem muitos argumentos ou quando precisa de flexibilidade ao lidar com 
+            coleções de dados no Python.
+
+    Exemplos Reais_2: Reaproveitando o exmeplo1
+
+     #Indexação de linhas com datas
+
+        datas = pd.date_range('16/12/2024', periods = 3) 
+        # função que cria uma sequência de datas
+        # Excelente para análises temporais
+
+        print()
+        print(type(datas)) # saida -> <class 'pandas.core.indexes.datetimes.DatetimeIndex'>
+        print()
+
+        df_com_datas = pd.DataFrame(np.random.rand(3,3), index = datas, columns = [*"ABC"])
+        print(df_com_datas)
+
+        '''
+            SAIDA:
+                                  A         B         C
+                2024-12-16  0.110086  0.646747  0.668850
+                2024-12-17  0.641869  0.509620  0.012475
+                2024-12-18  0.823998  0.323555  0.006006
+
+        VEJA! Resumidamente Aqui usamos datas para indexar este DataFrame, ao realizar
+        isso o index retorna tipo <class 'pandas.core.indexes.datetimes.DatetimeIndex'>
+
+        A função pd.date_range() do pandas é uma ferramenta poderosa para criar sequências
+        de datas em uma faixa de tempo especificada. Ela é muito útil quando você precisa
+        gerar uma série temporal ou criar índices com datas em seu DataFrame.
+        
+        Sintaxe: 
+            pd.date_range(
+                start=None, 
+                end=None, 
+                periods=None, 
+                freq=None, 
+                tz=None, 
+                normalize=False, 
+                name=None, 
+                closed=None)
+
+            Parâmetros:
+            
+            start (str ou datetime-like, opcional) -> Data de início da sequência.
+                
+                Você pode passar uma string ou um objeto datetime para especificar a data
+                de início.
+                
+                Exemplo: '2024-12-16', pd.Timestamp('2024-12-16').
+            
+            end (str ou datetime-like, opcional) -> Data de término da sequência.
+                
+                Se ambos start e end forem fornecidos, o parâmetro periods será ignorado.
+            
+            periods (int, opcional) -> Número de períodos (datas) a serem gerados.
+               
+                Se fornecido, ele determinará quantas datas serão geradas, e o pandas 
+                calculará o intervalo entre elas automaticamente com base em start e end.
+                
+            freq (str ou DateOffset, opcional) -> A frequência com que as datas são geradas.
+            
+            Exemplos de frequências:
+                'D' (diário),
+                'B' (dias úteis),
+                'M' (mensal),
+                'A' (anual),
+                'H' (hora),
+                'T' (minuto),
+                'S' (segundo),
+                'MS' (início do mês), entre outras.
+                
+                Você também pode usar objetos DateOffset para frequências mais específicas,
+                como pd.DateOffset(weeks=2).
+            
+            tz (str ou pytz.timezone, opcional) -> A zona de tempo desejada para os dados
+            gerados.
+                Exemplo: 'US/Eastern', 'UTC'.
+            
+            normalize (bool, opcional) -> Se True, as datas geradas serão normalizadas 
+            para meia-noite (00:00:00) da data fornecida. Caso contrário, as horas das 
+            datas serão definidas para o horário atual.
+            
+            name (str, opcional) -> Nome a ser atribuído ao índice de data gerado.
+            
+            closed ({'right', 'left', None'}, opcional) -> Especifica se o intervalo de
+            tempo é fechado à esquerda ('left') ou à direita ('right'). Se None, o 
+            intervalo será fechado à direita por padrão.
+        
+        '''
+
+        Exemplo Reais_3: Essa forma é a mais rápida, basicamente vamos passar o index
+        como atributo
+
+        df.index = [1,2,3]
+
+        Exemplos Reais_4: A mesma coisa com Columns
+
+        Inclusive recomendo ler as anotações:
+            Adcionando_Colunas_em_DataFrame1.txt
+            Adicionando_Colunas_em_DaraFrame2.txt
+            Veja o Código indexação_atributos.py
+
+        df.Columns = [*'CDf']
+        print(df)
+
+        SAIDA:
+                      C         D         F
+            1  0.443703  0.580023  0.379274
+            2  0.867348  0.684319  0.549776
+            3  0.184038  0.797508  0.390582
