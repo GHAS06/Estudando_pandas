@@ -224,6 +224,11 @@
             Veja o Código indexação_atributos.py
 
         df.Columns = [*'CDf']
+        
+        # ou
+        # passar os atributos como lista
+        
+        df[['C','D','F']]
         print(df)
 
         SAIDA:
