@@ -1,0 +1,147 @@
+1 - Vamos ver algumas situações onde podemos aplicar o iloc e o iloc
+     
+     - Para entender essa parte, surgiro que leia ILOC_VS_2LOC_1.txt
+     - Também surgiro ler sobre: indexação_e_atributos.txt
+
+2 - Introdução rápida
+
+     .iloc[] -> Seletor do número da posição do index da linha e colunas referente ao
+     Series ou DataFrame
+
+     .loc[] - > Seletor de rótulo ou indicie seja do index ou coluna referente ao Series 
+     ou DataFrame que estamos Trabalhando
+
+3 - EXEMPLOS DE COMO FUNCIONA:
+
+     # Craindo DataFrame
+     dados = dados = {
+            
+          "Produtos":['Flores','Carne','Churros'],
+          "Quantidade":[10,20,30],
+          "Preço":[5.0,10.0,15.0]
+     }
+
+     datas = pd.date_range('16/12/2024', periods = 3) 
+     
+     df = pd.DataFrame(dados, index = datas )
+     print(df) 
+
+     # Selecionando usando loc
+
+     df.loc[datas[0],['Produtos, Preço']]
+     print(df)
+
+     # retornando ele como uma Series   
+     print(df.loc[datas[0],['Produtos','Preço']])
+     print(type(df.loc[datas[0],['Produtos','Preço']]))
+     
+     SAIDA: 
+     
+     Produtos    Flores
+     Preço          5.0
+     Name: 2024-12-16 00:00:00, dtype: object
+     <class 'pandas.core.series.Series'>
+     
+     # Retornou como series porque acessamos diretamente uma linha com seu index
+
+     # retornando ele como um Dataframe
+     print(df.loc[datas[[0]],['Produtos','Preço']])
+     print(type(df.loc[datas[[0]],['Produtos','Preço']]))
+
+     # retornou como DataFram porque acessamos multiplas linha com uma lista
+
+     SAIDA:
+               Produtos  Preço
+     2024-12-16   Flores    5.0
+     <class 'pandas.core.frame.DataFrame'>
+
+     # Selecionado multiplas linhas com o loc
+
+     print(df.loc[datas[0:2],['Produtos','Preço']])
+     print(type(df.loc[datas[0:2],['Produtos','Preço']]))
+     print(type(df.index[0:2]))
+
+     Veja! Usei um intervalo entre o index 0 de datas até o index 2
+     e o  pandas entendeu de maneira diferente, agora ele não retornou como apenas uma 
+     series, ele retornou como um DataFrame. Por que? Porque agora, não estamos apenas
+     puxando uma linha do nosso DataFrame, estamos puxando um intervalo com o nosso slice
+     [intervalo], basicamente, o slice gera uma coleção de índices (DatetimeIndex)
+
+                Produtos  Preço
+     2024-12-16   Flores    5.0
+     2024-12-17    Carne   10.0
+     <class 'pandas.core.frame.DataFrame'>
+     <class 'pandas.core.indexes.datetimes.DatetimeIndex'>
+     
+     # isso acima, sem selecionar uma linha especificamente é o mesmo que fazer:
+
+     print(type(df.loc[datas[[0]],['Produtos','Preço']]))
+
+3 - Usando Caracteres especiais para selecionar multiplas linhas e colunas:
+
+     - Podemos usar o : para representar todos as nossa linhas ou colunas
+
+     EXEMPLO:
+
+          print(df.loc[:,['Produtos','Preço']])
+          # retorna todas as linhas e essas duas colunas
+
+          print(df.loc[:,:])
+          # retonra todas as linhas e colunas do DataFrame
+
+          # Selecionando por rótulos
+          print(df.loc[datas[0:2],"Produtos":"Preço"])
+          # outra forma de retorna todas as linhas e colunas
+
+4 - RESUMINDO ILOC
+
+     - Basicamente é a mesma lógica acima só que não iremos usar rótulos para linhas ele
+     colunas, mas de fatos as posições dos index, no caso, somente com os tipos de dados
+     númericos. Ou seja, utilizamos da indexação padrão do pandas só que forma específicas
+     o tipo de dados da form padrão é: <class 'pandas.core.indexes.range.RangeIndex'>
+     isso significa que trabalhamos com  um intervalo sequencial de números inteiros.
+     
+     Podemos potencializar nosso iloc utilizando atributos. Veja um exemplo:
+
+
+     # Selecionando com .iloc[] utilizando colunas como atributos do DataFrame
+      - Lembre-se:Podemos Selecionar com atributos do DataFrame
+
+          print(df.iloc[0:2].Preço)
+          print(type(df.iloc[0:2].Preço))
+     
+     SAIDA:
+          
+          2024-12-16     5.0
+          2024-12-17    10.0
+          Freq: D, Name: Preço, dtype: float64
+          <class 'pandas.core.series.Series'>
+          
+          Porém quando fazemos desta forma os dados retornam tipo series
+
+     # Posso selecionar as colunas de maneira direta também como uma lista:
+          
+          print(df.iloc[0:2][['Produtos', 'Preço']])
+          print(type(df.iloc[0:2][['Produtos', 'Preço']]))
+     SAIDA:
+                     Produtos  Preço
+          2024-12-16   Flores    5.0
+          2024-12-17    Carne   10.0
+          <class 'pandas.core.frame.DataFrame'>
+
+          Veja que ele retornou como um DataFrame desta vez
+
+5 - Quando Usar?    
+
+Use .loc[] quando:
+     # Os índices ou colunas têm significado semântico, como datas, nomes ou 
+     identificadores.
+     # Você deseja selecionar com base em rótulos, tornando o código mais legível.
+     # Precisa trabalhar com intervalos fechados, já que o .loc[] inclui os limites 
+     no slice.
+
+Use .iloc[] quando:
+     # Você está lidando com um DataFrame com índices padrão (números inteiros) ou não 
+     importa o nome do índice.
+     # Precisa de seleção puramente posicional.
+     # Deseja realizar cálculos matemáticos que dependem de posições numéricas.

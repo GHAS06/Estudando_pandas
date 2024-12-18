@@ -44,7 +44,8 @@ do vetor lógico, ele teria valor boolean True
 
 # Apartir desta informação podemos fazer um Filtro com os Vetores Lógicos, Veja! 
 
-print(df[df.Nome == "Alice"])
+print(df[df.Nome == "Alice"]) -> estamos puxando a coluna nome e todos os dados que possuem
+nome Alice deste Dataframe
 
 '''
 Veja que interessante, através do vetor lógicos conseguimos fazer um filtro para 

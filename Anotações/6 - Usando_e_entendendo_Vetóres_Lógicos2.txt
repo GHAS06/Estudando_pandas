@@ -1,0 +1,196 @@
+1 - Iremos nos aprofundar mais um pouco a respeito da seleção e filtros com valores
+booleanos, utilizando operadores e vetores lógicos
+
+# Recomendo assitir este vídeo explicando como funciona os vetores e operadores lógicos
+
+https://www.youtube.com/watch?v=JZd83mW36Mo&list=PL4OAe-tL47sa1McMctk5pdPd5eTAp3drk&index=28
+
+# Recomendo que veja os códigos de exemplo:
+    Operadores_Vetores_Lógicos.py
+    Operadores_Vetores_Lógicos2.py
+    Operadores_Vetores_Lógicos3.py
+
+2 - Explicação mais prática e com um Dicionário simples:
+
+# Dicionário de dados
+dados = {
+    "ID": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "Nome": [
+        "Ana", "Bruno", "Carla", "Diego", "Eva", "Felipe", "Gabriela", "Heitor",
+         "Iris", "João"],
+    "Idade": [23, 35, 29, 40, 18, 25, 32, 45, 28, 50],
+    "Salario": [3000, 5000, 4000, 8000, 2000, 3500, 4500, 9000, 3800, 10000],
+    "Setor": ["RH", "TI", "TI", "RH", "Vendas", "Vendas", "TI", "RH", "RH", "TI"],
+    "Ativo": [True, True, False, True, False, True, False, True, True, False],
+    "Avaliação": [8.5, 9.2, 6.8, 7.9, 5.4, 7.2, 8.0, 9.0, 7.5, 6.0] 
+}
+
+# Criando o DataFrame
+df = pd.DataFrame(dados)
+print(type(df)) # vai retornar um DataFrame
+
+# Retornando um vetor_lógico do tipo Series
+print(df.Salario > 3000)
+print(type(df.Salario > 3000))
+
+'''
+SAIDA:
+    0    False
+    1     True
+    2     True
+    3     True
+    4    False
+    5     True
+    6     True
+    7     True
+    8     True
+    9     True
+Name: Salario, dtype: bool
+<class 'pandas.core.series.Series'>
+
+Veja que ele irá ternar linhas com True para a condição atendida, mas isso não filtra
+o Dataframe
+
+'''
+# Podemos utilizar o loc para obter o mesmo resutaldo
+
+print(df.loc[:,'Salario'] > 3000)
+
+# Filtro com vetores lógicos:
+
+print(df[df.loc[:,'Salario'] > 3000]) 
+
+SAIDA:
+   ID      Nome  Idade  Salario   Setor  Ativo  Avaliação
+1   2     Bruno     35     5000      TI   True        9.2
+2   3     Carla     29     4000      TI  False        6.8
+3   4     Diego     40     8000      RH   True        7.9
+5   6    Felipe     25     3500  Vendas   True        7.2
+6   7  Gabriela     32     4500      TI  False        8.0
+7   8    Heitor     45     9000      RH   True        9.0
+8   9      Iris     28     3800      RH   True        7.5
+9  10      João     50    10000      TI  False        6.0
+<class 'pandas.core.series.Series'>
+
+Veja! Nesta caso, vai retornar dados do DataFrame, ou seja, todas as linhas cujo o salário
+seja maior que três mil, sendo uma series
+
+# Filtro com vetores e operades_lógicos
+print(df[(df.loc[:,'Salario'] > 3000) & (df['Ativo'] == True)])
+
+SAIDA:
+   ID    Nome  Idade  Salario   Setor  Ativo  Avaliação
+1   2   Bruno     35     5000      TI   True        9.2
+3   4   Diego     40     8000      RH   True        7.9
+5   6  Felipe     25     3500  Vendas   True        7.2
+7   8  Heitor     45     9000      RH   True        9.0
+8   9    Iris     28     3800      RH   True        7.5
+<class 'pandas.core.series.Series'>
+
+Veja! Retornamos dados do Dataframe que respeita a condição imposta acima, sendo uma 
+series
+
+Porque eles retornaram como series sendo que no output vimos um DataFrame?
+
+Quando você faz a comparação df.Salario > 3000, o Pandas compara elemento por elemento 
+da Series com o valor 3000. Isso é chamado de operação element-wise.
+
+O resultado será uma nova Series booleana, onde:
+
+Cada elemento da Series original (df.Salario) é avaliado quanto à condição > 3000.
+O resultado será True ou False para cada elemento, dependendo se a condição foi satisfeita.
+
+O mesmo vale para quando usamos a função .loc[] para fazer filtragem ou seleção com vetores
+booleanos
+
+Assim, nossos filtros são Series booleanas mas os retornos dos dados são DataFrmes.
+
+Mesma lógica para esse filtro: 
+
+df_filtro = df[(df.loc[:,'Salario'] > 3000) & (df['Ativo'] == True)]
+print(type(df_filtro)) # Saida -> <class 'pandas.core.frame.DataFrame'>
+
+o filtro é uma series, mas o retorno dos dados são DataFrames.
+
+3 - Diferenças, Qual é a diferença disto print(df.Salario > 3000) para isto print(df[df.loc[:,'Salario'] > 3000])
+
+df.Salario > 3000: Apenas retorna o vetor lógico (Series booleana), que indica se cada
+linha cumpre a condição ou não. Ele não filtra o DataFrame.
+
+df[df.loc[:, 'Salario'] > 3000]: Utiliza o vetor lógico como máscara para filtrar as linhas
+do DataFrame, retornando apenas as linhas que atendem à condição.
+
+O primeiro (df.Salario > 3000) cria apenas a condição em forma de vetor lógico.
+
+O segundo (df[df.loc[:, 'Salario'] > 2]) utiliza a condição para filtrar e retornar um
+DataFrame com as linhas que atendem ao critério
+
+4 - Operadores lógicos do python no pandas
+
+operador not (~): 
+
+        != é o mesmo que not in que é o mesmo que ~
+        
+        na tabela verdade é o não, inverte o valor lógico
+
+    EXPLICAÇÃO DE USO:
+    ~ antes de uma condição:
+        Quando você coloca o ~ antes de uma condição, está negando a condição.
+        Por exemplo, ~(df["Setor"] == "RH") cria uma Série onde True é retornado para 
+        linhas onde o Setor não é RH.
+    & e |:
+        O operador & é usado para combinar condições que devem ser verdadeiras ao mesmo
+        tempo (condição "E"). O operador | é usado para combinar condições em que qualquer
+        uma das condições deve ser verdadeira (condição "OU").
+
+    Quando você negar uma condição com ~ e usar com & ou |, você está criando filtros 
+    mais complexos. Exemplo: não Setor "RH" E Salário > 3000.
+
+    Resumo:
+    ~  -> nega (inverte) uma Série booleana.
+    & ->  é para combinar condições "E" (ambas as condições devem ser verdadeiras).
+    | -> é para combinar condições "OU" (pelo menos uma condição deve ser verdadeira).
+    O ~ pode ser colocado antes de uma condição para negá-la, e você pode usá-lo com 
+    & ou | para formar filtros complexos.
+
+operador e ou and(&):
+        
+        & que é o mesmo que and 
+
+        na tabela verdade o valor lógico é verdadeiro e somente verdadeiro se os dois 
+        arguementos estiverem valor lógico verdade 
+
+operador ou ou or(|): 
+
+    | é o mesmo que or
+    
+    na tabela verdade o valor lógico é verdadeiro se um ao menos um dos arguementos
+    forem verdadeiro, terá valor falso se todos os arguementos forem falsos    
+
+5 - Brincando com essa filtragem/seleção com operadores lógicos e vetores lógicos
+
+LEMBRE - SE: OS PARENTESE VAI DEFINIR A ORDEM E PRIORIDADE DO FILTRO QUE ESTAMOS FAZENDO
+
+print()
+print(df[(df.loc[:,'Salario'] >= 3000) | (df['Ativo'] == True) & (df.loc[:,'Setor'] == 'RH')])
+print()
+# sinceramente não sei que bagaceira de filtro é essa. Mas retorna dados sem depender do
+Setor do RH, se ganhar mais de 3000 ou se for ativo, irá retornar no DataFrame 
+
+
+print()
+print(df[(df.loc[:,'Salario'] > 3000) & (df['Ativo'] == True) & ~(df.loc[:,'Setor'] == 'RH')])
+print()
+# Retorna dados do DataFrame em que os funcionários ativos recebem mais que 3000 sem ser
+do Setor do RH
+
+print()
+print(df[(df.loc[:,'Nome'] == 'Bruno') & (df['Ativo'] == True) & (df.loc[:,'Setor'] == 'TI')])
+print()
+# Aqui vai retornar o Bruno que Trabalha no Setor da T.I
+
+print()
+print(df[(df.loc[:,'Nome'] == 'Bruno') & ((df['Ativo'] == True) | (df.loc[:,'Setor'] == 'TI'))])
+print()
+# cuidado com os parenteses, aqui vai retornar o bruno que trabalha na TI ou outros Brunos
+que Trabalham em outra áreas desde que esteja ativo
