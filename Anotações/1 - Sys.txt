@@ -1,0 +1,213 @@
+1 - Vamos aprender e desbravar o módulo sys do python
+
+    - Essa anotação visa desbravar a biblioteca sys para aprendermos manipular arquivos
+    csv, sql, xlsx e etc... para serem lidos pelo nosso pandas e retornar dados em 
+    DataFremas, caso alguma importação de módulo de errado.
+
+2 - O que é a biblioteca sys ? 
+
+    A biblioteca sys do Python faz parte da biblioteca padrão e fornece acesso a variáveis
+    e funções que interagem diretamente com o interpretador Python e o ambiente de execução.
+    Ela é muito útil para manipular aspectos do programa, como a entrada e saída padrão, 
+    argumentos da linha de comando e o comportamento do interpretador.
+
+    Ela não possui "módulos" internos no sentido tradicional, mas sim diversos atributos,
+    métodos e objetos diretamente acessíveis. Esses elementos permitem interagir com o
+    interpretador Python, o ambiente de execução e o sistema operacional
+
+3 - Princiapais Componentes:
+
+# ARGUMENTOS E EXECUÇÃO DE PROGRAMAS
+
+sys.argv:
+
+Descrição - Lista os argumentos da linha de comando passados ao script.
+Parâmetros - Não tem parâmetros (é uma lista).
+
+Exemplo:
+    
+    import sys
+
+    print("Argumentos:", sys.argv)
+
+SAIDA:
+    Argumentos: ['script.py', 'arg1', 'arg2']
+
+
+sys.exit([status]):
+
+Descrição - Encerra o programa. Opcionalmente, pode retornar um código de status.
+
+Parâmetros:
+
+ - status (opcional) -> Um número inteiro ou string. Por convenção, 0 indica sucesso,
+  e qualquer outro valor indica erro.
+
+Exemplo:
+
+    import sys
+
+    if len(sys.argv) < 2:
+        print("Erro: Argumento obrigatório.")
+        sys.exit(1)  # Sai com código de erro
+
+# FLUXO DE ENTRADA E SÁIDA 
+
+sys.stdin:
+
+Descrição - Representa a entrada padrão (normalmente o teclado).
+Parâmetros - Não possui.
+
+    Exemplo:
+
+import sys
+
+    print("Digite algo:")
+    entrada = sys.stdin.readline()
+    print("Você digitou:", entrada)
+
+sys.stdout:
+
+Descrição -> Representa a saída padrão (normalmente o console). Pode ser redirecionado.
+Parâmetros -> Não possui.
+
+Exemplo:
+
+    import sys
+
+    sys.stdout.write("Saída personalizada.\n")
+
+    sys.stderr:
+
+Descrição -> Representa a saída de erros padrão. Geralmente usada para mensagens de erro.
+Parâmetros ->  Não possui
+
+Exemplo:
+
+    import sys
+
+    sys.stderr.write("Erro: algo deu errado!\n")
+
+# Caminho de módulos
+
+sys.path:
+
+Descrição -> Uma lista de strings que representa os diretórios onde o Python busca por
+módulos. Pode ser alterada dinamicamente.
+
+Parâmetros: Não possui (é uma lista).
+
+Exemplo:
+    
+    import sys
+
+    print("Caminhos de busca:", sys.path)
+    sys.path.append('/meu/diretorio/personalizado')
+
+# INFORMAÇÕES SOBRE O INTERPRETADOR 
+
+sys.version:
+
+Descrição -> Uma string que contém a versão do Python em execução.
+Parâmetros -> Não possui.
+
+Exemplo:
+    import sys
+
+    print("Versão do Python:", sys.version)
+
+sys.platform:
+
+Descrição -> Retorna uma string indicando a plataforma do sistema operacional.
+Parâmetros -> Não possui.
+
+Exemplo:
+    
+    import sys
+
+    print("Plataforma:", sys.platform)
+
+# GERENCIADOR DE MEMÓRIA
+
+sys.getsizeof(obj):
+
+Descrição -> Retorna o tamanho em bytes de um objeto na memória.
+
+Parâmetros:
+    obj: Qualquer objeto Python.
+
+Exemplo:
+
+    import sys
+
+    lista = [1, 2, 3]
+    print("Tamanho da lista:", sys.getsizeof(lista), "bytes")
+
+sys.modules:
+
+Descrição -> Um dicionário contendo todos os módulos já carregados no programa.
+Parâmetros -> Não possui.
+
+# Gerenciador de Execução
+
+sys.exc_info():
+
+Descrição -> Retorna informações sobre a exceção atual, se houver.
+Parâmetros -> Não possui.
+
+Exemplo:
+    import sys
+
+    try:
+        1 / 0
+    except ZeroDivisionError:
+        tipo, valor, traceback = sys.exc_info()
+        print("Tipo:", tipo)
+        print("Valor:":, valor)
+
+# Interação com Inicialização
+
+sys.maxsize:
+
+Descrição -> Retorna o maior número inteiro suportado pelo Python.
+Parâmetros -> Não possui.
+
+Exemplo:
+    
+    import sys
+
+    print("Maior inteiro:", sys.maxsize)
+
+sys.setrecursionlimit(limit):
+
+Descrição -> Define o limite máximo de chamadas recursivas permitidas.
+
+Parâmetros:
+    
+    limit: Um inteiro indicando o novo limite.
+
+Exemplo:
+
+    import sys
+
+    sys.setrecursionlimit(2000)
+    print("Novo limite de recursão:", sys.getrecursionlimit())
+
+sys.getrecursionlimit():
+
+Descrição: Retorna o limite atual de chamadas recursivas.
+Parâmetros -> Não possui.
+
+Exemplo:
+
+    import sys
+
+    print("Limite de recursão:", sys.getrecursionlimit())
+
+4 - Quando usar?
+
+    Criar ferramentas de linha de comando.
+    Gerenciar dinamicamente a importação de módulos.
+    Manipular entrada e saída padrão.
+    Obter informações sobre o ambiente de execução.
+    Trabalhar com limites de memória ou recursão

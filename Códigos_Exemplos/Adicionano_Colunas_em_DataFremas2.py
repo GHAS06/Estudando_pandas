@@ -4,7 +4,7 @@ import os
 # Adiciona o diretório base ao sys.path
 # Estava dando erro aqui, copiei do chat, estude essa lib sys #copiei do código1
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
+# esses .. representa que está subiindo um nível na hierarquia dos módulos
 # Agora os imports devem funcionar
 import pandas as pd
 import numpy as np
