@@ -1,0 +1,46 @@
+1 - Vamos compreender o endereçamento de arquivos
+
+    - Um caminho de arquivo é uma estrutura que leva até um diretório (pasta) ou um
+    arquivo (como .txt, .doc, .py, etc.). Um diretório pode conter outros diretórios
+    ou arquivos.
+
+    Exemplo:
+
+        C:/Estudando_pandas/Anotações/Endereçamento_Arquivos.txt
+    
+    / ou \ : São separadores de diretórios. O padrão no Windows é \.
+    
+    .. : Representa "subir um nível" no sistema de diretórios.
+    
+    cd : Comando usado no terminal para mudar de diretório.
+
+    Assista esse vídeo para entender melhor:
+        
+        https://www.youtube.com/watch?v=5y2ocT2MPFE&list=PL4OAe-tL47sa1McMctk5pdPd5eTAp3drk&index=30
+
+2 - Endereçamento Relativo vs Absoluto
+    
+    O endereçamento (caminho) absoluto fornece a localização completa de um arquivo 
+    ou diretório, começando a partir da raiz do sistema de arquivos.
+
+    Exemplo de Endereçamento absoluto:
+
+    C:\Estudando_pandas\Anotações
+
+
+    O endereçamento (caminho) relativo fornece a localização de um arquivo ou diretório
+    em relação ao diretório atual de trabalho 
+    (também chamado de current working directory ou CWD).
+
+    Exemplo: 
+        
+       # Diretório atual:
+        C:\Estudando_pandas\Anotações\Endereçamento_Arquivos.txt
+
+        # Subindo um nível:
+        ..\Endereçamento_Arquivos.txt
+        # Resultado: Diretório atual é C:\Estudando_pandas\Anotações
+
+        # Subindo dois níveis:
+        ..\..\Estudando_pandas.txt
+        # Resultado: Diretório atual é C:\Estudando_pandas
