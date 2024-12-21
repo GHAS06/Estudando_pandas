@@ -1,0 +1,141 @@
+1 - O que é a biblioteca SQLAlchemy?
+
+O SQLAlchemy é uma biblioteca Python que fornece um conjunto completo de ferramentas para trabalhar com bancos de dados relacionais de maneira mais eficiente. 
+Ele combina um poderoso ORM (Object-Relational Mapping) com funcionalidades de baixo nível para execução direta de comandos SQL, permitindo que desenvolvedores
+escolham entre abstração total ou controle granular.
+
+# PRINCIPAIS OBJETOS E FUNCIONALIDADES DO SQLAlchemy
+
+Engine e Conexão com o Banco de Dados
+
+- sqlalchemy.create_engine()
+
+  - Descrição: Cria uma instância de Engine que gerencia a conexão com o banco de dados.
+  
+  - Parâmetros:
+    - URL de conexão: Define o banco de dados a ser utilizado.
+  
+  - Sintaxe:
+
+    from sqlalchemy import create_engine
+    engine = create_engine('sqlite:///example.db')
+
+  - Como funciona: Estabelece uma interface entre o Python e o banco de dados.
+
+- .connect()
+
+  - Descrição: Abre uma conexão direta com o banco de dados usando o Engine.
+  
+  - Sintaxe:
+    
+    connection = engine.connect()
+    
+
+# ORM (Object-Relational Mapping)
+
+Definição de Tabelas e Classes
+
+- sqlalchemy.orm.declarative_base()
+
+  - Descrição: Cria uma classe base para a definição de tabelas ORM.
+  
+  - Sintaxe:
+    
+    from sqlalchemy.orm import declarative_base
+    
+    Base = declarative_base()
+
+- Criação de Classes Representando Tabelas:
+
+  - Descrição: Define uma tabela como uma classe Python.
+
+  - Exemplo:
+
+    from sqlalchemy import Column, Integer, String
+    
+    class User(Base):
+        _tablename_ = 'users'
+        id = Column(Integer, primary_key=True)
+        name = Column(String)
+    
+
+Sessões
+
+- sqlalchemy.orm.sessionmaker()
+
+  - Descrição: Cria uma fábrica de sessões para interagir com o banco.
+  
+  - Sintaxe:
+    
+    from sqlalchemy.orm import sessionmaker
+    
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    
+
+Operações Básicas
+
+- Inserir Dados:
+  
+  new_user = User(name='Alice')
+  session.add(new_user)
+  session.commit()
+
+
+- Consultar Dados:
+
+  users = session.query(User).all()
+
+- Atualizar Dados:
+
+  user = session.query(User).filter_by(name='Alice').first()
+  user.name = 'Bob'
+  session.commit()
+
+
+- Deletar Dados:
+
+  session.delete(user)
+  session.commit()
+  
+
+Execução de SQL Direto
+
+- .execute()
+
+  - Descrição: Executa comandos SQL diretamente.
+  
+  - Sintaxe:
+    
+    result = connection.execute("SELECT * FROM users")
+    
+    for row in result:
+        print(row)
+    
+Modelos e Relacionamentos
+
+- Relacionamentos: 
+
+  - sqlalchemy.orm.relationship() e sqlalchemy.ForeignKey
+
+    from sqlalchemy import ForeignKey
+    from sqlalchemy.orm import relationship
+
+    class Address(Base):
+        _tablename_ = 'addresses'
+        id = Column(Integer, primary_key=True)
+        user_id = Column(Integer, ForeignKey('users.id'))
+        user = relationship('User', back_populates='addresses')
+    
+
+# Vantagens do SQLAlchemy
+
+- Flexibilidade: Permite escolher entre ORM e execução direta de SQL.
+- Abstração: Simplifica a manipulação de bancos de dados.
+- Escalabilidade: Adequado para projetos de diferentes tamanhos.
+- Suporte: Compatível com diversos bancos de dados (SQLite, PostgreSQL, MySQL, etc.).
+
+# Conclusão
+
+O SQLAlchemy é uma biblioteca robusta que permite o desenvolvimento eficiente e estruturado de aplicações que interagem com bancos de dados. 
+Sua abordagem flexível atende desde desenvolvedores iniciantes até projetos corporativos complexos.

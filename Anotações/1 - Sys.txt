@@ -21,33 +21,34 @@
 
 sys.argv:
 
-Descrição - Lista os argumentos da linha de comando passados ao script.
-Parâmetros - Não tem parâmetros (é uma lista).
-
-Exemplo:
+    Descrição - Lista os argumentos da linha de comando passados ao script.
     
-    import sys
+    Parâmetros - Não tem parâmetros (é uma lista).
 
-    print("Argumentos:", sys.argv)
+    Exemplo:
+    
+        import sys
 
-SAIDA:
-    Argumentos: ['script.py', 'arg1', 'arg2']
+        print("Argumentos:", sys.argv)
+
+    SAIDA:
+        Argumentos: ['script.py', 'arg1', 'arg2']
 
 
 sys.exit([status]):
 
-Descrição - Encerra o programa. Opcionalmente, pode retornar um código de status.
+    Descrição - Encerra o programa. Opcionalmente, pode retornar um código de status.
 
-Parâmetros:
+    Parâmetros:
 
- - status (opcional) -> Um número inteiro ou string. Por convenção, 0 indica sucesso,
-  e qualquer outro valor indica erro.
+        - status (opcional) -> Um número inteiro ou string. Por convenção, 0 indica sucesso,
+        e qualquer outro valor indica erro.
 
-Exemplo:
+    Exemplo:
 
-    import sys
+        import sys
 
-    if len(sys.argv) < 2:
+        if len(sys.argv) < 2:
         print("Erro: Argumento obrigatório.")
         sys.exit(1)  # Sai com código de erro
 
@@ -55,105 +56,112 @@ Exemplo:
 
 sys.stdin:
 
-Descrição - Representa a entrada padrão (normalmente o teclado).
-Parâmetros - Não possui.
+    Descrição - Representa a entrada padrão (normalmente o teclado).
+    
+    Parâmetros - Não possui.
 
     Exemplo:
 
-import sys
+        import sys
 
-    print("Digite algo:")
-    entrada = sys.stdin.readline()
-    print("Você digitou:", entrada)
+        print("Digite algo:")
+        entrada = sys.stdin.readline()
+        print("Você digitou:", entrada)
 
 sys.stdout:
 
-Descrição -> Representa a saída padrão (normalmente o console). Pode ser redirecionado.
-Parâmetros -> Não possui.
+    Descrição -> Representa a saída padrão (normalmente o console). Pode ser redirecionado.
 
-Exemplo:
+    Parâmetros -> Não possui.
 
-    import sys
+    Exemplo:
 
-    sys.stdout.write("Saída personalizada.\n")
+        import sys
 
-    sys.stderr:
+        sys.stdout.write("Saída personalizada.\n")
 
-Descrição -> Representa a saída de erros padrão. Geralmente usada para mensagens de erro.
-Parâmetros ->  Não possui
+sys.stderr:
 
-Exemplo:
+    Descrição -> Representa a saída de erros padrão. Geralmente usada para mensagens de erro.
+    
+    Parâmetros ->  Não possui
 
-    import sys
+    Exemplo:
 
-    sys.stderr.write("Erro: algo deu errado!\n")
+       import sys
+
+        sys.stderr.write("Erro: algo deu errado!\n")
 
 # Caminho de módulos
 
 sys.path:
 
-Descrição -> Uma lista de strings que representa os diretórios onde o Python busca por
-módulos. Pode ser alterada dinamicamente.
+    Descrição -> Uma lista de strings que representa os diretórios onde o Python busca por
+    módulos. Pode ser alterada dinamicamente.
 
-Parâmetros: Não possui (é uma lista).
+    Parâmetros: Não possui (é uma lista).
 
-Exemplo:
+    Exemplo:
     
-    import sys
+        import sys
 
-    print("Caminhos de busca:", sys.path)
-    sys.path.append('/meu/diretorio/personalizado')
+        print("Caminhos de busca:", sys.path)
+        sys.path.append('/meu/diretorio/personalizado')
 
 # INFORMAÇÕES SOBRE O INTERPRETADOR 
 
 sys.version:
 
-Descrição -> Uma string que contém a versão do Python em execução.
-Parâmetros -> Não possui.
+    Descrição -> Uma string que contém a versão do Python em execução.
 
-Exemplo:
-    import sys
+    Parâmetros -> Não possui.
 
-    print("Versão do Python:", sys.version)
+    Exemplo:
+        import sys
+
+        print("Versão do Python:", sys.version)
 
 sys.platform:
 
-Descrição -> Retorna uma string indicando a plataforma do sistema operacional.
-Parâmetros -> Não possui.
+    Descrição -> Retorna uma string indicando a plataforma do sistema operacional.
 
-Exemplo:
+    Parâmetros -> Não possui.
+
+    Exemplo:
     
-    import sys
+        import sys
 
-    print("Plataforma:", sys.platform)
+        print("Plataforma:", sys.platform)
 
 # GERENCIADOR DE MEMÓRIA
 
 sys.getsizeof(obj):
 
-Descrição -> Retorna o tamanho em bytes de um objeto na memória.
+    Descrição -> Retorna o tamanho em bytes de um objeto na memória.
 
-Parâmetros:
-    obj: Qualquer objeto Python.
+    Parâmetros:
+        obj: Qualquer objeto Python.
 
-Exemplo:
+    Exemplo:
 
-    import sys
+        import sys
 
-    lista = [1, 2, 3]
-    print("Tamanho da lista:", sys.getsizeof(lista), "bytes")
+        lista = [1, 2, 3]
+        print("Tamanho da lista:", sys.getsizeof(lista), "bytes")
 
 sys.modules:
 
-Descrição -> Um dicionário contendo todos os módulos já carregados no programa.
-Parâmetros -> Não possui.
+    Descrição -> Um dicionário contendo todos os módulos já carregados no programa.
+    
+    Parâmetros -> Não possui.
 
 # Gerenciador de Execução
 
 sys.exc_info():
 
-Descrição -> Retorna informações sobre a exceção atual, se houver.
-Parâmetros -> Não possui.
+    Descrição -> Retorna informações sobre a exceção atual, se houver.
+
+    Parâmetros -> Não possui.
 
 Exemplo:
     import sys
@@ -169,40 +177,42 @@ Exemplo:
 
 sys.maxsize:
 
-Descrição -> Retorna o maior número inteiro suportado pelo Python.
-Parâmetros -> Não possui.
+    Descrição -> Retorna o maior número inteiro suportado pelo Python.
 
-Exemplo:
+    Parâmetros -> Não possui.
+
+    Exemplo:
     
-    import sys
+        import sys
 
-    print("Maior inteiro:", sys.maxsize)
+        print("Maior inteiro:", sys.maxsize)
 
 sys.setrecursionlimit(limit):
 
-Descrição -> Define o limite máximo de chamadas recursivas permitidas.
+    Descrição -> Define o limite máximo de chamadas recursivas permitidas.
 
-Parâmetros:
+    Parâmetros:
     
-    limit: Um inteiro indicando o novo limite.
+        limit: Um inteiro indicando o novo limite.
 
-Exemplo:
+    Exemplo:
 
-    import sys
+        import sys
 
-    sys.setrecursionlimit(2000)
-    print("Novo limite de recursão:", sys.getrecursionlimit())
+        sys.setrecursionlimit(2000)
+        print("Novo limite de recursão:", sys.getrecursionlimit())
 
 sys.getrecursionlimit():
 
-Descrição: Retorna o limite atual de chamadas recursivas.
-Parâmetros -> Não possui.
+    Descrição: Retorna o limite atual de chamadas recursivas.
 
-Exemplo:
+    Parâmetros -> Não possui.
 
-    import sys
+    Exemplo:
 
-    print("Limite de recursão:", sys.getrecursionlimit())
+        import sys
+
+        print("Limite de recursão:", sys.getrecursionlimit())
 
 4 - Quando usar?
 

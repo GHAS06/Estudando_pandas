@@ -1,0 +1,166 @@
+1 - O que é a biblioteca psutil?
+
+A biblioteca psutil (Process and System Utilities) fornece uma interface para o Python
+para acessar informações e manipular processos em execução no sistema, além de fornecer
+dados sobre o uso de recursos do sistema, como CPU, memória, disco e rede. 
+
+2 - PRINCIPAIS FUNCIONALIDADES E OBJETOS MAIS UTILIZADOS DA BIBLIOTECA PSUTIL
+
+- psutil.cpu_percent(interval=1, percpu=False)
+  
+  - Descrição: Retorna o percentual de uso da CPU. Pode ser feito para cada núcleo (percpu=True) ou para o total de uso da CPU.
+  
+  - Parâmetros:
+    - interval: Intervalo de tempo, em segundos, para calcular a média.
+    - percpu: Se True, retorna a porcentagem de uso da CPU para cada núcleo, se False, retorna para a CPU total.
+  
+  - Sintaxe:
+  
+    psutil.cpu_percent(interval=1, percpu=False)
+  
+  - Como funciona: Retorna o percentual de uso da CPU durante o intervalo fornecido.
+
+- psutil.virtual_memory()
+  
+  - Descrição: Retorna as informações sobre a memória virtual (RAM) do sistema.
+  
+  - Sintaxe:
+  
+    psutil.virtual_memory()
+  
+  - Como funciona: Retorna um objeto de memória que contém informações sobre a memória total, usada, livre, entre outras.
+
+- psutil.disk_usage(path='/')
+  
+  - Descrição: Retorna as informações sobre o uso do disco no caminho fornecido.
+  
+  - Parâmetros:
+    - path: O caminho do diretório ou volume.
+  
+  - Sintaxe:
+  
+    psutil.disk_usage(path='/')
+  
+  - Como funciona: Retorna um objeto que contém informações sobre o uso do disco (total, usado, livre, etc.).
+
+- psutil.net_io_counters()
+  
+  - Descrição: Retorna as estatísticas de tráfego de rede (bytes recebidos e enviados).
+  
+  - Sintaxe:
+  
+    psutil.net_io_counters()
+  
+  - Como funciona: Retorna um objeto contendo o número de bytes recebidos e enviados.
+
+3 - MANIPULAÇÃO DE PROCESSOS
+
+A biblioteca psutil também permite que você acesse e manipule processos em execução no sistema. Alguns dos principais métodos e funções para isso são:
+
+- psutil.process_iter()
+  
+  - Descrição: Retorna um iterador que pode ser usado para iterar sobre todos os processos em execução.
+  
+  - Sintaxe:
+  
+    psutil.process_iter()
+  
+  - Como funciona: Retorna um iterador com objetos psutil.Process que representam os processos em execução.
+
+- psutil.Process(pid)
+  
+  - Descrição: Retorna um objeto Process que representa um processo em execução a partir do seu PID (identificador do processo).
+  
+  - Parâmetros:
+    - pid: O identificador do processo (PID).
+  
+  - Sintaxe:
+  
+    psutil.Process(pid)
+  
+  - Como funciona: Retorna um objeto que permite interagir com o processo especificado (como acessar seu status, uso de CPU, memória, etc.).
+
+- psutil.Process.name()
+  
+  - Descrição: Retorna o nome do processo.
+  
+  - Sintaxe:
+  
+    psutil.Process(pid).name()
+  
+  - Como funciona: Retorna o nome do processo especificado pelo PID.
+
+- psutil.Process.status()
+  
+  - Descrição: Retorna o status atual do processo (ex: "running", "sleeping", "zombie").
+  
+  - Sintaxe:
+  
+    psutil.Process(pid).status()
+  
+  - Como funciona: Retorna o status do processo especificado.
+
+- psutil.Process.cpu_percent(interval=1)
+  
+  - Descrição: Retorna a porcentagem de uso da CPU por um processo específico.
+  
+  - Sintaxe:
+  
+    psutil.Process(pid).cpu_percent(interval=1)
+  
+  - Como funciona: Retorna o percentual de uso da CPU do processo especificado.
+
+- psutil.Process.memory_info()
+  
+  - Descrição: Retorna informações sobre o uso de memória por um processo.
+  
+  - Sintaxe:
+  
+    psutil.Process(pid).memory_info()
+  
+  - Como funciona: Retorna o uso de memória do processo (em bytes).
+
+4 - AUMENTO DE PRIORIDADE DE UM PROCESSO
+
+A psutil permite alterar a prioridade de um processo em execução, o que pode ser útil quando você deseja dar mais ou menos recursos a um determinado processo. 
+Isso é feito por meio da manipulação da prioridade do processo.
+
+- psutil.Process.nice(value=None)
+  
+  - Descrição: Altera a prioridade de um processo. O valor é o "nice value" do processo, que define sua prioridade.
+  
+  - Parâmetros:
+    - value: O valor para definir a prioridade do processo. O valor padrão é None, o que significa que o valor atual será retornado.
+  
+  - Sintaxe:
+  
+    psutil.Process(pid).nice(value)
+  
+  - Como funciona: Modifica a prioridade do processo. Valores negativos indicam maior prioridade (processos mais "importantes"), e valores positivos indicam menor prioridade.
+  Podemos utilizar constantes que representa um nível de prioridade mais alto ou mais baixo. No Windows:
+
+    - psutil.IDLE_PRIORITY_CLASS: Baixa prioridade. Usado para processos que não precisam de muita atenção do sistema.
+    
+    - psutil.NORMAL_PRIORITY_CLASS: Prioridade normal. Usado para a maioria dos processos padrão.
+    
+    - psutil.HIGH_PRIORITY_CLASS: Alta prioridade. Usado para processos que devem ser executados rapidamente, com preferência sobre outros processos.
+    
+    - psutil.REALTIME_PRIORITY_CLASS: Prioridade em tempo real. É a prioridade mais alta, mas deve ser usada com muito cuidado, pois pode fazer com que outros 
+      processos essenciais sejam preteridos.
+
+- Exemplo de aumento de prioridade:
+  
+  Para aumentar a prioridade de um processo (tornar ele mais "importante"), pode-se definir um valor negativo para o nice value.
+
+  import psutil
+
+  pid = 1234  # Exemplo de PID
+  process = psutil.Process(pid)
+  
+  # Aumentando a prioridade do processo (dando maior prioridade)
+  process.nice(-10)  # Valores negativos aumentam a prioridade do processo
+
+  ou 
+    
+ # Definindo a prioridade para um valor mais alto (mais prioridade)
+ process.nice(psutil.HIGH_PRIORITY_CLASS)

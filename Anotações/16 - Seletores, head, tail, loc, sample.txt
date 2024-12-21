@@ -1,0 +1,95 @@
+1 - Vamos compreender como funciona os seletores do pandas
+
+
+2 - Seletores básicos:
+
+ .head():
+
+    Descrição:  Usamos para retornas as 5 primeiras linhas do nosso DataFrame ou Series,
+    Ele é muito útil para inspecionar rapidamente os dados e ter uma visão inicial 
+    de um conjunto de dados.
+
+    Parâmetros:
+
+        n -> O número de linhas que você deseja exibir. O valor padrão é 5, ou seja,
+        se você chamar head() sem parâmetros, ele irá retornar as 5 primeiras linhas.
+
+        n > 0: Retorna as primeiras n linhas.
+        n <= 0: Retorna um DataFrame vazio (nenhuma linha será retornada).
+
+    Sintaxe: 
+
+        DataFrame.head(n) # por padrão vem as 5 primeiras linhas
+
+    Observação: Se eu colocar um falor negativo no inteiro do head(), reduzo a quantidade
+    de linhas retornadas. Exemplo: df.head(-300)
+
+.() tail -> Mesma lógica do head mas para as últimas linhas
+
+
+.loc[]:
+
+    Desciração: Recomendo que leia as anotações ILOC_VS_LOC 1 e 2, mas basicamente
+    seleciona linhas e colunas por rótulos ou indicies, mas para usarmos indicies as
+    vezes é necessário um objeto para fazermos o slice
+
+.sample:
+    
+    Descrição: é uma função muito útil para amostrar (sortear) aleatoriamente um conjunto
+    de linhas de um DataFrame ou Série. Ele é frequentemente usado quando você deseja obter
+    uma amostra de dados para testes, análises exploratórias ou validação.
+
+    Sintaxe: 
+    
+        DataFrame.sample(
+            n=None,
+            frac=None,
+            replace=False,
+            weights=None,
+            random_state=None,
+            axis=None)
+
+    Parâmetros
+    
+        n -> (opcional) O número de amostras (linhas) a serem retornadas. Se especificado,
+        ele indica o número exato de amostras a serem retiradas do DataFrame ou Série.
+
+            Exemplo: n=5 retornaria 5 linhas aleatórias.
+
+        frac -> (opcional) A fração (percentual) das linhas a serem retornadas.
+
+        Exemplo: frac=0.2 retornaria 20% das linhas do DataFrame.
+
+            Nota: Não é possível usar n e frac ao mesmo tempo, ou seja, se você usar n, 
+            não deve usar frac e vice-versa.
+
+        replace-> (opcional, padrão: False) Indica se a amostragem será com reposição 
+        ou não.
+
+            False: As linhas selecionadas não podem ser repetidas.
+        
+            True: As linhas podem ser repetidas (com reposição), ou seja, uma linha pode 
+            ser sorteada mais de uma vez.
+
+        weights -> (opcional) Especifica as probabilidades associadas a cada linha para a
+        amostragem. Pode ser uma lista, um DataFrame ou uma Série com pesos para 
+        cada linha.
+
+            Exemplo: weights=[0.1, 0.2, 0.7] define probabilidades para cada linha 
+            ser escolhida.
+
+random_state: 
+
+    Descrição: (opcional) Semente do gerador de números aleatórios, para garantir que
+    o processo de amostragem seja reprodutível.
+
+        Exemplo: random_state=42 pode ser usado para garantir que a amostra sorteada seja
+        sempre a mesma em execuções sucessivas.
+
+axis:
+
+    Definição: (opcional) Especifica se a amostragem deve ser realizada nas 
+    linhas (axis=0) ou nas colunas (axis=1).
+
+    O valor padrão é axis=0, o que significa que as amostras são retiradas das linhas.
+ Para amostrar as colunas, use axis=1.

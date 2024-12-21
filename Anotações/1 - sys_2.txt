@@ -1,0 +1,206 @@
+1 - Essa é a versão dois da anotação anterior, igulmente importante, algumas coisas vão se
+repetir e outras não, mas é um reforço
+
+2 - Para que serve? 
+    
+    A biblioteca sys do Python é um módulo integrado que fornece acesso a variáveis
+    e funções específicas do sistema que interagem com o interpretador Python e o ambiente
+    de execução.
+    O módulo sys é extremamente útil quando você precisa de informações sobre a execução
+    do Python, interagir com o sistema operacional, manipular argumentos passados para um
+    script ou controlar o comportamento do interpretador.
+
+3 - Funções e Atributos Comuns:
+
+Funções e Atributos Comuns da Biblioteca sys
+
+sys.argv:
+    
+    O que é: Uma lista que contém os argumentos passados para o script Python na linha de
+    comando. O primeiro item da lista é sempre o nome do próprio script.
+
+    Uso: Pode ser usada para passar parâmetros para um script Python na linha de comando.
+
+    Exemplo:
+
+    import sys
+
+    # Exibe todos os argumentos passados para o script
+    print(sys.argv)
+    Saída (caso o script seja executado com parâmetros):
+
+    ['meu_script.py', 'arg1', 'arg2']
+    sys.exit([status]):
+
+sys.exit():
+
+    O que é: Finaliza a execução do programa Python. O argumento opcional status pode
+    ser fornecido para indicar se o programa terminou com sucesso (0) ou
+    com erro (qualquer valor diferente de 0).
+    
+    Uso: Usado para sair do programa ou interromper sua execução em casos específicos.
+    
+    Exemplo:
+
+        import sys
+
+        # Finaliza o programa com um status de erro (1)
+        sys.exit(1)
+
+sys.path:
+
+    O que é: Uma lista de diretórios onde o Python procura por módulos e pacotes. Se você
+    estiver trabalhando com módulos personalizados ou bibliotecas externas, o Python usa
+    essa lista para encontrar os arquivos .py necessários para a execução. 
+    
+    Uso: Pode ser manipulada para adicionar diretórios personalizados à busca de módulos.
+
+    Exemplo:
+
+        import sys
+
+        # Exibe os diretórios onde o Python procura módulos
+        print(sys.path)
+
+sys.version:
+
+    O que é: Uma string que contém a versão do Python que está sendo usada para executar
+    o código. A versão é retornada no formato major.minor.micro.
+
+    Uso: Usado para verificar a versão do Python que está sendo utilizada.
+
+    Exemplo:
+
+        import sys
+
+        # Exibe a versão do Python
+        print(sys.version)
+
+sys.platform:
+
+    O que é: Retorna uma string que identifica o sistema operacional em que o Python está
+    sendo executado. A string varia dependendo do sistema 
+    (exemplo: 'win32', 'linux', 'darwin' para macOS).
+
+    Uso: Usado para determinar o sistema operacional e adaptar o código conforme
+    necessário.
+    
+    Exemplo:
+
+        import sys
+
+        # Exibe o sistema operacional
+        print(sys.platform)
+
+
+sys.getsizeof(object):
+
+    O que é: Retorna o tamanho em bytes de um objeto Python. Isso pode ser útil para otimizar o uso de memória em programas que lidam com grandes volumes de dados.
+    Uso: Usado para medir a quantidade de memória usada por um objeto específico.
+
+    Exemplo:
+
+        import sys
+
+        x = [1, 2, 3]
+        # Exibe o tamanho em bytes da lista
+        print(sys.getsizeof(x))
+
+sys.stdout e sys.stderr:
+
+    O que são: São objetos de fluxo de saída padrão e erro padrão, respectivamente.
+    Você pode usá-los para redirecionar a saída ou os erros para arquivos ou outros 
+    destinos.
+    
+    Uso: Útil para personalizar a forma como a saída ou erros são apresentados.
+
+    Exemplo:
+
+        import sys
+
+        # Escreve no stdout (saída padrão)
+        sys.stdout.write("Este é um exemplo de saída padrão\n")
+
+        # Escreve no stderr (erro padrão)
+
+sys.stderr.write("Este é um exemplo de erro padrão\n")
+
+# Outros Atributos e Funções
+
+sys.setrecursionlimit(limit):
+
+    O que é: Define o limite máximo de recursão (profundidade de chamadas recursivas) 
+    que o Python pode realizar antes de lançar uma exceção RecursionError.
+
+    Uso: Ajuste o limite de recursão se o seu código precisar de mais profundidade em
+    chamadas recursivas.
+
+    Exemplo:
+
+    import sys
+
+        # Define o limite de recursão para 5000
+
+        sys.setrecursionlimit(5000)
+
+sys.getrefcount(object):
+
+    O que é: Retorna o número de referências para um objeto Python. Esse número pode ser
+    útil para entender o comportamento de gerenciamento de memória do Python.
+    
+    Uso: Usado em casos de análise e depuração de memória.
+
+    Exemplo:
+
+        import sys
+
+        x = [1, 2, 3]
+        print(sys.getrefcount(x))  # Exibe o número de referências para x
+
+sys.exitfunc:
+
+    O que é: Uma função que será chamada quando o Python terminar a execução.
+    É comumente usada para limpar recursos ou fechar arquivos ao final da execução de
+    um script.
+    
+    Uso: Usada para definir uma função que será executada ao término do programa.
+
+    Exemplo:
+
+        import sys
+
+        def clean_up():
+            print("O programa está terminando...")
+
+        # Define a função de finalização
+        sys.exitfunc = clean_up
+
+4 - Exemplo Completo de Uso
+
+# Aqui está um exemplo mais elaborado que utiliza diversos elementos da biblioteca sys:
+
+import sys
+
+def main():
+    # Verifica a versão do Python
+    print(f"Versão do Python: {sys.version}")
+
+    # Argumentos passados para o script
+    if len(sys.argv) > 1:
+        print(f"Argumentos recebidos: {sys.argv[1:]}")
+    else:
+        print("Nenhum argumento foi passado.")
+
+    # Obtém o tamanho de um objeto
+    lista = [1, 2, 3, 4, 5]
+    print(f"Tamanho da lista em bytes: {sys.getsizeof(lista)}")
+
+    # Exibe o sistema operacional
+    print(f"Sistema operacional: {sys.platform}")
+
+    # Finaliza o programa
+    sys.exit(0)
+
+# Inicia o script
+if _name_ == "_main_":
+    main()

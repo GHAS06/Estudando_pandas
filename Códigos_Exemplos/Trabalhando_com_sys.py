@@ -5,7 +5,9 @@ import os
 
 '''
     LEIA A ANOTAÇÃO: sys.txt
+    LEIA A ANOTAÇÃO: sys_2.txt
     LEIA A ANOTAÇÃO: OS.txt
+    VEJA O Código Exemplo: Trabalhando_com_sys2.py
 '''
 
 # Vamos usar essa parte do código Adicionando_Colunas_em_DataFremas1.py

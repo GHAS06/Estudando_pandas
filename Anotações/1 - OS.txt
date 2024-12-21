@@ -1,73 +1,393 @@
-1 - O que é a blibioteca OS?
+1 - O que é a biblioteca OS?
+
+A biblioteca os no Python é um módulo que fornece uma interface para interagir com o
+sistema operacional. Ela oferece funcionalidades úteis para automação de tarefas, 
+como manipulação de arquivos e diretórios, execução de comandos no sistema e acesso a
+informações sobre o ambiente do sistema.
+
+2 - PRINCIPAIS OBJETOS E MAIS UTILIZADOS DO MÓDULO OS
+
+Manipulação de Arquivos e Diretórios
+
+- os.open(path, flags, mode=0o777, *, dir_fd=None)
+  
+  - Descrição: Função de baixo nível para abrir arquivos. Permite maior controle sobre a
+   manipulação do arquivo, porém exige o uso de descritores de arquivo, 
+   o que torna seu uso menos intuitivo que o open().
+  
+  - Parâmetros:
+
+    - path: Caminho do arquivo a ser aberto.
+    - flags: Indica como o arquivo será aberto (ex: leitura, escrita).
+    - mode: Define as permissões do arquivo (por padrão, 0o777).
+    - dir_fd: Se fornecido, é o descritor de diretório utilizado para resolver o caminho.
+  
+  - Sintaxe:
+   
+    os.open(path, flags, mode=0o777)
+  
+  - Como funciona: Abre o arquivo com base nos parâmetros fornecidos, retornando um descritor de arquivo.
+
+- os.close(fd)
+  
+  - Descrição: Fecha um arquivo previamente aberto usando os.open().
+  
+  - Parâmetros:
     
-    Basicamente é uma biblioteca de comandos do sistema operacional que vai te
-    auxiliar a fazer algumas operações dentro do seu computador. Essa biblioteca é 
-    muito utilizada para fazer automação de processos no Python, então você pode fazer algumas automações 
-    no seu computador de forma fácil e rápida!
+    - fd: O descritor do arquivo a ser fechado.
+  
+  - Sintaxe:
+   
+    os.close(fd)
+  
+  - Como funciona: Fecha o arquivo associado ao descritor fd.
+
+- os.getcwd()
+  
+  - Descrição: Obtém o diretório de trabalho atual (diretório em que o script está sendo executado).
+  
+  - Sintaxe:
+  
+    os.getcwd()
+  
+  - Como funciona: Retorna uma string com o caminho absoluto do diretório atual.
+
+- os.listdir(path)
+  
+  - Descrição: Lista os arquivos e diretórios dentro do diretório especificado.
+  
+  - Parâmetros:
+  
+    - path: O caminho do diretório cujos arquivos serão listados.
+  
+  - Sintaxe:
+  
+    os.listdir(path)
+  
+  - Como funciona: Retorna uma lista contendo os nomes dos arquivos e subdiretórios do diretório especificado.
+
+- os.mkdir(path)
+  
+  - Descrição: Cria um novo diretório.
+  
+  - Parâmetros:
+  
+    - path: O caminho onde o novo diretório será criado.
+  
+  - Sintaxe:
+  
+    os.mkdir(path)
+  
+  - Como funciona: Cria um diretório vazio no caminho especificado.
+
+- os.makedirs(path)
+  
+  - Descrição: Cria diretórios recursivamente, ou seja, cria diretórios intermediários que não existem.
+  
+  - Parâmetros:
+  
+    - path: Caminho do diretório a ser criado, podendo incluir subdiretórios.
+  
+  - Sintaxe:
+  
+    os.makedirs(path)
+  
+  - Como funciona: Cria diretórios, incluindo quaisquer diretórios intermediários necessários.
+
+- os.remove(path)
+  
+  - Descrição: Remove um arquivo.
+  
+  - Parâmetros:
+  
+    - path: Caminho do arquivo a ser removido.
+  
+  - Sintaxe:
+  
+    os.remove(path)
+  
+  - Como funciona: Exclui o arquivo especificado.
+
+- os.rmdir(path)
+  
+  - Descrição: Remove um diretório vazio.
+  
+  - Parâmetros:
+  
+    - path: Caminho do diretório a ser removido.
+  
+  - Sintaxe:
+  
+    os.rmdir(path)
+  
+  - Como funciona: Exclui o diretório vazio especificado.
+
+- os.removedirs(path)
+  
+  - Descrição: Remove diretórios intermediários e o diretório final, se estiverem vazios.
+  
+  - Parâmetros:
+  
+    - path: Caminho do diretório a ser removido, incluindo subdiretórios.
+  
+  - Sintaxe:
+  
+    os.removedirs(path)
+  
+  - Como funciona: Remove os diretórios especificados no caminho, se eles estiverem vazios.
+
+Caminhos de Arquivos
+
+- os.path.join(*paths)
+  
+  - Descrição: Combina caminhos de forma segura, utilizando o separador correto para o sistema operacional.
+  
+  - Parâmetros:
+  
+    - *paths: Vários segmentos de caminho a serem combinados.
+  
+  - Sintaxe:
+  
+    os.path.join(*paths)
+  
+  - Como funciona: Retorna um caminho único, unindo os segmentos fornecidos.
+
+- os.path.exists(path)
+  
+  - Descrição: Verifica se um arquivo ou diretório existe no caminho especificado.
+  
+  - Parâmetros:
+  
+    - path: Caminho do arquivo ou diretório.
+  
+  - Sintaxe:
+  
+    os.path.exists(path)
+  
+  - Como funciona: Retorna True se o caminho existir, caso contrário, False.
+
+- os.path.isfile(path)
+  
+  - Descrição: Verifica se o caminho especificado é um arquivo regular.
+  
+  - Parâmetros:
+  
+    - path: Caminho do arquivo.
+  
+  - Sintaxe:
+  
+    os.path.isfile(path)
+  
+  - Como funciona: Retorna True se o caminho for um arquivo regular, caso contrário, False.
+
+- os.path.isdir(path)
+  
+  - Descrição: Verifica se o caminho especificado é um diretório.
+  
+  - Parâmetros:
+  
+    - path: Caminho do diretório.
+  
+  - Sintaxe:
+  
+    os.path.isdir(path)
+  
+  - Como funciona: Retorna True se o caminho for um diretório, caso contrário, False.
+
+- os.path.basename(path)
+  
+  - Descrição: Obtém o nome do arquivo a partir de um caminho.
+  
+  - Parâmetros:
+  
+    - path: Caminho do arquivo.
+  
+  - Sintaxe:
+  
+    os.path.basename(path)
+  
+  - Como funciona: Retorna o nome do arquivo a partir do caminho especificado.
+
+- os.path.dirname(path)
+  
+  - Descrição: Obtém o diretório de um caminho.
+  
+  - Parâmetros:
+  
+    - path: Caminho do arquivo.
+  
+  - Sintaxe:
+  
+    os.path.dirname(path)
+  
+  - Como funciona: Retorna o diretório de onde o arquivo está localizado.
+
+- os.path.split(path)
+  
+  - Descrição: Divide um caminho em diretório e nome do arquivo.
+  
+  - Parâmetros:
+  
+    - path: Caminho do arquivo.
+  
+  - Sintaxe:
+  
+    os.path.split(path)
+  
+  - Como funciona: Retorna uma tupla (diretório, nome do arquivo).
+
+- os.path.abspath(path)
+  
+  - Descrição: Retorna o caminho absoluto de um arquivo ou diretório.
+  
+  - Parâmetros:
+  
+    - path: Caminho relativo ou absoluto do arquivo.
+  
+  - Sintaxe:
+  
+    os.path.abspath(path)
+  
+  - Como funciona: Retorna o caminho absoluto (completo) a partir de um caminho relativo ou absoluto.
+
+- os.path.splitext(path)
+  
+  - Descrição: Divide o nome do arquivo em nome e extensão.
+  
+  - Parâmetros:
+  
+    - path: Caminho do arquivo.
+  
+  - Sintaxe:
+  
+    os.path.splitext(path)
+  
+  - Como funciona: Retorna uma tupla (nome do arquivo, extensão).
+
+Manipulação de Arquivos e Pastas
+
+- os.rename(src, dst)
+  
+  - Descrição: Renomeia ou move um arquivo ou diretório.
+  
+  - Parâmetros:
+  
+    - src: Caminho do arquivo ou diretório original.
+  
+    - dst: Novo nome ou caminho do arquivo ou diretório.
+  
+  - Sintaxe:
+  
+    os.rename(src, dst)
+  
+  - Como funciona: Renomeia o arquivo/diretório ou o move para o caminho especificado.
+
+- os.replace(src, dst)
+  
+  - Descrição: Substitui um arquivo de destino, se ele existir.
+  
+  - Parâmetros:
+  
+    - src: Caminho do arquivo de origem.
     
-    Ela muito útil quando se trata de interagir com o sistema operacional. Fornece
-    uma série de funcionalidades para executar ações específicas, como navegar por 
-    diretórios, criar novos diretórios, executar comandos no terminal e obter 
-    informações do sistema.
+    - dst: Caminho do arquivo de destino.
+  
+  - Sintaxe:
+  
+    os.replace(src, dst)
+  
+  - Como funciona: Substitui o arquivo de destino caso ele já exista. Se o arquivo de destino não existir, ele apenas renomeia.
 
-2 - PRINCIPAIS OBJETOS E MAIS UTILIZADOS DO MÓDULO OS PARA COMEÇAR A APRENDER
+Variáveis de Ambiente
 
-    Para começar, você pode focar nas funções mais utilizadas, sem precisar estudar 
-    toda a biblioteca. Algumas áreas principais incluem:
+    - O que são Variáveis de Ambiente ? 
+     
+        são valores definidos fora do código do programa, geralmente pelo sistema 
+        operacional, que podem ser usados por processos em execução para obter informações
+        sobre o ambiente no qual estão operando. Essas variáveis são frequentemente usadas
+        para armazenar configurações do sistema, caminhos de diretórios, informações de 
+        usuários e outras variáveis de sistema que podem ser necessárias para a execução
+        de programas.
 
-    Manipulação de Arquivos e Diretórios:
+    - Como funciona variáveis de Ambiente?
 
-os.open(path, flags, mode=0o777, *, dir_fd=None) ->  é uma função de baixo nível que
-interage diretamente com o sistema operacional, enquanto open() 
-(a função embutida do Python) oferece abstrações de nível mais alto 
-(como o gerenciamento automático de fechamento e abertura).
+        As variáveis de ambiente fornecem informações cruciais sobre o ambiente do sistema
+        em que o programa está sendo executado.
+        
+        Elas podem incluir informações como:
 
-os.close(fd) -> Fecha o descritor de arquivo fd
+            - Caminhos para diretórios e arquivos importantes.
+            - Configurações específicas do sistema operacional ou do usuário.
+            - Credenciais ou chaves de API usadas por programas.
+            - Informações de configuração de rede e de hardware.
+        
+        Essas variáveis podem ser acessadas e manipuladas pelos programas em execução,
+        e geralmente são definidas pelo sistema operacional ou pelo usuário.
+    
+    - Exemplos comuns de Variáveis de Ambiente:
 
-os.getcwd() -> obtém o diretório de trabalho atual.
+        PATH -> Contém uma lista de diretórios onde o sistema procura por executáveis.
+        HOME -> Contém o diretório inicial do usuário (em sistemas Unix-like).
+        USERPROFILE -> Contém o diretório de perfil do usuário (em sistemas Windows).
+        TEMP -> Diretório onde arquivos temporários podem ser armazenados.
+        PYTHONPATH -> Define um caminho adicional onde o Python procurará por módulos e pacotes.s
 
-os.listdir() -> lista arquivos e diretórios no caminho especificado.
+- os.getenv(key)
 
-os.mkdir(), os.makedirs() -> cria diretórios.
+  - Descrição: Obtém o valor de uma variável de ambiente.
+  
+  - Parâmetros:
+    
+    - key: O nome da variável de ambiente.
+  
+  - Sintaxe:
+    
+    os.getenv(key)
+  
+  - Como funciona: Retorna o valor da variável de ambiente ou None se não existir.
 
-os.remove(), os.rmdir(), os.removedirs() -> remove arquivos e diretórios.
+- os.environ
+  
+  - Descrição: Um dicionário que contém as variáveis de ambiente do sistema.
+  
+  - Sintaxe:
+   
+    os.environ
+  
+  - Como funciona: Permite acessar e definir variáveis de ambiente diretamente.
 
-    Caminhos de Arquivos (especialmente útil para compatibilidade entre sistemas):
+Execução de Comandos no Sistema
 
-os.path.join(): combina caminhos de forma segura.
+- os.system(command)
+  
+  - Descrição: Executa um comando do sistema operacional diretamente.
+  
+  - Parâmetros:
+  
+    - command: O comando a ser executado.
+  
+  - Sintaxe:
+  
+    os.system(command)
+  
+  - Como funciona: Executa o comando na shell do sistema e retorna o código de saída do comando.
 
-os.path.exists(): Verifica se um caminho (arquivo ou diretório) existe.
+- os.exec*()
 
-os.path.isfile(): Verifica se o caminho é um arquivo.
+  - Descrição: Substitui o processo Python atual pelo novo processo.
+  
+  - Sintaxe:
+    
+    os.execvp(program, args)
+  
+  - Como funciona: Executa um novo processo e encerra o script Python atual.
 
-os.path.isdir(): Verifica se o caminho é um diretório.
+- os.spawn*()
 
-os.path.basename(): Obtém o nome do arquivo de um caminho.
-
-os.path.dirname(): Obtém o diretório de um caminho.
-
-os.path.split(): Divide o caminho em diretório e arquivo.
-
-os.path.abspath(): Retorna o caminho absoluto.
-
-os.path.splitext(): Divide o nome do arquivo em nome e extensão.
-
-    Variáveis de Ambiente:
-
-os.getenv() -> obtém o valor de uma variável de ambiente.
-
-os.environ -> acessa e define variáveis de ambiente, útil para gerenciar configurações 
-sem expor senhas no código.
-
-    Execução de Comandos no Sistema (avançado, mas útil em automação):
-
-os.system() -> é usado para executar um comando do sistema operacional diretamente 
-a partir do Python. Ele abre uma subshell para rodar o comando e retorna o código de 
-saída do processo.
-
-os.exec*() -> substitui o processo atual pelo novo processo executado. Isso significa
-que o script Python será encerrado e substituído pelo comando 
-executado. Não há retorno ao código Python após a execução do comando.
-
-os.spawn*() -> permitem iniciar novos processos sem substituir o processo atual.
-Diferente do os.exec*, o script Python continua rodando após o comando ser executado.
+  - Descrição: Inicia um novo processo sem substituir o processo Python atual.
+  
+  - Sintaxe:
+   
+    os.spawnv(mode, path, args)
+  
+  - Como funciona: Inicia um novo processo, mas o script Python continua rodando

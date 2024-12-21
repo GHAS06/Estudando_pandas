@@ -1,0 +1,156 @@
+1 - O que é a biblioteca time?
+
+A biblioteca time no Python fornece funcionalidades relacionadas ao tempo, como medir a duração de eventos, controlar a execução do programa
+com pausas temporais e manipular datas e horas. Ela é bastante útil quando você precisa adicionar atrasos, realizar medições de tempo
+ou manipular representações temporais no seu código.
+
+2 - PRINCIPAIS OBJETOS E MAIS UTILIZADOS DO MÓDULO TIME
+
+- time.sleep(secs)
+
+    - Descrição: Suspende a execução do programa por um número especificado de segundos.
+    
+    - Parâmetros:
+    
+        - secs: O número de segundos que o programa deve esperar.
+    
+    - Sintaxe:
+    
+        time.sleep(secs)
+    
+    - Como funciona: Pausa a execução do código pelo número de segundos especificado. Útil para criar intervalos em loops ou controlar a frequência de execução de certas ações.
+
+- time.time()
+
+    - Descrição: Retorna o tempo em segundos desde a "época" (1 de Janeiro de 1970, conhecido como Unix Epoch).
+    
+    - Sintaxe:
+    
+        time.time()
+    
+    - Como funciona: Retorna um valor em segundos que representa o tempo atual do sistema. O valor retornado pode ser utilizado para medir durações e criar registros temporais.
+
+- time.localtime([secs])
+
+    - Descrição: Converte um número de segundos (ou o tempo atual) em uma estrutura de tempo local.
+    
+    - Parâmetros:
+    
+        - secs (opcional): O número de segundos a ser convertido. Se não fornecido, usa o tempo atual.
+    
+    - Sintaxe:
+    
+        time.localtime([secs])
+    
+    - Como funciona: Retorna uma tupla com a data e hora local (ano, mês, dia, hora, minuto, segundo, etc.). Pode ser usado para formatação de tempo mais detalhada.
+
+- time.gmtime([secs])
+
+    - Descrição: Converte um número de segundos (ou o tempo atual) em uma estrutura de tempo UTC (Tempo Universal Coordenado).
+    
+    - Parâmetros:
+    
+        - secs (opcional): O número de segundos a ser convertido. Se não fornecido, usa o tempo atual.
+    
+    - Sintaxe:
+    
+        time.gmtime([secs])
+    
+    - Como funciona: Retorna uma tupla com a data e hora em formato UTC (ano, mês, dia, hora, minuto, segundo, etc.).
+
+- time.mktime(t)
+
+    - Descrição: Converte uma tupla de tempo (como retornada por time.localtime() ou time.gmtime()) em um valor de segundos desde a "época".
+    
+    - Parâmetros:
+    
+        - t: A tupla de tempo a ser convertida.
+    
+    - Sintaxe:
+    
+        time.mktime(t)
+    
+    - Como funciona: Retorna o número de segundos desde a época, baseado na tupla de tempo fornecida.
+
+- time.strftime(format[, t])
+
+    - Descrição: Converte uma tupla de tempo (ou o tempo atual) em uma string, de acordo com um formato especificado.
+    
+    - Parâmetros:
+    
+        - format: Um string que define o formato de saída (ex: "%Y-%m-%d %H:%M:%S").
+        - t (opcional): A tupla de tempo a ser formatada. Se não fornecida, usa o tempo atual.
+    
+    - Sintaxe:
+    
+        time.strftime(format[, t])
+    
+    - Como funciona: Retorna uma string representando o tempo formatado. O formato é baseado nas diretivas de formato, como "%Y" para ano com quatro dígitos e "%H" para hora em 24 horas.
+
+- time.strptime(string, format)
+
+    - Descrição: Converte uma string representando uma data e hora em uma tupla de tempo, de acordo com um formato especificado.
+    
+    - Parâmetros:
+    
+        - string: A string que contém a data e hora a ser convertida.
+        - format: O formato em que a string está representando a data e hora (ex: "%Y-%m-%d %H:%M:%S").
+    
+    - Sintaxe:
+    
+        time.strptime(string, format)
+    
+    - Como funciona: Retorna uma tupla de tempo correspondente à string fornecida, de acordo com o formato especificado.
+
+- time.perf_counter()
+
+    - Descrição: Retorna um contador de alta precisão para medir intervalos de tempo.
+    
+    - Sintaxe:
+    
+        time.perf_counter()
+    
+    - Como funciona: Retorna um valor flutuante que pode ser usado para medir com precisão a duração de eventos. É útil para medições de desempenho.
+
+- time.process_time()
+
+    - Descrição: Retorna o tempo de CPU (em segundos) usado pelo processo atual.
+    
+    - Sintaxe:
+    
+        time.process_time()
+    
+    - Como funciona: Retorna o tempo total de CPU utilizado pelo processo em execução, útil para medições de tempo de processamento.
+
+- time.monotonic()
+
+    - Descrição: Retorna o valor de um contador monotônico, que sempre aumenta com o tempo.
+    
+    - Sintaxe:
+    
+        time.monotonic()
+    
+    - Como funciona: Retorna um valor contínuo que pode ser usado para medir intervalos de tempo. Não é afetado por mudanças no sistema (como ajustes no relógio).
+
+- time.sleep(tempo)
+
+    - Descrição: Pausa a execução do código pelo tempo especificado (em segundos).
+    
+    - Sintaxe:
+    
+        time.sleep(tempo)
+    
+    - Como funciona: Pausa o código por uma quantidade de segundos especificada. Pode ser um número inteiro ou flutuante, permitindo pausas com precisão de milissegundos.
+
+EXEMPLO DE USO COMBINADO:
+
+import time
+
+start = time.time()
+
+# Simulando uma tarefa que leva algum tempo
+time.sleep(2)
+
+end = time.time()
+
+print(f'A tarefa levou {end - start} segundos para ser concluída.')

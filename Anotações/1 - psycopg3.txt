@@ -1,0 +1,171 @@
+1 - O que é a Psycopg3?
+
+A biblioteca psycopg3 é a evolução da popular biblioteca psycopg2 para conexão e interação com bancos de dados PostgreSQL em Python. Ela oferece uma abordagem moderna, suporte a novos
+recursos do PostgreSQL e maior flexibilidade em aplicações assíncronas.
+
+2 - Principais Funcionalidades e Métodos
+
+Conexão com o Banco de Dados
+
+- psycopg.connect():
+
+    Descrição: Cria uma conexão com o banco de dados PostgreSQL.
+
+    Parâmetros:
+
+        - dsn: String de conexão contendo informações como nome do banco, usuário, senha, host e porta.
+ 
+        - autocommit: Define se a conexão usa ou não autocommit (padrão é False).
+
+    Sintaxe:
+
+        connection = psycopg.connect("dbname=test user=postgres password=secret host=localhost port=5432")
+
+    Como funciona: Retorna um objeto de conexão que pode ser usado para interagir com o banco de dados PostgreSQL.
+
+Execução de Consultas
+
+- cursor.execute():
+
+    Descrição: Executa comandos SQL no banco de dados conectado.
+
+    Parâmetros:
+
+        - query: String contendo o comando SQL a ser executado.
+
+        - params: (Opcional) Dicionário ou tupla de parâmetros para consulta parametrizada.
+
+    Sintaxe:
+
+        cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))
+        # essas porcentagem são place holders, vale a pena pesquisar sobre
+
+    Como funciona: Executa o comando SQL especificado.
+
+- cursor.fetchall():
+
+    Descrição: Recupera todos os resultados de uma consulta SELECT.
+
+    Sintaxe:
+
+        results = cursor.fetchall()
+
+    Como funciona: Retorna uma lista com todos os registros da consulta.
+
+- cursor.fetchone():
+
+    Descrição: Recupera apenas um registro do resultado da consulta.
+
+    Sintaxe:
+
+        result = cursor.fetchone()
+
+    Como funciona: Retorna o próximo registro da consulta ou None se não houver mais resultados.
+
+Gerenciamento de Transações
+
+- connection.commit():
+
+    Descrição: Confirma (commit) as alterações realizadas no banco de dados.
+
+    Sintaxe:
+
+        connection.commit()
+
+    Como funciona: Aplica permanentemente as alterações feitas na transação.
+
+- connection.rollback():
+
+    Descrição: Reverte alterações não confirmadas em caso de erro.
+
+    Sintaxe:
+
+        connection.rollback()
+
+    Como funciona: Desfaz alterações realizadas na transação atual.
+
+Fechamento de Conexões
+
+OBSERVAÇÃO -> podemos usar o operador with para realizar essa tarefa 
+
+- cursor.close():
+
+    Descrição: Fecha o cursor utilizado para executar consultas SQL.
+
+    Sintaxe:
+
+        cursor.close()
+
+    Como funciona: Libera os recursos associados ao cursor.
+
+- connection.close():
+
+    Descrição: Fecha a conexão com o banco de dados.
+
+    Sintaxe:
+
+        connection.close()
+
+    Como funciona: Libera os recursos associados à conexão.
+
+Operações Assíncronas
+
+- psycopg.AsyncConnection:
+
+    Descrição: Permite criar conexões assíncronas para interação com o banco de dados.
+
+    Sintaxe:
+
+    async with psycopg.AsyncConnection.connect("dbname=test user=postgres") as connection:
+        async with connection.cursor() as cursor:
+            await cursor.execute("SELECT * FROM users")
+            results = await cursor.fetchall()
+
+    Como funciona: Utiliza o modelo async/await para realizar operações não bloqueantes.
+
+Manipulação de Dados em Massa
+
+- .copy():
+
+    Descrição: Permite realizar operações de cópia em massa entre arquivos e tabelas do PostgreSQL.
+
+    Parâmetros:
+
+        - source: Fonte dos dados (arquivo ou tabela).
+
+        - destination: Destino dos dados (tabela ou arquivo).
+
+        - options: Configurações adicionais para a operação de cópia.
+
+    Sintaxe:
+
+        cursor.copy("COPY users TO STDOUT WITH CSV", output_file)
+
+    Como funciona: Utiliza o comando SQL COPY internamente para realizar transferências eficientes.
+
+- .copy_from() e .copy_to():
+
+    Descrição: Metódos específicos para importar ou exportar dados usando arquivos.
+
+    Sintaxe:
+
+        cursor.copy_from(file, "users", columns=["id", "name"])
+        cursor.copy_to(file, "users")
+
+    Como funciona: Processa grandes volumes de dados diretamente entre arquivos e tabelas.
+
+- .copy_expert():
+
+    Descrição: Permite maior controle sobre o comando COPY.
+
+    Parâmetros:
+
+        - sql: Comando SQL completo.
+
+        - file: Objeto de arquivo associado ao comando.
+
+    Sintaxe:
+
+        cursor.copy_expert("COPY users TO STDOUT WITH CSV HEADER", output_file)
+
+    Como funciona: Oferece maior flexibilidade para customizar operações de cópia.

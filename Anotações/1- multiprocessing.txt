@@ -1,0 +1,187 @@
+1 - O que é a lib multiprocessing?
+
+A biblioteca multiprocessing no Python permite a criação de processos independentes, possibilitando o aproveitamento de múltiplos núcleos do processador para execução paralela. 
+É ideal para tarefas que exigem computação intensiva, onde o GIL (Global Interpreter Lock) pode ser um limitador no módulo threading.
+
+2 -Principais Objetos e Funcionalidades do Módulo multiprocessing
+
+Criando Processos
+
+-  multiprocessing.Process(target, args, kwargs)**
+
+  - Descrição: Cria um novo processo, executando uma função ou alvo especificado.
+  
+  - Parâmetros:
+
+    - target: A função ou objeto chamável a ser executado.
+    - args: Tupla de argumentos posicionais para o alvo.
+    - kwargs: Dicionário de argumentos nomeados para o alvo.
+
+  - Sintaxe:
+
+    from multiprocessing import Process
+
+    def funcao_exemplo(nome):
+        print(f"Olá, {nome}!")
+
+    p = Process(target=funcao_exemplo, args=("Mundo",))
+    p.start()
+    p.join()
+
+  - Como funciona: Inicia um processo independente para executar a função especificada.
+
+Comunicação entre Processos
+
+- multiprocessing.Queue
+
+  - Descrição: Permite a troca de dados entre processos por meio de filas seguras.
+  
+  - Sintaxe:
+
+    from multiprocessing import Process, Queue
+
+    def produtor(fila):
+        fila.put("Mensagem")
+
+    def consumidor(fila):
+        print(f"Consumidor recebeu: {fila.get()}")
+
+    fila = Queue()
+    p1 = Process(target=produtor, args=(fila,))
+    p2 = Process(target=consumidor, args=(fila,))
+    p1.start()
+    p2.start()
+    p1.join()
+    p2.join()
+    
+  - Como funciona: Garante comunicação segura entre processos usando uma estrutura FIFO.
+
+-multiprocessing.Pipe
+
+  - Descrição: Cria um canal de comunicação bidirecional entre dois processos.
+ 
+  - Sintaxe:
+
+    from multiprocessing import Process, Pipe
+
+    def comunicador(conexao):
+        conexao.send("Mensagem via Pipe")
+        conexao.close()
+
+    conn1, conn2 = Pipe()
+    p = Process(target=comunicador, args=(conn1,))
+    p.start()
+    print(conn2.recv())
+    p.join()
+
+  - Como funciona: Permite a troca de mensagens entre dois pontos.
+
+Pool de Processos
+
+- multiprocessing.Pool
+
+  - Descrição: Gerencia um grupo de processos para executar tarefas em paralelo.
+  
+  - Métodos principais:
+    
+    - apply: Executa uma função em um único processo.
+    
+    - map: Executa uma função em paralelo para uma lista de argumentos.
+  
+  - Sintaxe:
+    
+    from multiprocessing import Pool
+
+    def quadrado(n):
+        return n * n
+
+    with Pool(4) as pool:
+        
+        resultados = pool.map(quadrado, [1, 2, 3, 4])
+    
+    print(resultados)
+    
+  - Como funciona: Divide automaticamente o trabalho entre os processos disponíveis.
+
+Sincronização
+
+- multiprocessing.Lock
+
+  - Descrição: Garante que apenas um processo por vez acesse uma seção crítica.
+  
+  - Sintaxe:
+
+    from multiprocessing import Process, Lock
+
+    def funcao_exemplo(lock):
+        with lock:
+            print("Seção crítica")
+
+    lock = Lock()
+    p1 = Process(target=funcao_exemplo, args=(lock,))
+    p2 = Process(target=funcao_exemplo, args=(lock,))
+    p1.start()
+    p2.start()
+    p1.join()
+    p2.join()
+
+- multiprocessing.Semaphore
+
+  - Descrição: Controla o número de processos que podem acessar um recurso simultaneamente.
+
+Compartilhamento de Dados
+
+- multiprocessing.Value e multiprocessing.Array
+
+  - Descrição: Permite o compartilhamento de valores e arrays entre processos.
+ 
+  - Sintaxe:
+   
+    from multiprocessing import Process, Value, Array
+
+    def exemplo(valor, array):
+        valor.value = 10
+        for i in range(len(array)):
+            array[i] = array[i] * 2
+
+    valor = Value('i', 0)
+    array = Array('i', [1, 2, 3, 4])
+    p = Process(target=exemplo, args=(valor, array))
+    p.start()
+    p.join()
+    print(valor.value)
+    print(array[:])
+
+
+Finalização e Controle de Processos
+
+- Process.is_alive()
+  
+  - Descrição: Verifica se um processo está em execução.
+
+- Process.terminate()
+  
+  - Descrição: Encerra um processo imediatamente.
+
+Gerenciamento de Prioridade
+
+- multiprocessing.Manager
+
+  - Descrição: Cria objetos compartilháveis para múltiplos processos, como listas e dicionários.
+  
+  - Sintaxe:
+
+    from multiprocessing import Manager
+
+    with Manager() as manager:
+        lista_compartilhada = manager.list([1, 2, 3])
+        lista_compartilhada.append(4)
+    
+
+### Comparação com threading
+
+- Diferentemente de threading, multiprocessing cria novos processos em vez de threads, evitando o GIL e aproveitando múltiplos núcleos.
+
+### Uso em Plataformas Diferentes
+
+- Em Windows, é necessário encapsular a criação de processos em uma instrução if __name__ == "__main__".
