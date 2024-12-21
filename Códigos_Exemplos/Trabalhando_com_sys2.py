@@ -1,18 +1,21 @@
-# Vamos entender como funciona o endereçamento de memória utilizando o sys.path da biblioteca sys.
+# Vamos entender como funciona o endereçamento de memória utilizando o sys.path
+#  da biblioteca sys.
 
-# O sys.path é uma lista que contém todos os diretórios onde o interpretador Python pode procurar por módulos.
+# O sys.path é uma lista que contém todos os diretórios onde o interpretador
+#  Python pode procurar por módulos.
 
 # Lembre-se:
 
 # - O sys.path é uma LISTA e pode ser manipulada como qualquer outra lista no Python.
-# - Ele inclui caminhos como o diretório atual, os diretórios padrão do Python, e os definidos na variável PYTHONPATH.
+# - Ele inclui caminhos como o diretório atual, os diretórios padrão do Python, e os
+#  definidos na variável PYTHONPATH.
 
 # Exemplo: Mostrar todos os caminhos no sys.path
 
 import sys
 
 # Listar os métodos que listas (e sys.path) possuem
-print(dir(sys.path))  # Isso mostrará métodos como append, extend, etc.
+print(dir(sys.path))  # Isso mostrará métodos como append, extend', etc.
 print()
 # Mostrar todos os diretórios onde o Python procura módulos
 for idx, path in enumerate(sys.path):

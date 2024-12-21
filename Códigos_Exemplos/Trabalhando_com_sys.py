@@ -24,7 +24,9 @@ print("Caminho relativo ao script atual:", os.path.join(os.path.dirname(__file__
 print("Caminho absoluto:", os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Mostra os efeitos no sys.path
-print(f'\nEssa é a lista de diretórios em sys.path:\n{sys.path}\n')
+for x,path in enumerate(sys.path):
+    #print(f'\nEssa é a lista de diretórios em sys.path: ')
+    print(f"{x}:{path}")
 
 '''
     SAIDA:

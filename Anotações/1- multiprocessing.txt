@@ -1,7 +1,9 @@
 1 - O que é a lib multiprocessing?
 
-A biblioteca multiprocessing no Python permite a criação de processos independentes, possibilitando o aproveitamento de múltiplos núcleos do processador para execução paralela. 
-É ideal para tarefas que exigem computação intensiva, onde o GIL (Global Interpreter Lock) pode ser um limitador no módulo threading.
+A biblioteca multiprocessing no Python permite a criação de processos independentes,
+possibilitando o aproveitamento de múltiplos núcleos do processador para execução paralela. 
+É ideal para tarefas que exigem computação intensiva, onde o GIL (Global Interpreter Lock)
+pode ser um limitador no módulo threading.
 
 2 -Principais Objetos e Funcionalidades do Módulo multiprocessing
 
@@ -127,7 +129,8 @@ Sincronização
 
 - multiprocessing.Semaphore
 
-  - Descrição: Controla o número de processos que podem acessar um recurso simultaneamente.
+  - Descrição: Controla o número de processos que podem acessar um recurso
+  simultaneamente.
 
 Compartilhamento de Dados
 
@@ -135,7 +138,7 @@ Compartilhamento de Dados
 
   - Descrição: Permite o compartilhamento de valores e arrays entre processos.
  
-  - Sintaxe:
+  - Sintaxe:'
    
     from multiprocessing import Process, Value, Array
 
@@ -167,7 +170,8 @@ Gerenciamento de Prioridade
 
 - multiprocessing.Manager
 
-  - Descrição: Cria objetos compartilháveis para múltiplos processos, como listas e dicionários.
+  - Descrição: Cria objetos compartilháveis para múltiplos processos, como listas e
+   dicionários.
   
   - Sintaxe:
 
@@ -180,8 +184,10 @@ Gerenciamento de Prioridade
 
 ### Comparação com threading
 
-- Diferentemente de threading, multiprocessing cria novos processos em vez de threads, evitando o GIL e aproveitando múltiplos núcleos.
+- Diferentemente de threading, multiprocessing cria novos processos em vez de threads, 
+evitando o GIL e aproveitando múltiplos núcleos.
 
 ### Uso em Plataformas Diferentes
 
-- Em Windows, é necessário encapsular a criação de processos em uma instrução if __name__ == "__main__".
+- Em Windows, é necessário encapsular a criação de processos em uma instrução
+ if __name__ == "__main__".

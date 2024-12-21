@@ -6,7 +6,8 @@ import numpy as np
 import os
 import time
 
-# Criando um DataFrame através de um dicionário com Dados fictícios do setor administrativo
+# Criando um DataFrame através de um dicionário com Dados fictícios do
+#  setor administrativo
 data = {
     "ID": range(1, 21),
     "Nome": [
@@ -58,7 +59,7 @@ print(df_csv_gerado.head(2)) # retornando as duas primeiras linhas
 print("\nAguarde 5s para o sistema remover o arquivo.csv\n")
 
 start_time = time.time() 
-for i in range(60, 0, -1):  # Começando de 5 e indo até 1
+for i in range(5, 0, -1):  # Começando de 5 e indo até 1
     print(f'Aguarde {i} segundos para remover o arquivo')
     time.sleep(1)  # Pausa de 1 segundo
 end_time = time.time() 

@@ -330,7 +330,8 @@ Variáveis de Ambiente
         HOME -> Contém o diretório inicial do usuário (em sistemas Unix-like).
         USERPROFILE -> Contém o diretório de perfil do usuário (em sistemas Windows).
         TEMP -> Diretório onde arquivos temporários podem ser armazenados.
-        PYTHONPATH -> Define um caminho adicional onde o Python procurará por módulos e pacotes.s
+        PYTHONPATH -> Define um caminho adicional onde o Python procurará por módulos
+        e pacotes.s
 
 - os.getenv(key)
 
