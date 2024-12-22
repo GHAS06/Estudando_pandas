@@ -27,11 +27,11 @@ try:
     # Transformando o DataFrame em um aquivo excel
     print("\nProcessendo Aquivo excel")
     time.sleep(5)
-    DataFrame.to_excel('Excel_Pokemons.xlsx', index=False)
+    #DataFrame.to_excel('Excel_Pokemons.xlsx', index=False)
     print("\nArquivo Excel criado com sucesso.\n")
 except Exception as e:
     print(f"Erro ao criar o arquivo Excel: {e}")
-
+'''
 # montando automação de diretórios
 try:
     caminho_origem = os.path.join(os.getcwd(),'Excel_Pokemons.xlsx')
@@ -53,6 +53,6 @@ try:
 
 except Exception as e:
     print(f'Aconteceu alguma cagada aqui: {e}')
-
+'''
 # Usando PandasGui para analisar dados
-show(DataFrema)
+show(DataFrame)

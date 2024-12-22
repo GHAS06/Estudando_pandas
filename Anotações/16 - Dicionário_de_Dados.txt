@@ -1,0 +1,77 @@
+1 - O que é um Dicionário de dados? 
+    
+    Um dicionário de dados é um documento ou uma estrutura que descreve os detalhes e a
+    organização dos dados em um sistema, banco de dados ou aplicação. Ele funciona como
+    um guia que explica os elementos de dados (como tabelas, campos ou variáveis),
+    seus significados, formatos, restrições e relações com outros dados.
+
+2 - Objetivo Principal
+
+    O objetivo do dicionário de dados é garantir que todos os envolvidos em um projeto
+    (desenvolvedores, analistas, cientistas de dados, etc.) tenham uma compreensão clara
+    e uniforme sobre os dados, promovendo consistência e evitando ambiguidades.
+
+3 - Componentes de um Dicionário de Dados
+
+I - Um dicionário de dados geralmente inclui:
+
+    Nome do Campo ou Atributo:
+
+        Identifica o campo de forma única, como: id_cliente, nome, ou data_criacao.
+
+II - Descrição
+        
+        Uma explicação clara sobre o que o dado representa. 
+        
+        Exemplo: id_cliente: "Identificador único do cliente no sistema."
+
+III - Tipo de Dado
+
+    Especifica o tipo do campo, como:
+
+    Inteiro (int)
+    Texto (varchar, string)
+    Data (date, datetime)
+    Booleano (true/false)
+
+IV - Tamanho
+    
+    O limite de caracteres ou valores que o campo pode conter.
+    
+    Exemplo: nome_cliente pode ter até 255 caracteres.
+
+V - Valores Possíveis ou Restrições
+
+    Indica se há uma lista de valores válidos ou uma regra para o campo.
+
+    Exemplo: status pode ter os valores "ativo" ou "inativo".
+
+VI - Relacionamentos
+    
+    Mostra como o campo se relaciona com outros dados, como uma chave estrangeira
+    (foreign key).
+
+VII - Exemplo de Valor
+    
+    Mostra valores típicos para ajudar a compreensão.
+
+    Exemplo: cpf_cliente -> 123.456.789-00.
+
+4 - Onde São Usados Dicionários de Dados?
+
+    Bancos de Dados: Documentam tabelas, colunas, índices e chaves primárias/estrangeiras.
+
+    ETL e Data Warehousing: Para descrever transformações de dados.
+
+    Sistemas de Informação: Garantem que os desenvolvedores e usuários entendam os dados.
+
+    Análises de Dados e Machine Learning: Ajudam na limpeza e modelagem de dados.
+
+    Exemplo de Dicionário de Dados:
+
+   Campo	            Descrição	              Tipo	  Tamanho	Valores Possíveis	   Relacionamento
+id_cliente	  Identificador único do cliente	 Inteiro	10	            -  	           Chave Primária   
+nome_cliente	Nome completo do cliente	      Texto	    255	            -                  	 -
+status	      Status do cliente no sistema	      Texto	    10	     "ativo", "inativo"	         -
+data_criacao	Data de criação do registro	Data    -	     -            	-                    -              
+
