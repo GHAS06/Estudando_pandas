@@ -1,0 +1,173 @@
+1 - O que é a biblioteca JSON?
+
+    A biblioteca json do Python é um módulo embutido que permite trabalhar com dados no
+    formato JSON (JavaScript Object Notation). Este formato é amplamente utilizado em APIs
+    e armazenamento de dados por ser leve, legível e fácil de processar por humanos e
+    máquinas. A biblioteca fornece métodos para converter dados Python para JSON 
+    (serialização) e JSON para dados Python (desserialização). 
+
+    Geralmente são dist() ou seja, dicionário de dados em python que serializados
+
+2 - PRINCIPAIS OBJETOS E MAIS UTILIZADOS DO MÓDULO JSON
+
+Serialização (Conversão de Python para JSON)
+
+- json.dump(obj, fp, , skipkeys=False, ensure_ascii=True, ...)
+
+    Descrição: Serializa um objeto Python para JSON e grava diretamente em um arquivo.
+    
+    Parâmetros:
+        
+        obj: Objeto Python a ser serializado.
+        fp: Objeto de arquivo onde o JSON será gravado.
+        skipkeys: Ignora chaves que não sejam strings.
+        ensure_ascii: Garante que o resultado seja codificado em ASCII (padrão True).
+
+    Sintaxe:
+        
+        with open('dados.json', 'w') as file:
+            json.dump({"nome": "João", "idade": 25}, file, indent=4)
+
+    Como funciona: Grava o JSON gerado diretamente no arquivo especificado.
+
+- json.dumps(obj, , skipkeys=False, ensure_ascii=True, ...)
+
+    Descrição: Serializa um objeto Python para JSON, retornando como uma string.
+
+    Parâmetros:
+
+        obj: Objeto Python a ser serializado.
+        skipkeys: Ignora chaves inválidas (como não-strings).
+        ensure_ascii: Codifica caracteres especiais como Unicode.
+        indent: Especifica a indentação para formatação legível.
+
+    Sintaxe:
+        
+        json_data = json.dumps({"nome": "João", "idade": 25}, indent=4)
+        print(json_data)
+
+    Como funciona: Retorna uma string no formato JSON a partir de um objeto Python.
+
+Desserialização (Conversão de JSON para Python)
+
+- json.load(fp, , cls=None, object_hook=None, ...)
+
+    Descrição: Carrega JSON de um arquivo e converte em um objeto Python.
+    
+    Parâmetros:
+        
+        fp: Objeto de arquivo contendo o JSON.
+        cls: Subclasse personalizada para o decodificador JSON.
+        object_hook: Função personalizada para mapear os objetos JSON para Python.
+    
+    Sintaxe:
+
+        with open('dados.json', 'r') as file:
+            dados = json.load(file)
+            print(dados["nome"])
+
+    Como funciona: Lê JSON do arquivo e o converte em um dicionário ou lista.
+
+- json.loads(s, , cls=None, object_hook=None, ...)
+
+    Descrição: Converte uma string JSON em um objeto Python.
+    
+    Parâmetros:
+
+        s: String contendo o JSON.
+        cls: Subclasse personalizada para o decodificador JSON.
+        object_hook: Função personalizada para mapear os objetos JSON para Python.
+
+    Sintaxe:
+        
+        dados = json.loads('{"nome": "João", "idade": 25}')
+        print(dados["nome"])
+    
+    Como funciona: Retorna um objeto Python correspondente ao JSON fornecido.
+
+Configurações e Personalizações
+
+- Parâmetro indent
+
+    Descrição: Define a quantidade de espaços para formatação legível do JSON.
+    
+    Exemplo:
+
+        json_data = json.dumps({"nome": "João", "idade": 25}, indent=2)
+        print(json_data)
+
+- Parâmetro sort_keys
+
+    Descrição: Ordena as chaves no JSON em ordem alfabética.
+    
+    Exemplo:
+
+        json_data = json.dumps({"b": 1, "a": 2}, sort_keys=True)
+        print(json_data)  # {"a": 2, "b": 1}
+
+- Parâmetro ensure_ascii
+
+    Descrição: Controla a codificação de caracteres não-ASCII.
+    
+    Exemplo:
+
+        json_data = json.dumps({"nome": "João"}, ensure_ascii=False)
+        print(json_data)  # {"nome": "João"}
+
+Tratamento de Erros
+
+- json.JSONDecodeError
+
+    Descrição: Exceção levantada quando o JSON é inválido ou não pode ser desserializado.
+
+    Sintaxe:
+
+        try:
+            dados = json.loads('{"nome": "João", idade: 25}')  # Erro de sintaxe
+        except json.JSONDecodeError as e:
+            print(f"Erro ao decodificar JSON: {e}")
+
+Exemplos Avançados
+
+- Uso de object_hook para personalizar a desserialização:
+
+    def transformar_objeto(d):
+        return {k.upper(): v for k, v in d.items()}
+
+    json_data = '{"nome": "João", "idade": 25}'
+    dados = json.loads(json_data, object_hook=transformar_objeto)
+    print(dados)  # {'NOME': 'João', 'IDADE': 25}
+
+Conversão de Objetos Personalizados:
+
+- Serializar objetos personalizados:
+
+    class Pessoa:
+        def __init__(self, nome, idade):
+            self.nome = nome
+            self.idade = idade
+
+    def pessoa_para_json(p):
+        return {"nome": p.nome, "idade": p.idade}
+
+    pessoa = Pessoa("João", 25)
+    json_data = json.dumps(pessoa, default=pessoa_para_json)
+    print(json_data)
+
+- Desserializar objetos personalizados:
+
+    def json_para_pessoa(d):
+        return Pessoa(d["nome"], d["idade"])
+
+    json_data = '{"nome": "João", "idade": 25}'
+    pessoa = json.loads(json_data, object_hook=json_para_pessoa)
+    print(pessoa.nome)
+
+Com a biblioteca json, é fácil manipular dados estruturados, especialmente em contextos
+de APIs e armazenamento de dados.
+
+
+
+
+
+

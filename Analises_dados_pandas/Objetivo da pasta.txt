@@ -1,0 +1,5 @@
+1 - Essa pasta tem como objetivo armazenar os códigos de analise de dados que fazemos com
+pandas,pandasgui e com libs auxiliaras.
+
+2 - Tem será armazenado aqui códigos de tratamento e importação de dados, usando libs 
+como: psycopg2, psycopg3, sqlalquemy

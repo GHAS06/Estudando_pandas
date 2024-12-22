@@ -1,0 +1,207 @@
+1 - O que é a biblioteca Requests?
+    
+    A biblioteca requests é uma biblioteca popular em Python para realizar requisições HTTP
+    de forma simples e intuitiva. Ela é amplamente utilizada para interagir com APIs, 
+    baixar conteúdos de páginas da web e enviar dados para servidores.
+
+    Ao contrário de outras bibliotecas padrão, como urllib, o requests abstrai muitas
+    complexidades e torna a interação com protocolos HTTP mais amigável e eficiente.
+
+2 - PRINCIPAIS OBJETOS E MAIS UTILIZADOS DO MÓDULO REQUESTS
+
+Requisições HTTP Básicas
+
+- requests.get(url, params=None, kwargs)
+
+    Descrição: Envia uma requisição HTTP do tipo GET para o servidor.
+
+    Parâmetros:
+        
+        url: URL para a qual a requisição será enviada.
+        
+        params: Dicionário ou tupla de pares (chave, valor) a serem enviados na URL como
+        parâmetros de consulta.
+        
+        **kwargs: Opções adicionais como cabeçalhos, autenticação e tempo limite.
+    
+    Sintaxe:
+
+        response = requests.get(url, params={"key": "value"})
+
+    Como funciona: Faz uma solicitação GET e retorna um objeto de resposta contendo dados
+    do servidor.
+
+- requests.post(url, data=None, json=None, kwargs)
+
+    Descrição: Envia uma requisição HTTP do tipo POST para o servidor.
+    
+    Parâmetros:
+        
+        url: URL para a qual a requisição será enviada.
+        
+        data: Dados no formato de dicionário, tupla ou string a serem enviados no corpo
+        da requisição.
+        
+        json: Dados no formato JSON a serem enviados no corpo da requisição.
+        
+        **kwargs: Configurações adicionais como cabeçalhos, autenticação e tempo limite.
+    
+    Sintaxe:
+    
+        response = requests.post(url, data={"key": "value"})
+
+    Como funciona: Faz uma solicitação POST e retorna uma resposta do servidor.
+
+- requests.put(url, data=None, kwargs)
+
+    Descrição: Envia uma requisição HTTP do tipo PUT para criar ou atualizar recursos
+    em um servidor.
+    
+    Parâmetros:
+        
+        url: URL para a qual a requisição será enviada.
+        
+        data: Dados no formato de dicionário, tupla ou string a serem enviados no corpo da requisição.
+        
+        **kwargs: Configurações adicionais como cabeçalhos, autenticação e tempo limite.
+
+    Sintaxe:
+
+        response = requests.put(url, data={"key": "value"})
+    
+    Como funciona: Atualiza ou cria um recurso no servidor especificado.
+
+- requests.delete(url, kwargs)
+
+    Descrição: Envia uma requisição HTTP do tipo DELETE para remover recursos no servidor.
+   
+    Parâmetros:
+        url: URL do recurso a ser excluído.
+        
+        **kwargs: Configurações adicionais como cabeçalhos, autenticação e tempo limite.
+   
+    Sintaxe:
+
+        response = requests.delete(url)
+
+Como funciona: Exclui o recurso especificado no servidor.
+
+Manipulação de Respostas HTTP
+
+- response.status_code
+    
+    Descrição: Retorna o código de status HTTP da resposta (exemplo: 200 para sucesso).
+    
+    Sintaxe:
+
+    print(response.status_code)
+
+    Como funciona: Fornece o código de status HTTP para ajudar a verificar o sucesso ou
+    rro da requisição.
+
+- response.text
+    
+    Descrição: Retorna o conteúdo da resposta como uma string.
+    
+    Sintaxe:
+
+        print(response.text)
+    
+    Como funciona: Fornece o conteúdo do corpo da resposta no formato de texto.
+
+- response.json()
+
+    Descrição: Retorna o conteúdo da resposta como um objeto JSON (dicionário).
+    
+    Sintaxe:
+
+        data = response.json()
+        print(data["key"])
+
+    Como funciona: Analisa o conteúdo da resposta JSON e retorna um dicionário Python.
+
+- response.headers
+
+    Descrição: Retorna os cabeçalhos HTTP da resposta como um dicionário.
+
+    Sintaxe:
+        
+        print(response.headers)
+    
+    Como funciona: Fornece informações adicionais sobre a resposta, como tipo de conteúdo
+    e tamanho.
+
+- response.content
+
+Descrição: Retorna o conteúdo da resposta em formato binário.
+
+    Sintaxe:
+
+        with open('image.png', 'wb') as file:
+            file.write(response.content)
+
+    Como funciona: Útil para download de arquivos binários, como imagens e vídeos.
+
+Configurações e Autenticação
+
+- requests.auth.HTTPBasicAuth(username, password)
+
+    Descrição: Fornece autenticação básica para uma requisição HTTP.
+    
+    Parâmetros:
+        username: Nome de usuário.  
+        password: Senha.
+    Sintaxe:
+        
+        from requests.auth import HTTPBasicAuth
+        response = requests.get(url, auth=HTTPBasicAuth('user', 'pass'))
+
+    Como funciona: Adiciona cabeçalhos de autenticação básica à requisição.
+
+- requests.Session()
+
+    Descrição: Permite o uso de sessões persistentes para manter cookies e outras
+    configurações entre múltiplas requisições.
+
+    Sintaxe:
+        
+        session = requests.Session()
+        session.headers.update({'Authorization': 'Bearer token'})
+        response = session.get(url)
+
+    Como funciona: Mantém o estado entre as requisições HTTP.
+
+Tratamento de Exceções
+    
+- requests.exceptions.RequestException
+    
+    Descrição: Classe base para exceções relacionadas a requisições.
+    
+    Sintaxe:
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            print(f"Erro: {e}")
+
+    Como funciona: Captura erros como falhas de conexão, tempo limite e códigos de erro
+    HTTP.
+
+Exemplos Adicionais
+
+= Configurar um tempo limite para requisições:
+
+    response = requests.get(url, timeout=5)  # Timeout em segundos
+
+- Envio de cabeçalhos personalizados:
+
+    headers = {'User-Agent': 'MeuApp/1.0'}
+    response = requests.get(url, headers=headers)
+
+- Envio de arquivos em uma requisição:
+
+    files = {'file': open('arquivo.txt', 'rb')}
+    response = requests.post(url, files=files)
+
+# Com essas funcionalidades, a biblioteca requests permite interagir de maneira fácil
+e eficiente com servidores e APIs RESTful.

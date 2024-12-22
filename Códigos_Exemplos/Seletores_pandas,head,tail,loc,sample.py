@@ -5,7 +5,7 @@ import os
 # Estava dando erro aqui, copiei do chat, estude essa lib sys #copiei do código1
 
 # Adiciona o diretório pai da pasta 'funcoes_curso' ao sys.path
-sys.path.append(os.path.abspath('C:/Estudando_pandas_Copia'))
+sys.path.append(os.path.abspath('C:/Estudando_pandas'))
 
 #Debugando
 # Verifique se o diretório foi adicionado ao sys.path

@@ -1,0 +1,197 @@
+1 - Usei o chatgpt para fazer esse código para mim, estou fazendo essa anotação
+para entender o que foi feito. E usei o chat para explicar isso.
+
+2 - Função dados_pokemon()
+
+    O código é encapsulado em uma função chamada dados_pokemon(). Isso permite que você
+    execute o processo de coleta e processamento dos dados sempre que necessário.
+
+    def dados_pokemon():
+        Esta função irá coletar os nomes de todos os Pokémons e os dados detalhados sobre
+        cada um, organizando essas informações em um DataFrame no final.
+
+3 - Objetivo do Código:
+
+    O objetivo deste código é realizar uma requisição à API do Pokémon para obter
+    informações detalhadas de vários Pokémons 
+    (nome, altura, peso e base_experience).
+    Esses dados serão armazenados em um DataFrame do Pandas, que é uma estrutura tabular
+    amplamente utilizada para análise de dados. A ideia é obter informações de
+    múltiplos Pokémons e organizá-las de maneira que seja fácil de visualizar e manipular.
+
+I - Importação de Bibliotecas
+
+import requests
+import json
+import pandas as pd
+
+requests: Biblioteca usada para fazer requisições HTTP. É essencial para interagir com APIs (como a API do Pokémon).
+
+json: Biblioteca para manipulação de dados no formato JSON (JavaScript Object Notation), que é o formato em que a API do Pokémon retorna os dados.
+pandas as pd: Pandas é uma biblioteca de manipulação de dados em Python. Aqui, usamos um alias (pd) para simplificar o uso dos métodos da biblioteca. Usamos o Pandas para armazenar os dados em um DataFrame, que é uma estrutura de dados tabular.
+
+II. Inicialização das Variáveis
+
+pokemons = []
+
+pokemons: Uma lista que será usada para armazenar os nomes dos Pokémons que queremos obter
+dados. Inicialmente, está vazia, mas vamos preenchê-la com os nomes dos Pokémons ao fazer
+uma requisição à API que nos dá essa lista.
+
+pokemon_info = {
+    "name": [],
+    "height": [],
+    "weight": [],
+    "base_experience": [],
+}
+
+pokemon_info: Um dicionário onde as chaves são as categorias de informações dos
+Pokémons (como nome, altura, peso e experiência base). Os valores dessas chaves são
+listas vazias que serão preenchidas com os dados de cada Pokémon que vamos obter.
+No final, essas listas serão usadas para criar o DataFrame.
+
+III - Obter a Lista de Pokémons
+
+    Agora, queremos obter todos os nomes dos Pokémons da API para depois buscar informações
+    sobre cada um deles.
+
+- api_pokemon_list = "https://pokeapi.co/api/v2/pokemon"
+
+    api_pokemon_list: Esta variável contém a URL da API que retorna uma lista de Pokémons.
+    Quando fazemos uma requisição para essa URL, obtemos uma lista com o nome de diversos
+    Pokémons.
+
+- response = requests.get(api_pokemon_list)
+
+    requests.get(api_pokemon_list): Fazemos uma requisição GET à API. Isso retorna
+    uma resposta, que é armazenada na variável response. Se a requisição for bem-sucedida,
+    essa resposta terá um status code 200, indicando que os dados foram obtidos com 
+    sucesso.
+
+if response.status_code == 200:
+    data = response.json()
+
+    response.status_code == 200: Verificamos se a requisição foi bem-sucedida. 
+    O código de status 200 significa que a API respondeu corretamente.
+
+    response.json(): Convertemos o conteúdo da resposta para um formato Python
+    (um dicionário). A API retorna dados no formato JSON, e o .json() é usado para
+    decodificar esses dados JSON em um dicionário Python.
+
+for pokemon in dados['results']:
+    pokemons.append(pokemon['name'])
+
+    dados['results']: A resposta JSON da API contém uma chave chamada results, 
+    que é uma lista de Pokémons. Cada item dessa lista é um dicionário que contém
+    informações como o nome e a URL do Pokémon.
+
+    pokemon['name']: Dentro de cada item da lista results, acessamos a chave name que
+    contém o nome do Pokémon. Esses nomes são armazenados na lista pokemons.
+
+IV - Tratamento de Paginação
+
+    A API retorna os Pokémons em páginas, com 20 Pokémons por página. Se houver mais 
+    Pokémons, a resposta conterá um campo next, que nos dá a URL da próxima página.
+    Para garantir que pegamos todos os Pokémons, vamos fazer requisições para todas as
+    páginas.
+
+while data['next']:
+    response = requests.get(data['next'])
+    if response.status_code == 200:
+        data = response.json()
+        for pokemon in data['results']:
+            pokemons.append(pokemon['name'])
+    else:
+        print("Erro ao pegar próxima página")
+        break
+
+    while dados['next']:: A API nos retorna a URL da próxima página de resultados no campo
+    next. Se essa URL existir, significa que há mais Pokémons para pegar.
+
+    requests.get(data['next']): Fazemos uma nova requisição para essa URL.
+
+    data = response.json(): Decodificamos a resposta JSON da próxima página e atualizamos a
+    variável data.
+
+    for pokemon in data['results']: Iteramos sobre os Pokémons da nova página, adicionando
+    seus nomes à lista pokemons.
+
+V - Obter Detalhes de Cada Pokémon
+
+    Agora que temos a lista com todos os nomes dos Pokémons, vamos iterar sobre essa lista
+    e obter os dados detalhados de cada Pokémon (nome, altura, peso, experiência base).
+
+for pokemon in pokemons:
+    api_pokemon = f"https://pokeapi.co/api/v2/pokemon/{pokemon}"
+    response = requests.get(api_pokemon)
+    print(f"Status Code: {response.status_code} - Pokémon: {pokemon}")
+
+    f"https://pokeapi.co/api/v2/pokemon/{pokemon}": A URL para obter detalhes de um Pokémon
+    específico. Usamos f-string para inserir o nome de cada Pokémon (pokemon)
+    na URL da API.
+
+    requests.get(api_pokemon): Fazemos uma requisição GET para a URL do Pokémon
+    específico.
+
+    response.status_code: Verificamos o status da requisição para saber se foi bem-sucedida (status 200).
+
+VI Processar os Dados de Cada Pokémon
+
+    Se a requisição para obter os dados do Pokémon for bem-sucedida, extraímos as 
+    informações que queremos (nome, altura, peso, experiência base) e as armazenamos
+    nas listas correspondentes.
+
+
+if response.status_code == 200:
+    dados_pokemon = response.json()
+    pokemon_info["name"].append(dados_pokemon["name"])
+    pokemon_info["height"].append(dados_pokemon["height"])
+    pokemon_info["weight"].append(dados_pokemon["weight"])
+    pokemon_info["base_experience"].append(dados_pokemon["base_experience"])
+
+    response.json(): Decodificamos a resposta JSON da API para um dicionário Python.
+
+    dados_pokemon["name"], dados_pokemon["height"], dados_pokemon["weight"], 
+    dados_pokemon["base_experience"]: 
+    
+    Acessamos os dados de cada Pokémon (nome, altura, peso e experiência base) e os 
+    adicionamos às listas no dicionário pokemon_info.
+
+VII - Criar o DataFrame
+
+Após coletar os dados de todos os Pokémons, criamos um DataFrame com o Pandas. Cada chave
+do dicionário pokemon_info será uma coluna do DataFrame, e as listas serão os valores
+dessas colunas.
+
+df = pd.DataFrame(pokemon_info)
+
+pd.DataFrame(pokemon_info): Criamos o DataFrame, onde cada chave do dicionário pokemon_info se torna uma coluna e cada lista se torna a série de valores dessa coluna.
+
+8 - Exibir o DataFrame
+
+    Por fim, mostramos o DataFrame com todos os dados dos Pokémons.
+
+print("\nDataFrame criado a partir dos dados dos Pokémons:")
+print(df)
+print(df): Imprime o DataFrame resultante, exibindo as informações dos Pokémons em formato tabular.
+
+4 - Resumo do Processo
+
+    - Obter a lista de Pokémons: Fazemos uma requisição para obter todos os Pokémons 
+    disponíveis na API.
+    
+    - Coletar dados detalhados: Para cada Pokémon, fazemos uma nova requisição para obter
+    os detalhes (nome, altura, peso e experiência base).
+    
+    - Armazenar dados: Guardamos esses dados em um dicionário, com cada categoria de
+    informação (nome, altura, etc.) sendo uma chave e as listas sendo os valores.
+    
+    - Criar DataFrame: Usamos o Pandas para organizar esses dados em uma tabela 
+    (DataFrame).
+    
+    - Exibir os dados: Imprimimos o DataFrame para visualizar os dados coletados.
+
+5 - Para que serve esse código
+
+    Esse código permite que você obtenha dados de vários Pokémons da API do Pokémon e
+    organize essas informações em uma tabela para facilitar a análise.
