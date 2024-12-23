@@ -1,0 +1,99 @@
+1 - Aula sobre Conversão de Unidades de Memória
+
+    A conversão de unidades de memória é uma habilidade essencial ao trabalhar com dados
+    e armazenamento de computador. A memória digital é tipicamente expressa em bits e bytes,
+    e essas unidades podem ser convertidas entre si com base em fatores de 2 
+    (não 10, como em unidades de medida do dia a dia).
+
+2 - Unidades Básicas de Memória
+
+    - Bit (b): A menor unidade de dados. Pode representar um valor de 0 ou 1.
+    - Byte (B): Um byte é composto por 8 bits.
+    - Kilobyte (KB): 1 KB = 1024 bytes.
+    - Megabyte (MB): 1 MB = 1024 KB ou 1.048.576 bytes.
+    - Gigabyte (GB): 1 GB = 1024 MB ou 1.073.741.824 bytes.
+    - Terabyte (TB): 1 TB = 1024 GB ou 1.099.511.627.776 bytes.
+    - Petabyte (PB): 1 PB = 1024 TB ou 1.125.899.906.842.624 bytes.
+
+    Essas unidades seguem o sistema binário (base 2), onde cada unidade é o dobro da
+    anterior.
+
+3 - Como Converter Memória
+
+I - De Bits para Bytes
+
+    - Como 1 byte = 8 bits, para converter de bits para bytes, basta dividir por 8:
+
+        bytes = (Bits/8) 
+
+II - De Bytes para Kilobytes (KB)
+
+    - Como 1 KB = 1024 bytes, para converter de bytes para kilobytes, divide-se por 1024:
+
+        Kilobytes = (Bytes/1024)
+ 
+III - De Kilobytes para Megabytes (MB)
+
+    - Como 1 MB = 1024 KB, para converter de kilobytes para megabytes, divide-se por 1024:
+
+        Megabytes = (KiloBytes/1024)
+ 
+IV - De Megabytes para Gigabytes (GB)
+    
+    - Como 1 GB = 1024 MB, para converter de megabytes para gigabytes, divide-se por 1024:
+
+        Gigabytes = (Megabytes/1024)
+ 
+V - De Gigabytes para Terabytes (TB)
+    
+    - Como 1 TB = 1024 GB, para converter de gigabytes para terabytes, divide-se por 1024:
+
+        Terabytes = (Gigabytes/1024)​
+ 
+4 -Exemplos de Conversão
+
+    De 257641 bytes para kilobytes (KB):
+
+        (257.641/1.024) = 251.60
+ 
+        Resposta = 257641 ÷ 1024 = 251.60KB
+
+    De 257641 bytes para megabytes (MB):
+        
+        (257.641/1.048.576) = 0.246
+         
+        Resposta =  257.641 ÷ 1.048.576 = 0.246MB
+
+    De 1.5 GB para megabytes (MB):
+    
+        (1.5 * 1.024) = 1.536
+ 
+    Resposta = 1.5 × 1.024 = 1536MB
+
+    De 5 GB para bytes:
+    
+    (5 * 1.024 ** 3 ) = 5.368.709.120
+ 
+    Resposta =  5 × (1024 ^ 3) = 5.368.709.120bytes
+
+5 - Tabela de Conversões de Memória (em Potências de 1024)
+
+| Unidade            | Valor em Bytes         | Valor em Kilobytes (KB)    | Valor em Megabytes (MB)      | Valor em Gigabytes (GB)      | Valor em Terabytes (TB)     | Valor em Petabytes (PB)     |
+|--------------------|------------------------|----------------------------|------------------------------|------------------------------|-----------------------------|-----------------------------|
+| 1 bit (b)          | 0.125 byte             | 0.0001220703 KB            | 0.0000001192092896 MB        | 0.0000000001164150238 GB     | 0.0000000000001136864 TB    | 0.0000000000000001106 PB    |
+| 1 byte (B)         | 1 byte                 | 0.0009765625 KB            | 0.0000009536743164 MB        | 0.0000000009313225747 GB     | 0.0000000000009094947 TB    | 0.000000000000000888 PB    |
+| 1 kilobyte (KB)    | 1024 bytes             | 1 KB                       | 0.0009765625 MB              | 0.0000009536743164 GB        | 0.0000000009313225747 TB    | 0.0000000000009094947 PB   |
+| 1 megabyte (MB)    | 1.048.576 bytes        | 1024 KB                    | 1 MB                         | 0.0009765625 GB              | 0.0000009536743164 TB       | 0.0000000009313225747 PB   |
+| 1 gigabyte (GB)    | 1.073.741.824 bytes    | 1.048.576 KB               | 1024 MB                      | 1 GB                         | 0.0009765625 TB             | 0.0000009536743164 PB      |
+| 1 terabyte (TB)    | 1.099.511.627.776 bytes| 1.073.741.824 KB           | 1.048.576 MB                 | 1024 GB                      | 1 TB                        | 0.0009765625 PB            |
+| 1 petabyte (PB)    | 1.125.899.906.842.624 bytes| 1.099.511.627.776 KB      | 1.073.741.824 MB             | 1.048.576 GB                 | 1024 TB                     | 1 PB                       |
+​
+6 - Dicas Importantes
+    
+    Sistema Binário: Sempre lembre-se que essas conversões são baseadas no sistema binário
+    (fatores de 1024), e não no sistema decimal (fatores de 1000), que é comum em outras
+    medições de tamanho, como distância e peso.
+    
+    Fatores de 1024: Isso significa que cada unidade superior é 1024 vezes maior que
+    a unidade anterior, o que é diferente do sistema métrico, onde as unidades aumentam em
+    potências de 10.

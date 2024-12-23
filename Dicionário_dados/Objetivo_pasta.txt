@@ -1,0 +1,5 @@
+1 - O objetivo desta pasta é deixar armazenado todos os dicionários de dados
+dos arquivos csv, xlsx de exemplo para estudos e os arquivos tratados.
+
+2 - Também deixar os códigos para gerar os dicionários de dados do nossos arquivos e 
+Dataframas

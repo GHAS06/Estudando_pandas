@@ -1,0 +1,182 @@
+1 - Cópia de Dados com Pandas:
+    
+    Quando trabalhamos com o Pandas, é comum manipular ou transformar dados em DataFrames
+    e Series. Em algumas situações, é necessário criar uma cópia dos dados para evitar
+    alterações indesejadas no objeto original. 
+    Vamos explorar o contexto, para que serve, quando usar e como utilizar as funções de
+    cópia no Pandas.
+
+2 - Contexto
+
+    Por padrão, o Pandas utiliza referências a objetos ao manipular dados. Isso significa
+    que, se você atribuir um DataFrame a uma nova variável, qualquer modificação feita na
+    nova variável será refletida no DataFrame original.
+    Isso ocorre porque o Pandas não cria uma cópia em memória automaticamente.
+
+    I - Problema Comum:
+        
+        import pandas as pd
+
+        # Criando um DataFrame
+        df_original = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+
+        # Atribuindo o DataFrame a outra variável
+        df_novo = df_original
+
+        # Alterando a nova variável
+        df_novo['A'] = [10, 20, 30]
+
+        # Verificando o original
+        print(df_original)
+        
+        Saída:
+    
+            A  B
+        0  10  4
+        1  20  5
+        2  30  6
+        
+        O df_original também foi modificado, porque df_novo é apenas uma referência ao
+        mesmo objeto.
+
+3 - Para que serve?
+
+    A criação de uma cópia no Pandas serve para:
+
+        - Preservar os dados originais: Garantir que alterações feitas em uma variável não
+        impactem o DataFrame ou Series original.
+
+        - Testar transformações: Permite criar cópias de trabalho para aplicar 
+        transformações ou análises sem comprometer os dados originais.
+
+        - Evitar bugs: Reduz problemas relacionados a referências não intencionais.
+
+4 - Quando usar?
+
+    Quando você precisa manipular os dados sem alterar o objeto original. Ao trabalhar com
+    data cleaning (limpeza de dados), para manter uma versão intacta do conjunto de dados 
+    original.
+    Em fluxos de trabalho onde múltiplas operações independentes precisam ser realizadas
+    no mesmo DataFrame.
+
+5 - Funções para Cópia de Dados
+
+    I - Método copy()
+    
+        O método copy() é usado para criar uma cópia profunda (deep copy) ou uma cópia
+        superficial (shallow copy) de um DataFrame ou Series.
+
+    Descrição: Uma cópia profunda (deep copy) cria um novo objeto completamente
+    independente, copiando também os dados subjacentes. Uma cópia superficial (shallow copy)
+    copia apenas a estrutura do objeto, mantendo referências aos dados subjacentes.
+
+    Sintaxe:
+    
+        DataFrame.copy(deep=True)
+
+    Parâmetros:
+        
+        - deep (bool, padrão: True):
+            
+            True: Cria uma cópia profunda. O objeto original e a cópia são completamente
+            independentes.
+            
+            False: Cria uma cópia superficial. Apenas a estrutura é copiada, enquanto os
+            dados subjacentes são compartilhados.
+    
+    Retorno:
+        Retorna um novo DataFrame ou Series com os mesmos dados.
+
+6  - Exemplos de Uso
+
+    Exemplo 1: Criar uma cópia profunda
+
+        # Criando um DataFrame
+        df_original = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+
+        # Criando uma cópia profunda
+        df_copia = df_original.copy(deep=True)
+
+        # Modificando a cópia
+        df_copia['A'] = [10, 20, 30]
+
+        # Verificando os DataFrames
+        print("Original:")
+        print(df_original)
+
+        print("\nCópia:")
+        print(df_copia)
+        
+        Saída:
+
+        Original:
+        A  B
+        0  1  4
+        1  2  5
+        2  3  6
+
+        Cópia:
+        
+            A  B
+        0  10  4
+        1  20  5
+        2  30  6
+        
+        # O df_original permanece inalterado.
+
+    Exemplo 2: Criar uma cópia superficial
+
+        # Criando uma cópia superficial
+        df_superficial = df_original.copy(deep=False)
+
+        # Modificando a cópia
+        df_superficial['A'] = [10, 20, 30]
+
+        # Verificando os DataFrames
+        print("Original:")
+        print(df_original)
+        Saída:
+
+        Original:
+  
+            A  B
+        0  10  4
+        1  20  5
+        2  30  6
+     
+        O df_original é modificado porque a cópia superficial compartilha os mesmos dados
+        subjacentes.
+
+
+    Exemplo 3: Verificar independência entre DataFrames
+
+        # Verificando independência
+        df_copia = df_original.copy(deep=True)
+
+        # Alterando um elemento na cópia
+        df_copia.loc[0, 'A'] = 99
+
+        # Confirmando que o original não foi alterado
+        print("Original:")
+        print(df_original)
+
+        print("\nCópia:")
+        print(df_copia)
+
+7 - Boa prática ao usar copy()
+
+    Sempre use deep=True (padrão) quando quiser garantir que os dados originais não serão
+    modificados.
+    
+    Evite usar deep=False, a menos que você tenha certeza de que não precisa de
+    independência entre os objetos.
+
+8 -Resumo
+
+    - O método copy() no Pandas é essencial para criar cópias independentes de DataFrames
+    ou Series.
+
+    - Ele ajuda a evitar alterações não intencionais nos dados originais.
+
+    - Use deep=True para criar uma cópia completamente independente e deep=False para
+    copiar apenas a estrutura, compartilhando os dados.

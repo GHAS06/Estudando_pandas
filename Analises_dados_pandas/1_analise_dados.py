@@ -47,7 +47,7 @@ SAIDA:
 dtypes: int64(5), object(5)
 memory usage: 52.8+ KB
 '''
-# Podemos Usar a função .describe() para descrever informações  dtype dos dados das colunas
+# Podemos Usar a função .describe() para descrever informações dtype dos dados das colunas
 # o parâmetro include = tipo_dados, podemos sobre escrever o tipo de dado nesta coluna
 # o parâmetro porcentiles, podemos usar para saber níveis de porcentagem de um determinado dado
 # podemos colocar uma lista ou um objeto do python

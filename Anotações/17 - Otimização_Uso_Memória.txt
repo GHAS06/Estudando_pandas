@@ -1,0 +1,167 @@
+1 - Otimização de memória com Pandas: Guia Completo
+    
+    Trabalhar com grandes conjuntos de dados em Pandas pode ser um desafio,
+    especialmente quando lidamos com limitações de memória. 
+    
+    - Neste guia, vamos entender:
+
+        - Contexto: Por que a otimização de memória é importante?
+        - Para que serve?
+        - Quando usar a otimização?
+        - Como otimizar o uso de memória com Pandas?
+        - Exemplos práticos.
+
+2 - Contexto: Por que a otimização de memória é importante?
+
+    Pandas é uma biblioteca poderosa para análise de dados em Python, mas não foi
+    projetada para ser eficiente em termos de memória. 
+    
+    - Isso ocorre porque:
+        
+        Pandas utiliza arrays do NumPy como backend, que são armazenados na RAM. Ao 
+        trabalhar com arquivos grandes, como logs, datasets financeiros ou científicos,
+        a memória pode se esgotar, causando lentidão ou travamentos. Se você está lidando
+        com grandes volumes de dados em máquinas com memória limitada, otimizar o uso
+        da memória é essencial para evitar gargalos de desempenho.
+
+3 - Para que serve a otimização de memória?
+
+    A otimização de memória no Pandas ajuda a:
+
+    - Economizar recursos do sistema (RAM).
+    - Acelerar operações em grandes conjuntos de dados.
+    - Permitir a análise de datasets maiores em máquinas com menor capacidade.
+    - Evitar erros como MemoryError, comuns ao trabalhar com arquivos grandes.
+
+4 - Quando usar a otimização?
+
+    - Você deve considerar otimizar o uso de memória em Pandas quando:
+
+        Está lidando com arquivos grandes (e.g., acima de 1 GB).
+        O processo de análise está lento devido ao consumo de memória.
+        Você tem acesso limitado a recursos de hardware (ex.: servidores com pouca RAM).
+        O trabalho envolve leitura, manipulação ou transformação de dados repetidamente.
+
+5 -  Como otimizar o uso de memória com Pandas?
+
+    I - Escolher tipos de dados mais leves:
+
+        O Pandas utiliza tipos de dados padrão (e.g., int64, float64), que consomem muita
+        memória. Reduzir os tipos para valores mais compactos pode economizar memória.
+
+    Dica: Use astype() para converter tipos de dados.
+
+    Exemplo: 
+
+        import pandas as pd
+        import numpy as np
+
+        # Criando um DataFrame exemplo
+        data = {
+            'id': np.arange(1, 1000001),  # Inteiros grandes
+            'age': np.random.randint(18, 80, size=1000000),  # Idades
+            'gender': np.random.choice(['Male', 'Female'], size=1000000)  # Gênero
+        }
+
+        df = pd.DataFrame(data)
+
+        # Ver tamanho antes
+        print("Antes da otimização:")
+        print(df.info())
+
+        # Converter tipos de dados
+        df['id'] = df['id'].astype('int32')  # Reduz de int64 para int32
+        df['age'] = df['age'].astype('int8')  # Reduz de int64 para int8
+        df['gender'] = df['gender'].astype('category')  # Usa categorias em vez de strings
+
+        # Ver tamanho depois
+        print("\nDepois da otimização:")
+        print(df.info())
+
+    II - Carregar dados em blocos menores (chunksize):
+        
+        Ao trabalhar com arquivos grandes, carregue os dados em partes menores para evitar
+        sobrecarregar a memória.
+
+        chunk_size = 100000  # Tamanho do bloco
+        reader = pd.read_csv('large_dataset.csv', chunksize=chunk_size)
+
+        # Processar cada bloco separadamente
+        for chunk in reader:
+            print(chunk.info())  # Pode incluir análise ou transformação por bloco
+
+    III - Eliminar dados desnecessários
+
+    Remover colunas que não serão usadas:
+
+        df = df.drop(columns=['coluna_desnecessaria'])
+        Filtrar linhas irrelevantes:
+        python
+        Copiar código
+        df = df[df['age'] > 30]  # Manter apenas registros de pessoas acima de 30 anos
+
+    IV - Trabalhar com formatos mais eficientes
+
+        Os formatos Parquet e Feather são mais rápidos e compactos do que CSV:
+
+            # Salvar em Parquet
+            df.to_parquet('dataset.parquet', compression='snappy')
+
+            # Ler o Parquet
+            df = pd.read_parquet('dataset.parquet')
+            4.5 Monitorar o uso de memória
+            Use df.memory_usage() para verificar o impacto das mudanças no uso de memória.
+
+            # Verificar o uso de memória antes e depois
+            print(df.memory_usage(deep=True))
+
+    V - Usar index eficiente
+        
+        Um índice grande e desnecessário pode consumir muita memória. Resete ou remova
+        índices se possível.
+
+
+            df.reset_index(drop=True, inplace=True)
+
+6 - Exemplos práticos:
+
+Exemplo 1: Comparação de tipos de dados
+
+    # DataFrame inicial
+    df = pd.DataFrame({
+        'valores': [1, 2, 3, 4, 5],
+        'nomes': ['A', 'B', 'C', 'D', 'E']
+    })
+
+    # Comparando o uso de memória
+    print("Uso de memória antes:")
+    print(df.memory_usage(deep=True))
+
+    # Otimizando os tipos
+    df['valores'] = df['valores'].astype('int8')  # Reduz int64 para int8
+    df['nomes'] = df['nomes'].astype('category')  # Converte strings para categorias
+
+    print("\nUso de memória depois:")
+    print(df.memory_usage(deep=True))
+
+Exemplo 2: Processamento de dados em chunks
+
+    # Processar arquivo CSV em partes menores
+    reader = pd.read_csv('large_file.csv', chunksize=50000)
+
+    total_sum = 0
+    for chunk in reader:
+        # Exemplo: somar uma coluna chamada 'valor'
+        total_sum += chunk['valor'].sum()
+
+    print(f"Soma total: {total_sum}")
+    
+7 - Resumo:
+    
+    A otimização de memória com Pandas é essencial para trabalhar com grandes datasets
+    de maneira eficiente. O foco principal está em:
+
+        - Escolher tipos de dados apropriados.
+        - Processar dados em blocos.
+        - Remover informações desnecessárias.
+        - Utilizar formatos compactados.

@@ -1,0 +1,122 @@
+1 - Vamos entender como usar a função/método .describe()
+
+    Definição: A função describe() no Pandas é usada para gerar estatísticas descritivas
+    de um DataFrame ou Série. Ela fornece um resumo estatístico dos dados, incluindo
+    medidas de tendência central, dispersão e contagem de valores.
+
+2 - Contexto e Objetivo
+
+    Para que serve:
+        
+        Fornece um resumo rápido dos dados numéricos ou categóricos.
+        Ajuda a entender a distribuição e as características básicas das variáveis.
+        Identifica possíveis outliers e inconsistências nos dados.
+
+    Quando usar:
+
+        Na fase de análise exploratória de dados (EDA).
+        Sempre que for necessário obter um resumo estatístico dos dados.
+
+    Sintaxe:
+
+        DataFrame.describe(percentiles=None, include=None, exclude=None)
+
+    Parâmetros:
+
+        percentiles (opcional): Uma lista de percentuais para calcular percentis
+        adicionais além dos padrões (25%, 50%, 75%).
+
+    Exemplo: percentiles=[0.1, 0.9].
+
+    include (opcional): Especifica os tipos de dados a incluir na saída. Pode ser:
+        
+        'all': Inclui todas as colunas.
+        Lista de tipos, como ['object', 'float', 'int'].
+
+    exclude (opcional): Especifica os tipos de dados a excluir.
+
+3 - Como Usar:
+
+    I - Dados Numéricos:
+        
+        Por padrão, describe() exibe estatísticas para colunas numéricas.
+
+        import pandas as pd
+
+        # Criar um DataFrame
+        data = {
+            'idade': [23, 45, 31, 35, 62],
+            'salario': [5000, 7000, 3200, 8000, 15000]
+        }
+
+        df = pd.DataFrame(data)
+
+        # Resumo estatístico
+        print(df.describe())
+    
+    Saída:
+                idade       salario
+        count   5.000000      5.000000
+        mean   39.200000   7640.000000
+        std    14.972682   4873.844933
+        min    23.000000   3200.000000
+        25%    31.000000   5000.000000
+        50%    35.000000   7000.000000
+        75%    45.000000   8000.000000
+        max    62.000000  15000.000000
+    
+    Descrição dos Resultados:
+
+        count: Número de valores não nulos.
+        mean: Média dos valores.
+        std: Desvio padrão.
+        min: Valor mínimo.
+        25%, 50%, 75%: Percentis (quartis).
+        max: Valor máximo.
+
+II - Dados Categóricos:
+    
+    Se o DataFrame contém colunas categóricas, você pode incluir essas colunas
+    explicitamente.
+
+    data = {
+        'cidade': ['São Paulo', 'Rio', 'Belo Horizonte', 'Rio', 'São Paulo'],
+        'idade': [23, 45, 31, 35, 62]
+    }
+
+    df = pd.DataFrame(data)
+
+        # Resumo para colunas categóricas
+        print(df.describe(include=['object']))
+    
+    Saída:
+
+                cidade
+        count          5
+        unique         3
+        top     São Paulo
+        freq           2
+        Descrição dos Resultados:
+
+        count: Número de valores não nulos.
+        unique: Número de valores únicos.
+        top: Valor mais frequente (moda).
+        freq: Frequência do valor mais frequente.
+
+III - Todas as Colunas (Numéricas e Categóricas):
+
+    Use o parâmetro include='all' para incluir todas as colunas.
+
+    print(df.describe(include='all'))
+
+IV - Personalizando Percentis:
+    
+    Você pode adicionar percentis personalizados ao resumo.
+
+    print(df.describe(percentiles=[0.1, 0.9]))
+
+4 - Vantagens:
+    
+    - Fornece insights iniciais sobre os dados.
+    - Identifica anomalias, outliers e possíveis erros.
+    - Resumidamente analisa colunas numéricas e categóricas.
