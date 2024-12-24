@@ -1,0 +1,253 @@
+1 - O que é a biblioteca NumPy?
+    
+    O NumPy (Numerical Python) é uma biblioteca fundamental para computação científica
+    em Python. Ela fornece suporte para manipulação eficiente de arrays multidimensionais
+    e diversas operações matemáticas e estatísticas de alto desempenho. O NumPy é amplamente
+    usado em projetos de aprendizado de máquina, análise de dados, simulações científicas e
+    outras áreas que exigem processamento numérico.
+
+2 - PRINCIPAIS OBJETOS E FUNCIONALIDADES DA BIBLIOTECA NUMPY
+
+    I - Array N-dimensional
+    
+        numpy.array()
+
+        Descrição: Cria um array N-dimensional a partir de uma lista ou outra estrutura de dados.
+        
+        Parâmetros:
+            
+            - object: Dados de entrada (lista, tupla, etc.).
+            
+            - dtype (opcional): Tipo de dado dos elementos do array (ex.: int, float).
+        
+        Sintaxe:
+            
+            numpy.array(object, dtype=None)
+        
+        Como funciona: Retorna um array N-dimensional com os elementos e o tipo especificados.
+        Operações Matemáticas com Arrays
+    
+    II- numpy.add(a, b)
+
+        Descrição: Soma elemento por elemento entre dois arrays.
+
+        Parâmetros:
+            
+            - a, b: Arrays de entrada de mesma forma (shape).
+        
+        Sintaxe:
+
+            numpy.add(a, b)
+
+        Como funciona: Retorna um novo array com os resultados da soma.
+            
+
+    III - numpy.multiply(a, b)
+
+        Descrição: Multiplica elemento por elemento entre dois arrays.
+
+        Parâmetros:
+            
+            - a, b: Arrays de entrada de mesma forma.
+        
+        Sintaxe:
+            
+            numpy.multiply(a, b)
+        
+        Como funciona: Retorna um novo array com os resultados da multiplicação.
+
+    IV - numpy.dot(a, b)
+
+        Descrição: Calcula o produto escalar de dois arrays.
+        
+        Parâmetros:
+
+            - a, b: Arrays de entrada (1D ou 2D).
+        
+        Sintaxe:
+            
+            numpy.dot(a, b) 
+
+        Como funciona: Retorna um único número para vetores 1D ou uma matriz para arrays 2D.
+
+3 - Propriedades de Arrays
+
+I- numpy.shape()
+
+    Descrição: Obtém as dimensões (forma) do array.
+
+    Parâmetros:
+        
+        - array: O array cujo shape será obtido.
+
+    Sintaxe:
+        
+        numpy.shape(array)
+    
+    Como funciona: Retorna uma tupla indicando as dimensões do array.
+
+II - numpy.size()
+
+    Descrição: Obtém o número total de elementos do array.
+
+    Parâmetros:
+
+        - array: O array cujo tamanho será calculado.
+
+    Sintaxe:
+
+        numpy.size(array)
+
+    Como funciona: Retorna um número inteiro indicando o total de elementos.
+
+4 - Criação de Arrays Pré-definidos
+
+    I - numpy.zeros(shape)
+
+        Descrição: Cria um array preenchido com zeros.
+
+        Parâmetros:
+
+            - shape: Dimensão do array (ex.: (2, 3)).
+        
+        Sintaxe:
+            
+            numpy.zeros(shape)
+
+        Como funciona: Retorna um array de zeros com as dimensões especificadas.
+    
+    II - numpy.ones(shape)
+
+        Descrição: Cria um array preenchido com uns.
+
+        Parâmetros:
+            
+            - shape: Dimensão do array.
+        
+        Sintaxe:
+
+            numpy.ones(shape)
+        
+        Como funciona: Retorna um array de uns com as dimensões especificadas.
+            
+    III - numpy.linspace(start, stop, num=50)
+
+        Descrição: Gera uma sequência de números igualmente espaçados entre dois valores.
+
+        Parâmetros:
+
+            - start: Valor inicial.
+            - stop: Valor final.
+            - num (opcional): Número de elementos (padrão é 50).
+        
+        Sintaxe:
+
+            numpy.linspace(start, stop, num=50)
+
+        Como funciona: Retorna um array com os números igualmente espaçados.
+
+5 - Manipulação de Arrays
+
+    I - numpy.reshape(array, newshape)
+
+        Descrição: Redimensiona o array para a forma especificada.
+    
+        Parâmetros:
+
+            - array: O array a ser redimensionado.
+            - newshape: Nova forma do array.
+
+          Sintaxe:
+
+               numpy.reshape(array, newshape)
+    
+            Como funciona: Retorna um novo array redimensionado.
+
+    II - numpy.transpose(array)
+
+        Descrição: Troca as dimensões do array (ex.: transposição de matriz).
+
+        Parâmetros:
+
+         - array: O array a ser transposto.
+
+        Sintaxe:
+        
+           numpy.transpose(array)
+
+        Como funciona: Retorna o array transposto.
+
+    III - numpy.concatenate((a1, a2), axis=0)
+
+        Descrição: Junta dois ou mais arrays ao longo de um eixo especificado.
+        
+        Parâmetros:
+            - a1, a2: Arrays a serem concatenados.
+            - axis (opcional): Eixo ao longo do qual os arrays serão unidos.
+        Sintaxe:
+
+    IV - numpy.concatenate((a1, a2), axis=0)
+
+        Como funciona: Retorna o array concatenado.
+
+6 - Funções Estatísticas
+
+    I - numpy.mean(array)
+
+        Descrição: Calcula a média dos elementos do array.
+        
+        Parâmetros:
+            - array: O array cujos elementos serão utilizados.
+       
+        Sintaxe:
+        
+            numpy.mean(array)
+        
+        Como funciona: Retorna a média dos elementos.
+
+    II - numpy.std(array)
+
+        Descrição: Calcula o desvio padrão dos elementos do array.
+    
+        Parâmetros:
+
+            - array: O array cujos elementos serão utilizados.
+
+        Sintaxe:
+
+            numpy.std(array)
+
+        Como funciona: Retorna o desvio padrão dos elementos.
+
+7 - Leitura e Escrita de Dados
+
+    I - numpy.loadtxt()
+
+        Descrição: Carrega dados de um arquivo de texto para um array NumPy.
+        
+        Parâmetros:
+            
+            - fname: Caminho do arquivo.
+            - delimiter: Delimitador entre os valores no arquivo.
+
+        Sintaxe:
+            
+            numpy.loadtxt(fname, delimiter=',')
+        
+        Como funciona: Retorna um array com os dados lidos.
+
+    II - numpy.savetxt()
+
+        Descrição: Salva um array em um arquivo de texto.
+        
+        Parâmetros:
+            - fname: Caminho do arquivo.
+            - array: O array a ser salvo.
+        
+        delimiter: Delimitador entre os valores.
+        
+        Sintaxe:
+            
+            numpy.savetxt(fname, array, delimiter=',')
+        
+        Como funciona: Salva o array em formato de texto.
