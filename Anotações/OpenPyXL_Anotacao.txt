@@ -1,0 +1,139 @@
+
+1 - O que é a biblioteca OpenPyXL?
+
+A OpenPyXL é uma biblioteca Python amplamente utilizada para ler, criar, modificar e salvar arquivos no formato Excel (XLSX). É especialmente útil para automatizar tarefas que envolvem manipulação de planilhas em ambientes empresariais, processamento de dados e relatórios dinâmicos. Com suporte a células, estilos, gráficos e fórmulas, a OpenPyXL permite trabalhar com arquivos Excel de maneira programática e eficiente.
+
+---
+
+2 - PRINCIPAIS OBJETOS E FUNCIONALIDADES DA BIBLIOTECA OPENPYXL
+
+---
+
+I - Leitura e Escrita de Arquivos Excel
+
+1. openpyxl.load_workbook()
+
+- Descrição: Carrega um arquivo Excel existente.
+- Parâmetros:
+  - filename: Caminho do arquivo Excel.
+  - read_only (opcional): Abre o arquivo no modo somente leitura (padrão: False).
+  - data_only (opcional): Retorna apenas os valores calculados das fórmulas (padrão: False).
+- Sintaxe:
+  from openpyxl import load_workbook
+  workbook = load_workbook(filename="arquivo.xlsx", read_only=False)
+
+2. openpyxl.Workbook()
+
+- Descrição: Cria um novo arquivo Excel vazio.
+- Sintaxe:
+  from openpyxl import Workbook
+  workbook = Workbook()
+
+II - Manipulação de Planilhas
+
+1. workbook.active
+
+- Descrição: Retorna a planilha ativa do arquivo Excel.
+- Sintaxe:
+  sheet = workbook.active
+
+2. workbook.create_sheet(title, index=None)
+
+- Descrição: Cria uma nova planilha no arquivo Excel.
+- Parâmetros:
+  - title: Nome da nova planilha.
+  - index (opcional): Índice da posição onde a planilha será inserida.
+- Sintaxe:
+  sheet = workbook.create_sheet(title="Nova Planilha", index=0)
+
+3. workbook.remove(worksheet)
+
+- Descrição: Remove uma planilha do arquivo Excel.
+- Parâmetros:
+  - worksheet: Objeto da planilha a ser removida.
+- Sintaxe:
+  workbook.remove(sheet)
+
+4. workbook[sheet_name]
+
+- Descrição: Acessa uma planilha pelo nome.
+- Parâmetros:
+  - sheet_name: Nome da planilha a ser acessada.
+- Sintaxe:
+  sheet = workbook["Nome da Planilha"]
+
+III - Manipulação de Células
+
+1. sheet.cell(row, column, value=None)
+
+- Descrição: Acessa ou escreve valores em uma célula específica.
+- Parâmetros:
+  - row: Número da linha.
+  - column: Número da coluna.
+  - value (opcional): Valor a ser atribuído à célula.
+- Sintaxe:
+  cell = sheet.cell(row=1, column=1, value="Texto")
+
+2. sheet["A1"]
+
+- Descrição: Acessa diretamente uma célula pelo endereço.
+- Sintaxe:
+  cell = sheet["A1"]
+
+3. sheet.append(iterable)
+
+- Descrição: Adiciona uma linha de valores na planilha.
+- Parâmetros:
+  - iterable: Lista ou tupla com os valores.
+- Sintaxe:
+  sheet.append([1, 2, 3])
+
+IV - Estilização de Células
+
+1. openpyxl.styles.Font()
+
+- Descrição: Define a fonte e o estilo do texto de uma célula.
+- Parâmetros:
+  - name: Nome da fonte (ex.: "Calibri").
+  - size: Tamanho da fonte.
+  - bold: Negrito (True ou False).
+  - italic: Itálico (True ou False).
+- Sintaxe:
+  from openpyxl.styles import Font
+  cell.font = Font(name="Arial", size=12, bold=True)
+
+2. openpyxl.styles.Alignment()
+
+- Descrição: Define o alinhamento do texto em uma célula.
+- Parâmetros:
+  - horizontal: Alinhamento horizontal (ex.: "center", "left", "right").
+  - vertical: Alinhamento vertical (ex.: "center", "top", "bottom").
+- Sintaxe:
+  from openpyxl.styles import Alignment
+  cell.alignment = Alignment(horizontal="center", vertical="center")
+
+3. openpyxl.styles.PatternFill()
+
+- Descrição: Define a cor de preenchimento da célula.
+- Parâmetros:
+  - fill_type: Tipo de preenchimento (ex.: "solid").
+  - fgColor: Cor de preenchimento (ex.: "FFFF00" para amarelo).
+- Sintaxe:
+  from openpyxl.styles import PatternFill
+  cell.fill = PatternFill(fill_type="solid", fgColor="FFFF00")
+
+V - Salvando Arquivos Excel
+
+1. workbook.save(filename)
+
+- Descrição: Salva o arquivo Excel no caminho especificado.
+- Parâmetros:
+  - filename: Nome ou caminho do arquivo.
+- Sintaxe:
+  workbook.save("arquivo_modificado.xlsx")
+
+---
+
+3 - Conclusão
+
+A biblioteca OpenPyXL oferece ferramentas poderosas para automação e manipulação de planilhas Excel. Desde a criação de novos arquivos até a leitura e estilização de células, ela é ideal para tarefas que exigem integração de dados em ambientes empresariais ou acadêmicos.

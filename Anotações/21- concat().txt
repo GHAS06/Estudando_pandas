@@ -1,0 +1,134 @@
+1 -  Oara que serve o concat()? 
+
+    função pd.concat() do Pandas é usada para combinar vários objetos DataFrame 
+    ou Series ao longo de um eixo (rows ou columns). É uma ferramenta extremamente 
+    útil para combinar dados de diferentes fontes ou realizar manipulações avançadas 
+    de DataFrames.
+
+2 - Aqui está um guia completo sobre como usá-la:
+
+    I - Sintaxe básica:
+
+        pd.concat(objs, axis=0, join='outer', ignore_index=False, keys=None, ...)
+    
+    II - Parâmetros:
+
+        objs: Lista ou dicionário de DataFrames ou Series que você deseja concatenar.
+        axis: Determina se a concatenação será feita nas linhas (axis=0) ou nas colunas (axis=1).
+        join: Tipo de junção:
+            'outer' (padrão): Mantém todas as colunas (união completa).
+            'inner': Mantém apenas colunas em comum.
+        ignore_index: Reindexa o DataFrame resultante se for True.
+        keys: Adiciona níveis hierárquicos ao índice, útil ao concatenar múltiplos DataFrames.
+
+3 - Exemplos de Uso:
+
+
+    I. Concatenar DataFrames verticalmente (linhas)
+
+        import pandas as pd
+
+        # Criando dois DataFrames
+        df1 = pd.DataFrame({'A': [1, 2], 'B': [3, 4]})
+        df2 = pd.DataFrame({'A': [5, 6], 'B': [7, 8]})
+
+        # Concatenando ao longo das linhas (axis=0)
+        resultado = pd.concat([df1, df2])
+        print(resultado)
+       
+        Saída:
+
+           A  B
+        0  1  3
+        1  2  4
+        0  5  7
+        1  6  8
+
+    II. Concatenar DataFrames horizontalmente (colunas)
+
+        # Concatenando ao longo das colunas (axis=1)
+        resultado = pd.concat([df1, df2], axis=1)
+        print(resultado)
+        
+        Saída:
+
+               A  B  A  B
+            0  1  3  5  7
+            1  2  4  6  8
+
+    III. Concatenar DataFrames com índices diferentes
+
+        df3 = pd.DataFrame({'A': [1, 2]}, index=[0, 1])
+        df4 = pd.DataFrame({'B': [3, 4]}, index=[2, 3])
+
+        # Concatenando com diferentes índices
+        resultado = pd.concat([df3, df4], axis=1)
+        print(resultado)
+
+        Saída:
+
+             A    B
+        0  1.0  NaN
+        1  2.0  NaN
+        2  NaN  3.0
+        3  NaN  4.0
+
+    IV. Concatenar e reindexar o resultado
+
+        # Ignorando o índice original
+        resultado = pd.concat([df1, df2], ignore_index=True)
+        print(resultado)
+
+        Saída:
+
+               A  B
+            0  1  3
+            1  2  4
+            2  5  7
+            3  6  8
+
+    V. Concatenar com keys para criar um índice hierárquico
+
+        # Criando um índice hierárquico
+        resultado = pd.concat([df1, df2], keys=['df1', 'df2'])
+        print(resultado)
+
+        Saída:
+
+               A  B
+        df1 0  1  3
+            1  2  4
+        df2 0  5  7
+            1  6  8
+
+    VI. Concatenar com junção interna (colunas em comum)
+
+        df5 = pd.DataFrame({'A': [1, 2], 'B': [3, 4]})
+        df6 = pd.DataFrame({'B': [5, 6], 'C': [7, 8]})
+
+    # Usando join='inner' para manter apenas colunas em comum
+    resultado = pd.concat([df5, df6], axis=0, join='inner')
+    print(resultado)
+
+    Saída:
+
+       B
+    0  3
+    1  4
+    0  5
+    1  6
+
+7. Concatenar múltiplos DataFrames e verificar duplicatas
+
+    # Concatenando e eliminando duplicatas
+    resultado = pd.concat([df1, df2]).drop_duplicates()
+    print(resultado)
+
+4 - Dicas
+
+    Performance: Prefira usar pd.concat() ao invés de métodos como append() (que foi depreciado) 
+    para maior eficiência em grandes DataFrames.
+    
+    Ordenação de índices: Se os índices não coincidirem, você pode usar .sort_index() após concatenar.
+    
+    Alteração permanente: pd.concat() não altera os DataFrames originais; ele retorna um novo DataFrame.
