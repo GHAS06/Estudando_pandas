@@ -1,0 +1,51 @@
+1 - merge :
+    
+    O método merge em pandas é utilizado para combinar dois ou mais DataFrames de
+    maneira eficiente, baseado em colunas ou índices específicos, de forma semelhante
+    a uma junção (join) de bancos de dados.
+
+    Sintaxe básica:
+        
+        pd.merge(left, right, how='inner', on=None, left_on=None, right_on=None, left_index=False, right_index=False)
+    
+    Parâmetros:
+        
+        left e right: São os DataFrames que você deseja juntar.
+        
+        how: Define o tipo de junção a ser feita. Os valores possíveis são:
+        
+            'left': Junção à esquerda (mantém todos os registros de left e os 
+            correspondentes de right).
+        
+            'right': Junção à direita (mantém todos os registros de right e os 
+            correspondentes de left).
+        
+            'outer': Junção externa (mantém todos os registros de ambos os DataFrames, 
+            com valores NaN onde não há correspondência).
+        
+            'inner': Junção interna (mantém apenas os registros que possuem 
+            correspondência em ambos os DataFrames).
+        
+        on: Coluna(s) que será usada para fazer a junção. Se não especificado, 
+        o merge tenta usar as colunas de mesmo nome nos dois DataFrames.
+        
+        left_on e right_on: Permitem especificar as colunas a serem usadas para a 
+        junção nos DataFrames left e right, caso as colunas tenham nomes diferentes.
+        
+        left_index e right_index: Se True, utiliza os índices dos DataFrames para 
+        realizar a junção, em vez de colunas.
+
+    Exemplo:
+
+    df1 = pd.DataFrame({'id': [1, 2, 3], 'nome': ['A', 'B', 'C']})
+    df2 = pd.DataFrame({'id': [1, 2, 4], 'idade': [23, 34, 45]})
+
+    # Merge para combinar df1 e df2 com base na coluna 'id'
+    
+    result = pd.merge(df1, df2, how='inner', on='id')
+    print(result)
+
+    Saída:
+        id nome  idade
+        0   1    A     23
+        1   2    B     34

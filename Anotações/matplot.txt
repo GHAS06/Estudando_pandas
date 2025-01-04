@@ -1,0 +1,218 @@
+1 - O que é o matplotlib?
+    
+    A biblioteca matplotlib é uma das bibliotecas mais populares para criação de gráficos
+    e visualizações de dados em Python. Ela é extremamente poderosa e flexível, permitindo
+    a criação de uma ampla gama de gráficos, desde simples gráficos de linha até gráficos
+    3D complexos.
+
+2 - Contexto
+
+    Objetivo: A principal função do matplotlib é fornecer ferramentas para criar
+    visualizações gráficas. Ela é muito utilizada em análises de dados e em ciência de
+    dados para gerar gráficos a partir de grandes volumes de dados.
+
+    Popularidade: É uma das bibliotecas mais usadas em Python para visualização,
+    especialmente em conjunto com outras bibliotecas como pandas, seaborn e numpy.
+
+3 - Funcionalidades
+
+    I - Criação de Gráficos Básicos:
+
+        -Gráficos de linha
+        -Gráficos de dispersão (scatter)
+        -Gráficos de barras
+        -Gráficos de pizza
+        -Histogramas
+
+    II - Personalização de Gráficos:
+
+        - Personalização de títulos, eixos, rótulos e legendas.
+        - Controle de cores, estilo das linhas, fontes e marcadores.
+        - Ajuste de ticks e grid.
+
+    IV - Subgráficos (Subplots):
+        
+        Possibilidade de criar vários gráficos em uma única tela, organizando-os em uma
+        grade.
+
+    V - Gráficos Avançados:
+
+        -Gráficos 3D (usando o mplot3d).
+        -Mapas de calor (heatmaps).
+        -Gráficos de áreas, barras empilhadas e outros tipos.
+
+4 -Sintaxe
+
+    Para começar a usar o matplotlib, você normalmente importa o módulo pyplot da seguinte
+    forma:
+
+        import matplotlib.pyplot as plt
+
+    # Criando um Gráfico Simples (Gráfico de Linha)
+
+        import matplotlib.pyplot as plt
+
+        # Dados para o gráfico
+        x = [1, 2, 3, 4, 5]
+        y = [1, 4, 9, 16, 25]
+
+        # Criar o gráfico
+        
+        plt.plot(x, y)
+
+        # Adicionar título e rótulos
+        
+        plt.title('Gráfico de Linha Simples')
+        plt.xlabel('Eixo X')
+        plt.ylabel('Eixo Y')
+
+        # Exibir o gráfico
+        
+        plt.show()
+        Parâmetros Comuns
+        
+    I - plot(): Cria um gráfico de linha.
+
+        Parâmetros:
+        
+            x: Valores no eixo X.
+        
+            y: Valores no eixo Y.
+        
+            color: Cor da linha (ex: 'blue', 'red', etc).
+        
+            linestyle: Estilo da linha (ex: '-', '--', ':').
+        
+            marker: Tipo de marcador para os pontos (ex: 'o', '^', '.').
+        
+            Exemplo:
+
+            plt.plot(x, y, color='green', linestyle='--', marker='o')
+    
+    II - scatter(): Cria um gráfico de dispersão.
+
+        Parâmetros:
+        
+            x: Valores no eixo X.
+        
+            y: Valores no eixo Y.
+        
+            color: Cor dos pontos.
+        
+            s: Tamanho dos pontos.
+        
+            alpha: Transparência dos pontos (de 0 a 1).
+        
+            Exemplo:
+
+                plt.scatter(x, y, color='red', s=100, alpha=0.5)
+        
+     III - bar(): Cria um gráfico de barras.
+
+        Parâmetros:
+        
+            x: Valores no eixo X (posição das barras).
+        
+            height: Altura das barras (valores no eixo Y).
+        
+            color: Cor das barras.
+        
+            Exemplo:
+
+             plt.bar(x, y, color='blue')
+        
+    IV - hist(): Cria um histograma.
+
+        Parâmetros:
+            
+            x: Dados a serem agrupados.
+        
+            bins: Número de "caixas" ou intervalos.
+        
+            color: Cor das barras do histograma.
+        
+            Exemplo:
+
+                plt.hist(data, bins=10, color='purple')
+        
+    V - subplot(): Cria uma figura com múltiplos subgráficos.
+
+        Parâmetros:
+        
+            nrows: Número de linhas de subgráficos.
+        
+            ncols: Número de colunas de subgráficos.
+        
+            index: Posição do subgráfico que será ativo.
+        
+        Exemplo:
+
+            plt.subplot(2, 2, 1)  # 2 linhas, 2 colunas, primeiro gráfico
+            
+            plt.plot(x, y)
+            
+            title(), xlabel(), ylabel(), legend():
+
+        Parâmetros:
+            
+            title(): Adiciona o título ao gráfico.
+            
+            xlabel(): Adiciona rótulo ao eixo X.
+            
+            ylabel(): Adiciona rótulo ao eixo Y.
+            
+            legend(): Adiciona uma legenda ao gráfico.
+        
+            Exemplo:
+
+            plt.title('Exemplo de Gráfico')
+            plt.xlabel('Tempo')
+            plt.ylabel('Valor')
+            plt.legend(['Linha 1'])
+
+5 - Como Usar
+
+    Importação e Inicialização: Importe o matplotlib.pyplot para criar gráficos. 
+    Ele fornece a interface de comando para plotar gráficos.
+
+    Defina os Dados: Prepare os dados que serão usados no gráfico (listas, arrays NumPy,
+    ou pandas.DataFrame).
+
+    Escolha o Tipo de Gráfico: Utilize os comandos como plot(), scatter(), bar(), etc.,
+    para criar o gráfico.
+
+    Personalize: Adicione títulos, rótulos, e customize a aparência dos gráficos conforme
+    necessário.
+
+    Exiba o Gráfico: Chame plt.show() para exibir o gráfico.
+
+6 - Exemplo Completo
+
+    import matplotlib.pyplot as plt
+
+    # Dados
+    x = [1, 2, 3, 4, 5]
+    y = [1, 4, 9, 16, 25]
+
+    # Gráfico de linha
+    plt.plot(x, y, color='green', linestyle='-', marker='o', label='y = x^2')
+
+    # Adicionar título e rótulos
+    plt.title('Exemplo de Gráfico')
+    plt.xlabel('Eixo X')
+    plt.ylabel('Eixo Y')
+
+    # Adicionar legenda
+    plt.legend()
+
+    # Exibir o gráfico
+    p   lt.show()
+
+    - Com isso, você tem um gráfico de linha que mostra:
+        𝑦 = 𝑥 ^ 2
+
+7 - Conclusão
+
+    O matplotlib é uma ferramenta muito poderosa para a criação de gráficos em Python.
+    Ele oferece uma ampla gama de funcionalidades e personalizações para ajudar a criar
+    visualizações altamente informativas e atraentes.

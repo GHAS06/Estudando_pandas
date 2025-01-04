@@ -40,3 +40,7 @@ EXEMPLO:
 
 df_filtrado = df.filter(regex = '.UG.')
 print(df_filtrado)
+
+Para filtrar linhas de um Dataframe que contém valores específicos
+podemos usar o método .isin(), que é apropriado para verificar se os valores de uma
+coluna estão em uma lista
